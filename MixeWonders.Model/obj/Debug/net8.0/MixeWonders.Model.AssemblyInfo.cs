@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MixeWonders.Model")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+275f6628ec0d793f8e18f39b89d3afcca7b68a2e")]
 [assembly: System.Reflection.AssemblyProductAttribute("MixeWonders.Model")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MixeWonders.Model")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

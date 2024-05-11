@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mixeh\\source\\repos\\TheCoinDealer\\MixeWonders.Model\\MixeWonders.Model.csproj": {}
+    "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Model.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mixeh\\source\\repos\\TheCoinDealer\\MixeWonders.Model\\MixeWonders.Model.csproj": {
+    "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mixeh\\source\\repos\\TheCoinDealer\\MixeWonders.Model\\MixeWonders.Model.csproj",
+        "projectUniqueName": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Model.csproj",
         "projectName": "MixeWonders.Model",
-        "projectPath": "C:\\Users\\mixeh\\source\\repos\\TheCoinDealer\\MixeWonders.Model\\MixeWonders.Model.csproj",
+        "projectPath": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Model.csproj",
         "packagesPath": "C:\\Users\\mixeh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mixeh\\source\\repos\\TheCoinDealer\\MixeWonders.Model\\obj\\",
+        "outputPath": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mixeh\\AppData\\Roaming\\NuGet\\NuGet.Config",

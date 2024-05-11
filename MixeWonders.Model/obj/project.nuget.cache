@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bIu5DrT97z3qNYbnv2HfOcf5H6VvLRSFdxKlr8v/sEqdcXwx3xRonRsznqrZGrU5R7zTQI+THpWtlT6PwDGmwg==",
+  "dgSpecHash": "E7n/Fc5y8vi7d6Oqe6ALcmCDHbXSk3Qln5O8iN3mWEJsdVdzToAPRZZ2JktR36aQTpvkxwN6zaQNpWi6FIs2/w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mixeh\\source\\repos\\TheCoinDealer\\MixeWonders.Model\\MixeWonders.Model.csproj",
+  "projectFilePath": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Model.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.4\\microsoft.entityframeworkcore.8.0.4.nupkg.sha512",
     "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.4\\microsoft.entityframeworkcore.abstractions.8.0.4.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iP6VRQs9ZYsm9ryTlQQHri3akTjIyE1vG1q518bn6/If+SEMoFjzdtJdVQejbPnGZAm7NqnKcpyvHy9pHjMy/w==",
+  "dgSpecHash": "J3LZXaxPkaGaua5nciO+cmKSjEq3T1QnaaNGeuL6miAf2D+gbTlmaXSGrNxcuJHu3q5eTsq5eXuojD6f8zN5TQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mixeh\\source\\repos\\TheCoinDealer\\MixeWonders.Client\\MixeWonders.Client.csproj",
+  "projectFilePath": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\MixeWonders.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.aspnetcore.authorization\\8.0.1\\microsoft.aspnetcore.authorization.8.0.1.nupkg.sha512",
     "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.aspnetcore.components\\8.0.1\\microsoft.aspnetcore.components.8.0.1.nupkg.sha512",
