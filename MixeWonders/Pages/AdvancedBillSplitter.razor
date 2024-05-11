@@ -1,0 +1,111 @@
+﻿@page "/AdvancedBillSplitter"
+
+<h3>Bill Splitter</h3>
+
+<!-- Add people and their contributions -->
+<div style="margin-bottom: 1%;">
+
+<label for="personName">Name:</label>
+<input type="text" @bind-value="@newPersonName" id="personName" />
+</div>
+<div>
+
+    @foreach (var Bill in newPersonPayed)
+    {
+        <div style="margin-bottom: 1%;">
+            <div style="margin-bottom: 1%;">
+            <label for="personAmount">Description:</label>
+            <input type="text" @bind-value="Bill.Description" id="personDescription" />
+        </div>
+            <div style="margin-bottom: 1%;">
+            <label for="personAmount">Amount Paid:</label>
+            <input type="number" step="1" @bind-value="Bill.Amount" id="personAmount" />
+        </div>
+
+            <button style="margin-right: 1%;" @onclick="() => AddPayment(Bill)">Add Another Payment</button>
+        @if (AddedPaymentCount > 0)
+        {
+            <button @onclick="() => RemovePayment(Bill)">Remove Payment</button>
+        }
+        </div>
+    }
+</div>
+<div>
+    <button @onclick="AddPerson">Add Person</button>
+</div>
+
+<!-- Display list of people and their contributions -->
+<h4>People and their Contributions</h4>
+<div>
+    @foreach (var person in people)
+    {
+        <div>
+            @person.Name paid:
+
+            @foreach (var Bills in person.Payed)
+            {
+                <div>@Bills.Description : @Bills.Amount</div>
+            }
+            <div>Total Payed: @person.Payed.Select(x => x.Amount).Sum()</div>
+            <div>@person.Name Balance: @GetPersonBalance(person.Payed.Select(x => x.Amount).Sum())</div>
+        </div>
+    }
+</div>
+
+@if (people.Count > 0)
+{
+    <p>Total bill: @TotalBill.ToString("C")</p>
+    <p>Each person should pay: @AmountPerPerson.ToString("C")</p>
+}
+
+@code {
+    private string newPersonName = "";
+    private List<BillAmount> DefaultBill => new() { new() { Description = "", Amount = 0, Id = 1 } };
+    private List<BillAmount> newPersonPayed { get; set; } = new() { new() { Description = "", Amount = 0, Id = 1 } };
+    private int AddedPaymentCount = 1;
+    private List<Person> people = new List<Person>();
+
+    private decimal TotalBill => people.SelectMany(x => x.Payed).Select(x => x.Amount).Sum();
+    private decimal AmountPerPerson => TotalBill / people.Count;
+
+
+    private string GetPersonBalance(decimal amount)
+    => (amount - AmountPerPerson).ToString("C2");
+    private void AddPerson()
+    {
+        if (!string.IsNullOrEmpty(newPersonName))
+        {
+            people.Add(new Person { Name = newPersonName, Payed = newPersonPayed, Id = people.Count() });
+            newPersonPayed = DefaultBill;
+            newPersonName = "";
+            AddedPaymentCount = 0;
+        }
+    }
+    private void AddPayment(BillAmount bill)
+    {
+        if (bill.Amount > 0)
+        {
+            newPersonPayed.Add(new());
+            AddedPaymentCount++;            
+        }
+    }
+    private void RemovePayment(BillAmount billAmount)
+    {
+        newPersonPayed.Remove(billAmount);
+        AddedPaymentCount--;
+    }
+
+    private class Person
+    {
+        public int Id { get; set; } = 0;
+        public string Name { get; set; } = "";
+        public List<BillAmount> Payed { get; set; } = new();
+    }
+
+    private class BillAmount
+    {
+        public int Id { get; set; } = 0;
+        public string Description { get; set; } = "";
+        public decimal Amount { get; set; } = 0;
+    }
+}

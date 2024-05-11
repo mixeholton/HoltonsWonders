@@ -1,0 +1,23 @@
+﻿@page "/SimpleBillSplitter"
+
+<h3>Bill Splitter</h3>
+
+<label for="totalAmount">Total Amount:</label>
+<div>
+    <input type="number" step="0.01" @bind-value="@totalAmount" id="totalAmount" />
+</div>
+
+<label for="numPeople">Number of People:</label>
+<div>
+    <input type="number" @bind-value="@numPeople" id="numPeople" />
+</div>
+
+<div>
+    <p>Each person should pay: @EachShouldPay.ToString()</p>
+</div>
+
+@code {
+    private decimal totalAmount { get; set; }
+    private int numPeople  { get; set; }
+    private decimal EachShouldPay => numPeople > 0 ? totalAmount / numPeople : 0;
+}
