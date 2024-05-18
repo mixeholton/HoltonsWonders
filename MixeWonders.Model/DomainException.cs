@@ -1,4 +1,4 @@
-﻿namespace Komit.CompanionApp.Model
+﻿namespace MixeWonders.Model
 {
     public class DomainException : Exception
     {

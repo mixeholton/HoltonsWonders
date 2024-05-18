@@ -1,9 +1,9 @@
 ﻿
-using Komit.CompanionApp.Model.Commands;
-using Komit.CompanionApp.Model.Queries;
 
-namespace Komit.CompanionApp.Model.Services
+using MixeWonders.Model.Commands;
+using MixeWonders.Model.Queries;
+
+namespace MixeWonders.Model.Services
 {
     public record BrugsUserService(UserServiceCommands Commands, UserServiceQueries Queries);
-    public record LinkADService(LinkADServiceCommands Commands, LinkADServiceQueries Queries);
 }

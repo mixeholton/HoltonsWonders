@@ -1,9 +1,9 @@
-﻿using Komit.CompanionApp.Model.Entities;
+﻿using Komit.MixeWonders.Model.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using static Komit.CompanionApp.Model.Services.ScopeService;
+using static MixeWonders.Model.Services.ScopeService;
 
-namespace Komit.CompanionApp.Model.DbContexts;
+namespace MixeWonders.Model.DbContexts;
 
 public class BrugsDbContext : DbContext, IProvideDbContext
 {
@@ -59,25 +59,39 @@ public class BrugsDbContext : DbContext, IProvideDbContext
         return base.SaveChangesAsync(cancellationToken);
     }
     #endregion
-    public virtual DbSet<Author> Authors { get; set; }
-    public virtual DbSet<Logadgang> Logadgangs { get; set; }
-    public virtual DbSet<LinkUserAD> LinkedUser { get; set; }
+    public virtual DbSet<AffiliationEntity> Affiliation { get; set; }
+    public virtual DbSet<UserEntity> Users { get; set; }
+    public virtual DbSet<CreditDebitEntity> CreditDebit { get; set; }
+    public virtual DbSet<GroupEntity> Group { get; set; }
+    public virtual DbSet<RoleEntity> Role { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<LinkUserAD>(s =>
+        modelBuilder.Entity<AffiliationEntity>(s =>
         {
-            s.Property(x => x.UserName);
-            s.Property(x => x.ADId);
+            s.OwnsOne(x => x.User);
+            s.OwnsMany(x => x.Groups);
+            s.OwnsMany(x => x.Roles);
         });
-        modelBuilder.Entity<Author>(entity =>
+        modelBuilder.Entity<CreditDebitEntity>(entity =>
         {
-
+            entity.HasOne(c => c.User);
         });        
-        modelBuilder.Entity<Logadgang>(entity =>
+        modelBuilder.Entity<UserEntity>(entity =>
         {
-            
+            entity.HasOne(x => x.Affiliation);
+            entity.OwnsMany(x => x.creditDebits);
         });
+        modelBuilder.Entity<GroupEntity>(entity =>
+        {
+            entity.HasOne(x => x.Affiliation);
+            entity.HasMany(x => x.Roles);
+        });
+        modelBuilder.Entity<RoleEntity>(entity =>
+        {
+            entity.HasOne(x => x.Affiliation);
+        });
+
 
     }
 }

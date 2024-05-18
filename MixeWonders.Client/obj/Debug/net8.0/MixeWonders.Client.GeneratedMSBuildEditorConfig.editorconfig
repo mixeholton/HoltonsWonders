@@ -26,6 +26,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/mixeh/source/repos/MixeWonders/MixeWonders.Client/Components/InfoDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xJbmZvRGlhbG9nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/mixeh/source/repos/MixeWonders/MixeWonders.Client/Pages/AdvancedBillSplitter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWR2YW5jZWRCaWxsU3BsaXR0ZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -52,6 +56,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/mixeh/source/repos/MixeWonders/MixeWonders.Client/Pages/Weather.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2VhdGhlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mixeh/source/repos/MixeWonders/MixeWonders.Client/ViewModels/UserForm.razor]
+build_metadata.AdditionalFiles.TargetPath = Vmlld01vZGVsc1xVc2VyRm9ybS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mixeh/source/repos/MixeWonders/MixeWonders.Client/_Imports.razor]

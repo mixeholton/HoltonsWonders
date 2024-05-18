@@ -3,9 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MixeWonders.Model", "MixeWonders.Model\MixeWonders.Model.csproj", "{DD034CB8-21EC-4CDB-ACBC-008BFB56A0C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MixeWonders.Model", "MixeWonders.Model\MixeWonders.Model.csproj", "{DD034CB8-21EC-4CDB-ACBC-008BFB56A0C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MixeWonders.Client", "MixeWonders.Client\MixeWonders.Client.csproj", "{73A2C98A-A24A-4387-9C04-88B1C36D4ED5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MixeWonders.Client", "MixeWonders.Client\MixeWonders.Client.csproj", "{73A2C98A-A24A-4387-9C04-88B1C36D4ED5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DD034CB8-21EC-4CDB-ACBC-008BFB56A0C3} = {DD034CB8-21EC-4CDB-ACBC-008BFB56A0C3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

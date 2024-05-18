@@ -1,0 +1,58 @@
+﻿@using MixeWonders.Model.Enums
+@using MudBlazor
+<MudDialog>
+    <DialogContent>
+        <MudText Typo="Typo.caption" Color="@TextColor">@ContentText</MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton @ref="SubmitButtonRef" Color="@ButtonColor" Variant="Variant.Outlined" OnClick="Submit">@ButtonText</MudButton>
+        @if (CancelButtonVisible == true)
+        {
+            <MudButton @ref="CancelButtonRef" Variant="Variant.Outlined" Color="Color.Secondary" OnClick="Cancel">@CancelButtonText</MudButton>
+        }        
+    </DialogActions>
+</MudDialog>
+
+
+@code {
+    [CascadingParameter]
+    MudDialogInstance? MudDialog { get; set; }
+
+    [Parameter]
+    public string? ContentText { get; set; }
+    [Parameter]
+    public string? ButtonText { get; set; }
+    [Parameter]
+    public Color ButtonColor { get; set; }
+    [Parameter]
+    public Color TextColor { get; set; }
+    [Parameter]
+    public bool CancelButtonVisible { get; set; }
+    [Parameter]
+    public string? CancelButtonText { get; set; }
+    
+    [Parameter]
+    public DefaultFocusButton DefaultFocusButton { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
+    private MudButton? CancelButtonRef { get; set; }
+    private MudButton? SubmitButtonRef { get; set; }
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            switch (DefaultFocusButton)
+            {
+                case DefaultFocusButton.Ok:
+                    await SubmitButtonRef.FocusAsync();
+                    break;
+                case DefaultFocusButton.Cansel:
+                    await CancelButtonRef.FocusAsync();
+                    break;               
+            }
+        }
+    }    
+}

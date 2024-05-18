@@ -1,111 +1,173 @@
 ﻿@page "/AdvancedBillSplitter"
+@using Komit.CompanionApp.Component.Model
+@using MixeWonders.Client.Components
+@using MixeWonders.Client.Helpers
+@using MixeWonders.Client.ViewModels
+@using MixeWonders.Model.Enums
+@using MixeWonders.Model.Services
+@using MixeWonders.Model.Values
+@using MudBlazor
 
 <h3>Bill Splitter</h3>
-
-<!-- Add people and their contributions -->
-<div style="margin-bottom: 1%;">
-
-<label for="personName">Name:</label>
-<input type="text" @bind-value="@newPersonName" id="personName" />
-</div>
-<div>
-
-    @foreach (var Bill in newPersonPayed)
-    {
-        <div style="margin-bottom: 1%;">
-            <div style="margin-bottom: 1%;">
-            <label for="personAmount">Description:</label>
-            <input type="text" @bind-value="Bill.Description" id="personDescription" />
-        </div>
-            <div style="margin-bottom: 1%;">
-            <label for="personAmount">Amount Paid:</label>
-            <input type="number" step="1" @bind-value="Bill.Amount" id="personAmount" />
-        </div>
-
-            <button style="margin-right: 1%;" @onclick="() => AddPayment(Bill)">Add Another Payment</button>
-        @if (AddedPaymentCount > 0)
-        {
-            <button @onclick="() => RemovePayment(Bill)">Remove Payment</button>
-        }
-        </div>
-    }
-</div>
-<div>
-    <button @onclick="AddPerson">Add Person</button>
-</div>
 
 <!-- Display list of people and their contributions -->
 <h4>People and their Contributions</h4>
 <div>
-    @foreach (var person in people)
+    <MudPaper Width="300px" Elevation="0">
+        <MudTreeView T="TreeItemData" Items="treeItems" Hover="true" Dense="true" ExpandOnClick="true" Color="Color.Info" @bind-SelectedValue="selectedTreeValue">
+            <ItemTemplate>
+                @if (context.TreeItemChildren != null && context.Name == TreeItemsHelper.ROOT_USER_NAME)
+                {
+                    <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name" Expanded="@context.IsExpanded"
+                                     OnClick="() => SelectClick(context)" />
+                }
+                else
+                {
+                    @if (context.TreeItemChildren != null && context.TreeItemChildren.Count > 0)
+                    {
+                        <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name"
+                                         OnClick="() => SelectClick(context)" />
+                    }
+                    else
+                    {
+                        <MudTreeViewItem TextTypo="@context.Typography" Value="@context" Text="@context.DisplayName"
+                                         OnClick="() => SelectClick(context)" />
+                    }
+                }
+            </ItemTemplate>
+        </MudTreeView>
+    </MudPaper>
+    @if (UserForm == UserFormMode.New)
+        {
+            <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
+                <UserForm Title="Ny betaling for ny bruger" User="new UserValidationForm()" Usernames="Users" OnFormSubmit="(x) => CreateUser(x)" OnCancel="() => ResetForm()" ></UserForm>
+            </MudPaper>
+        }
+        @if (SelectedUser != null && selectedTreeValue.TreeNodeType == TreeNodeType.User && UserForm == UserFormMode.Update)
+        {
+            <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
+            <UserForm Title="Ret bruger" User="new UserValidationForm(SelectedUser)" Usernames="Users" OnFormSubmit="(x) => UpdateUser(x)" OnCancel="() => ResetForm()"></UserForm>
+        </MudPaper>
+        }
+    @if (SelectedUser != null && selectedTreeValue.TreeNodeType == TreeNodeType.Bill && UserForm == UserFormMode.Update)
     {
-        <div>
-            @person.Name paid:
-
-            @foreach (var Bills in person.Payed)
-            {
-                <div>@Bills.Description : @Bills.Amount</div>
-            }
-            <div>Total Payed: @person.Payed.Select(x => x.Amount).Sum()</div>
-            <div>@person.Name Balance: @GetPersonBalance(person.Payed.Select(x => x.Amount).Sum())</div>
-        </div>
+        <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
+            <UserForm Title="Ret bruger" User="new UserValidationForm(UserForBill, SelectedBill, UserListForBill)" Usernames="Users" OnFormSubmit="(x) => UpdateUser(x)" OnCancel="() => ResetForm()"></UserForm>
+        </MudPaper>
     }
 </div>
 
-@if (people.Count > 0)
-{
-    <p>Total bill: @TotalBill.ToString("C")</p>
-    <p>Each person should pay: @AmountPerPerson.ToString("C")</p>
-}
-
 @code {
+    [Inject] BrugsUserService UserService { get; set; }
+    [Inject] private ISnackbar? SnackbarService { get; set; }
+    [Inject] private IDialogService? Dialog { get; set; }
     private string newPersonName = "";
-    private List<BillAmount> DefaultBill => new() { new() { Description = "", Amount = 0, Id = 1 } };
-    private List<BillAmount> newPersonPayed { get; set; } = new() { new() { Description = "", Amount = 0, Id = 1 } };
+    private TreeItemData? selectedTreeValue { get; set; }
+    private HashSet<TreeItemData> treeItems { get; set; } = new HashSet<TreeItemData>();
     private int AddedPaymentCount = 1;
-    private List<Person> people = new List<Person>();
+    private List<UserValue> Users { get; set; } = new List<UserValue>();
+    private List<UserValue>? UserListForBill => (SelectedBill?.isCredit) ?? false ? 
+                                Users.Where(x => x.Account.Credits.Contains(SelectedBill)).ToList() : 
+                                Users.Where(x => SelectedBill != null && x.Account.Debits.Contains(SelectedBill)).ToList() ?? null; 
+    private UserValue? SelectedUser { get; set; }
+    private CreditDebitValue? SelectedBill { get; set; }
+    private UserValue? UserForBill => Users?.SingleOrDefault(x => x.Name == (selectedTreeValue?.ParentName ?? "")) ?? null;
+    public UserFormMode UserForm { get; set; } = UserFormMode.None;
 
-    private decimal TotalBill => people.SelectMany(x => x.Payed).Select(x => x.Amount).Sum();
-    private decimal AmountPerPerson => TotalBill / people.Count;
-
-
-    private string GetPersonBalance(decimal amount)
-    => (amount - AmountPerPerson).ToString("C2");
-    private void AddPerson()
+    async Task CreateUser(UserValidationForm userFormData)
     {
-        if (!string.IsNullOrEmpty(newPersonName))
+        var UserList = GetUsers(userFormData);
+        // await UserService.Commands.CreateBrugsUserAsync(NewBrugsUser(userFormData, true));
+        UserForm = UserFormMode.None;
+        ShowInfo(Severity.Success, $"Bruger {userFormData.Name} blev oprettet!");
+        await UpdateTreeItems();
+    }
+    async Task UpdateUser(UserValidationForm userFormData)
+    {        
+        var UserList = GetUsers(userFormData);
+        // await UserService.Commands.UpdateBrugsUserAsync(NewBrugsUser(userFormData, false));
+        ShowInfo(Severity.Success, $"Bruger {userFormData.Name} blev opdateret!");
+
+        UserForm = UserFormMode.None;
+        await UpdateTreeItems();
+    }
+    private async Task DeleteSafetyModuleBox()
+    {
+        var dialogSettings = DialogHelper.DefaultDialogSettings($"Vil du slette brugeren {SelectedUser.Name}?");
+        var dialog = Dialog.Show<InfoDialog>("Sletning af bruger", dialogSettings.Parameters, dialogSettings.Options);
+        var result = await dialog.Result;
+        if (!result.Canceled)
         {
-            people.Add(new Person { Name = newPersonName, Payed = newPersonPayed, Id = people.Count() });
-            newPersonPayed = DefaultBill;
-            newPersonName = "";
-            AddedPaymentCount = 0;
+            await DeleteUser(SelectedUser);
+            SelectedUser = null;
         }
     }
-    private void AddPayment(BillAmount bill)
+    async Task DeleteUser(UserValue userFormData)
     {
-        if (bill.Amount > 0)
+        // await UserService.Commands.DeleteBrugsUserAsync(userFormData.User.UserName);
+        UserForm = UserFormMode.None;
+        ShowInfo(Severity.Success, $"Bruger {userFormData.Name} blev slettet!");
+        await UpdateTreeItems();
+    }
+    private List<UserValue> GetUsers(UserValidationForm userFormData) 
+    {
+        var CreditDebit = new CreditDebitValue(userFormData.CreditDebitId, userFormData.Description, userFormData.Amount, userFormData.IsCredit);
+        var ExistingUser = Users.FirstOrDefault(x => x.Name == userFormData.Name);
+        var user =  new UserValue(
+                        userFormData.userValue.Id,
+                        userFormData.Name, 
+                        new AccountCreditDebit(
+                                userFormData.IsCredit ? ExistingUser == null ? [CreditDebit] : [.. ExistingUser?.Account.Credits, CreditDebit] : new(),
+                                userFormData.IsCredit ? new() : ExistingUser == null ? [CreditDebit] : [.. ExistingUser?.Account.Debits, CreditDebit]));
+
+        List<UserValue> result = userFormData.CreditDebitUsers.Select(x => new UserValue(x.Id, x.Name, new AccountCreditDebit(
+                                userFormData.IsCredit ?  [.. x.Account.Credits, CreditDebit] : new(),
+                                userFormData.IsCredit ? new() : [..x.Account.Debits, CreditDebit])
+                      )).ToList();
+        result.Add(user);
+
+        return result; 
+    }
+    private void ResetForm()
+    {
+        UserForm = UserFormMode.None;
+    }
+    private void ShowInfo(Severity severity, string text)
+    {
+        SnackbarService.Add($"{text}", severity, (options) =>
         {
-            newPersonPayed.Add(new());
-            AddedPaymentCount++;            
+            options.DuplicatesBehavior = SnackbarDuplicatesBehavior.Prevent;
+        });
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await UpdateTreeItems();
+    }
+
+    public async Task UpdateTreeItems()
+    {
+        var users = await UserService.Queries.GetAllUsers();
+    }
+
+    // private decimal TotalBill => Users.SelectMany(x => x.Payed).Select(x => x.Amount).Sum();
+    // private decimal AmountPerPerson => TotalBill / Users.Count;
+    // private string GetPersonBalance(decimal amount) => (amount - AmountPerPerson).ToString("C2");
+
+    private async Task SelectClick(TreeItemData treeItem)
+    {
+        if (treeItem.TreeNodeType == TreeNodeType.User)
+        {
+            SelectedUser = Users.SingleOrDefault(x => x.Name == treeItem.Name);
+            SelectedBill = null;
         }
-    }
-    private void RemovePayment(BillAmount billAmount)
-    {
-        newPersonPayed.Remove(billAmount);
-        AddedPaymentCount--;
-    }
-
-    private class Person
-    {
-        public int Id { get; set; } = 0;
-        public string Name { get; set; } = "";
-        public List<BillAmount> Payed { get; set; } = new();
-    }
-
-    private class BillAmount
-    {
-        public int Id { get; set; } = 0;
-        public string Description { get; set; } = "";
-        public decimal Amount { get; set; } = 0;
+        if (treeItem.TreeNodeType == TreeNodeType.Bill)
+        {
+            var selectedUser = Users.SingleOrDefault(x => x.Name == treeItem.ParentName);
+            SelectedUser = null;
+            SelectedBill = selectedUser?.Account.Credits.FirstOrDefault(x => x.Id == treeItem.Id) ?? selectedUser.Account.Debits.FirstOrDefault(x => x.Id == treeItem.Id) ?? null;
+        }
+        UserForm = treeItem.TreeNodeType == TreeNodeType.User ? UserFormMode.Update : UserFormMode.None;
     }
 }

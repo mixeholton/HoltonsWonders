@@ -1,8 +1,8 @@
-﻿using Komit.CompanionApp.Model.DbContexts;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MixeWonders.Model.DbContexts;
 
-namespace Komit.CompanionApp.Model.Services;
+namespace MixeWonders.Model.Services;
 /// <summary>
 /// Helps with using injected dependencies in a scoped context
 /// </summary>
@@ -52,14 +52,5 @@ public class ScopeService
             .GetRequiredService<IProvideDbContext>()
             .GetTransactionalDbContext();
         return await action(context);
-    }
-    private async Task Test()
-    {
-        await PerformTransaction(async x =>
-        {
-            var auther = await x.Authors.SingleAsync(y => y.P21 == "bla");
-            auther.P7 = "dfgprjgfp";
-            await x.SaveChangesAsync();
-        });
-    }
+    }    
 }
