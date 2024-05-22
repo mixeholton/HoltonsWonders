@@ -402,3 +402,4 @@ FodyWeavers.xsd
 *.pbd
 *.json
 *.gz
+*.suo

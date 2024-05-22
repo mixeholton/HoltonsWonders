@@ -13,7 +13,16 @@
 
 <!-- Display list of people and their contributions -->
 <h4>People and their Contributions</h4>
-<div>
+<MudGrid>
+    <MudItem xs="12">
+        <MudPaper Class="d-flex align-top justify-FlexStart my-4">
+            <MudToolBar>
+                <MudButton Variant="Variant.Text" @onclick="() => UserClickHandler(UserFormMode.New)" Color="@Color.Primary">Ny Bruger</MudButton>
+                <MudButton Variant="Variant.Text" @onclick="() => UserClickHandler(UserFormMode.Update)" disabled="@(SelectedUser != null)" Color="@Color.Primary">Ret Bruger</MudButton>
+                <MudButton Variant="Variant.Text" @onclick="() => UserClickHandler(UserFormMode.Delete)" disabled="@(SelectedUser == null)" Color="@Color.Primary">Slet Bruger</MudButton>
+            </MudToolBar>
+        </MudPaper>
+    </MudItem>
     <MudPaper Width="300px" Elevation="0">
         <MudTreeView T="TreeItemData" Items="treeItems" Hover="true" Dense="true" ExpandOnClick="true" Color="Color.Info" @bind-SelectedValue="selectedTreeValue">
             <ItemTemplate>
@@ -56,7 +65,7 @@
             <UserForm Title="Ret bruger" User="new UserValidationForm(UserForBill, SelectedBill, UserListForBill)" Usernames="Users" OnFormSubmit="(x) => UpdateUser(x)" OnCancel="() => ResetForm()"></UserForm>
         </MudPaper>
     }
-</div>
+</MudGrid>
 
 @code {
     [Inject] BrugsUserService UserService { get; set; }
@@ -74,6 +83,15 @@
     private CreditDebitValue? SelectedBill { get; set; }
     private UserValue? UserForBill => Users?.SingleOrDefault(x => x.Name == (selectedTreeValue?.ParentName ?? "")) ?? null;
     public UserFormMode UserForm { get; set; } = UserFormMode.None;
+
+    private async Task UserClickHandler(UserFormMode userEntitlementMode)
+    {
+        UserForm = userEntitlementMode;
+
+        if (UserForm == UserFormMode.Delete && SelectedUser != null)
+            await DeleteSafetyModuleBox();
+        StateHasChanged();
+    }
 
     async Task CreateUser(UserValidationForm userFormData)
     {
