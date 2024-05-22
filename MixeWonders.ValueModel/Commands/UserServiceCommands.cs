@@ -57,19 +57,25 @@ namespace MixeWonders.Values.Commands
             });
         }
 
-        private async Task UpdateUserAsync(List<UserEntity> user)
+        private async Task UpdateUserAsync(List<UserEntity> users)
         {
-            var userIds = user.Select(x => x.Id).ToList();
-            var UserStates = await BrugsDbContext.Users.Where(x => userIds.Contains(x.Id)).ToListAsync();
+            var UpdateUserStates = users.Select(x => new UserEntity()
+            {
+                AffiliationId = x.AffiliationId,
+                Name = x.Name,
+                ChangedDate = DateTime.Now,
+                CreditDebits = x.CreditDebits
+
+            }).ToList();
 
 
 
-            //await ScopeService.PerformTransaction(async x =>
-            //{
+            await ScopeService.PerformTransaction(async x =>
+            {
 
-            //    await x.Logadgangs.AddAsync(logadgang);
-            //    await x.SaveChangesAsync();
-            //});
+                await x.Users.AddRangeAsync(UpdateUserStates);
+                await x.SaveChangesAsync();
+            });
         }
 
 
