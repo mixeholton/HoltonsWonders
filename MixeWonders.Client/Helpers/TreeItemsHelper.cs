@@ -2,8 +2,8 @@
 namespace MixeWonders.Client.Helpers
 {
     using MixeWonders.Client.ViewModels;
-    using MixeWonders.Model.Enums;
-    using MixeWonders.Model.Values;
+    using MixeWonders.Values.Enums;
+    using MixeWonders.Values.Values;
     using MudBlazor;
 
     public static class TreeItemsHelper

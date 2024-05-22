@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Komit.MixeWonders.Model.Entities;
+﻿namespace MixeWonders.Values.Entities;
 
 public partial class CreditDebitEntity
 {
@@ -11,5 +8,4 @@ public partial class CreditDebitEntity
     public bool isCredit { get; set; }
     public int UserId { get; set; }
     public UserEntity User { get; set; }
-
 }

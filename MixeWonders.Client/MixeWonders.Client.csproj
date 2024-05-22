@@ -7,6 +7,16 @@
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
   </PropertyGroup>
 
+  <!--<ItemGroup>
+    <Content Remove="appsettings.json" />
+    <Content Remove="appsettingsDevelopment.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json" />
+    <Content Include="appsettingsDevelopment.json" />
+  </ItemGroup>-->
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.1" PrivateAssets="all" />
@@ -14,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MixeWonders.Model\MixeWonders.Model.csproj" />
+    <ProjectReference Include="..\MixeWonders.Model\MixeWonders.Values.csproj" />
   </ItemGroup>
 
   <ItemGroup>

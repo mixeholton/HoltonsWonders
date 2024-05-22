@@ -1,0 +1,185 @@
+﻿@page "/AdvancedBillSplitter"
+@using Komit.CompanionApp.Component.Model
+@using MixeWonders.Client.Helpers
+@using MixeWonders.Client.ViewModels
+@using MixeWonders.ClientServer.Components
+@using MixeWonders.ClientServer.ViewModels
+@using MixeWonders.Values.Enums
+@using MixeWonders.Values.Services
+@using MixeWonders.Values.Values
+@using MudBlazor
+
+<h3>Bill Splitter</h3>
+
+<!-- Display list of people and their contributions -->
+<h4>People and their Contributions</h4>
+<div>
+    <MudPaper Width="300px" Elevation="0">
+        <MudTreeView T="TreeItemData" Items="treeItems" Hover="true" Dense="true" ExpandOnClick="true" Color="Color.Info" @bind-SelectedValue="selectedTreeValue">
+            <ItemTemplate>
+                @if (context.TreeItemChildren != null && context.Name == TreeItemsHelper.ROOT_USER_NAME)
+                {
+                    <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name" Expanded="@context.IsExpanded"
+                                     OnClick="() => SelectClick(context)" />
+                }
+                else
+                {
+                    @if (context.TreeItemChildren != null && context.TreeItemChildren.Count > 0)
+                    {
+                        <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name"
+                                         OnClick="() => SelectClick(context)" />
+                    }
+                    else
+                    {
+                        <MudTreeViewItem TextTypo="@context.Typography" Value="@context" Text="@context.DisplayName"
+                                         OnClick="() => SelectClick(context)" />
+                    }
+                }
+            </ItemTemplate>
+        </MudTreeView>
+    </MudPaper>
+    @if (UserForm == UserFormMode.New)
+        {
+            <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
+                <UserForm Title="Ny betaling for ny bruger" User="new UserValidationForm()" Usernames="Users" OnFormSubmit="(x) => CreateUser(x)" OnCancel="() => ResetForm()" ></UserForm>
+            </MudPaper>
+        }
+        @if (SelectedUser != null && selectedTreeValue.TreeNodeType == TreeNodeType.User && UserForm == UserFormMode.Update)
+        {
+            <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
+            <UserForm Title="Ret bruger" User="new UserValidationForm(SelectedUser)" Usernames="Users" OnFormSubmit="(x) => UpdateUser(x)" OnCancel="() => ResetForm()"></UserForm>
+        </MudPaper>
+        }
+    @if (SelectedUser != null && selectedTreeValue.TreeNodeType == TreeNodeType.Bill && UserForm == UserFormMode.Update)
+    {
+        <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
+            <UserForm Title="Ret bruger" User="new UserValidationForm(UserForBill, SelectedBill, UserListForBill)" Usernames="Users" OnFormSubmit="(x) => UpdateUser(x)" OnCancel="() => ResetForm()"></UserForm>
+        </MudPaper>
+    }
+</div>
+
+@code {
+    [Inject] BrugsUserService UserService { get; set; }
+    [Inject] private ISnackbar? SnackbarService { get; set; }
+    [Inject] private IDialogService? Dialog { get; set; }
+    private string newPersonName = "";
+    private TreeItemData? selectedTreeValue { get; set; }
+    private HashSet<TreeItemData> treeItems { get; set; } = new HashSet<TreeItemData>();
+    private int AddedPaymentCount = 1;
+    private List<UserValue> Users { get; set; } = new List<UserValue>();
+    private List<UserValue>? UserListForBill => SelectedBill?.Balance == BalanceCurrencyType.Credit ? 
+                                Users.Where(x => x.Account.Credits.Contains(SelectedBill)).ToList() : 
+                                Users.Where(x => SelectedBill != null && x.Account.Debits.Contains(SelectedBill)).ToList() ?? null; 
+    private UserValue? SelectedUser { get; set; }
+    private CreditDebitValue? SelectedBill { get; set; }
+    private UserValue? UserForBill => Users?.SingleOrDefault(x => x.Name == (selectedTreeValue?.ParentName ?? "")) ?? null;
+    public UserFormMode UserForm { get; set; } = UserFormMode.None;
+
+    async Task CreateUser(UserValidationForm userFormData)
+    {
+        var UserList = GetUsers(userFormData);
+        // await UserService.Commands.CreateBrugsUserAsync(NewBrugsUser(userFormData, true));
+        UserForm = UserFormMode.None;
+        ShowInfo(Severity.Success, $"Bruger {userFormData.Name} blev oprettet!");
+        await UpdateTreeItems();
+    }
+    async Task UpdateUser(UserValidationForm userFormData)
+    {        
+        var UserList = GetUsers(userFormData);
+        // await UserService.Commands.UpdateBrugsUserAsync(NewBrugsUser(userFormData, false));
+        ShowInfo(Severity.Success, $"Bruger {userFormData.Name} blev opdateret!");
+
+        UserForm = UserFormMode.None;
+        await UpdateTreeItems();
+    }
+    private async Task DeleteSafetyModuleBox()
+    {
+        var dialogSettings = DialogHelper.DefaultDialogSettings($"Vil du slette brugeren {SelectedUser.Name}?");
+        var dialog = Dialog.Show<InfoDialog>("Sletning af bruger", dialogSettings.Parameters, dialogSettings.Options);
+        var result = await dialog.Result;
+        if (!result.Canceled)
+        {
+            await DeleteUser(SelectedUser);
+            SelectedUser = null;
+        }
+    }
+    async Task DeleteUser(UserValue userFormData)
+    {
+        // await UserService.Commands.DeleteBrugsUserAsync(userFormData.User.UserName);
+        UserForm = UserFormMode.None;
+        ShowInfo(Severity.Success, $"Bruger {userFormData.Name} blev slettet!");
+        await UpdateTreeItems();
+    }
+    private List<UserValue> GetUsers(UserValidationForm userFormData) 
+    {
+        var CreditDebit = new CreditDebitValue(userFormData.CreditDebitId, userFormData.Description, userFormData.Amount, userFormData.IsCredit ? BalanceCurrencyType.Credit : BalanceCurrencyType.Debit);
+        var ExistingUser = Users.FirstOrDefault(x => x.Name == userFormData.Name);
+        var user = new UserValue(
+                        userFormData.userValue.Id,
+                        userFormData.Name,
+                        GetNewListOfCreditDebit(userFormData.IsCredit, ExistingUser?.Account.Credits ?? new(), ExistingUser?.Account.Debits ?? new(), CreditDebit));
+
+
+        List<UserValue> result = userFormData.CreditDebitUsers.Select(x => new UserValue(x.Id, x.Name, GetNewListOfCreditDebit(!userFormData.IsCredit, x.Account.Credits, x.Account.Debits, CreditDebit))).ToList();
+
+        result.Add(user);
+
+        return result; 
+    }
+    private AccountCreditDebit GetNewListOfCreditDebit(bool isCredit, List<CreditDebitValue> credits, List<CreditDebitValue> debits, CreditDebitValue newCreditDebit)
+    {        
+
+        if (isCredit)
+        {
+            credits.Add(newCreditDebit);
+        }
+        else
+        {
+            debits.Add(newCreditDebit);
+        }
+        return new AccountCreditDebit(credits, debits);
+    }
+
+    private void ResetForm()
+    {
+        UserForm = UserFormMode.None;
+    }
+    private void ShowInfo(Severity severity, string text)
+    {
+        SnackbarService.Add($"{text}", severity, (options) =>
+        {
+            options.DuplicatesBehavior = SnackbarDuplicatesBehavior.Prevent;
+        });
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await UpdateTreeItems();
+    }
+
+    public async Task UpdateTreeItems()
+    {
+        var users = await UserService.Queries.GetAllUsers();
+    }
+
+    // private decimal TotalBill => Users.SelectMany(x => x.Payed).Select(x => x.Amount).Sum();
+    // private decimal AmountPerPerson => TotalBill / Users.Count;
+    // private string GetPersonBalance(decimal amount) => (amount - AmountPerPerson).ToString("C2");
+
+    private async Task SelectClick(TreeItemData treeItem)
+    {
+        if (treeItem.TreeNodeType == TreeNodeType.User)
+        {
+            SelectedUser = Users.SingleOrDefault(x => x.Name == treeItem.Name);
+            SelectedBill = null;
+        }
+        if (treeItem.TreeNodeType == TreeNodeType.Bill)
+        {
+            var selectedUser = Users.SingleOrDefault(x => x.Name == treeItem.ParentName);
+            SelectedUser = null;
+            SelectedBill = selectedUser?.Account.Credits.FirstOrDefault(x => x.Id == treeItem.Id) ?? selectedUser.Account.Debits.FirstOrDefault(x => x.Id == treeItem.Id) ?? null;
+        }
+        UserForm = treeItem.TreeNodeType == TreeNodeType.User ? UserFormMode.Update : UserFormMode.None;
+    }
+}

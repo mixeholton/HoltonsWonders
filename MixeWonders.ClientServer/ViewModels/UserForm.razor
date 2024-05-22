@@ -1,0 +1,65 @@
+﻿@using Komit.CompanionApp.Component.Model
+@using MixeWonders.ClientServer.Components
+@using MixeWonders.Values.Enums
+@using MixeWonders.Values.Values
+@using MudBlazor
+
+@code {
+    [Inject] IDialogService Dialog { get; set; }
+    [Parameter] public string Title { get; set; }
+    [Parameter] public UserFormMode userFormMode { get; set; }
+    [Parameter] public List<UserValue> Usernames { get; set; }
+    [Parameter] public UserValidationForm User { get; set; }
+    [Parameter] public EventCallback<UserValidationForm> OnFormSubmit { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+    private bool isEdit = false;
+    private UserValue? value { get; set; } = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
+
+    private void OnValidSubmit(EditContext context)
+    {
+        OnFormSubmit.InvokeAsync(User);
+        StateHasChanged();
+    }
+    private void OnInValidSubmit(EditContext context)
+    {
+        var errorMessage = context.GetValidationMessages().First();
+        OpenDialog(errorMessage);        
+
+    }
+    private void OpenDialog(string errorMessage)
+    {
+        var parameters = new DialogParameters<InfoDialog>();
+        parameters.Add(x => x.ContentText, errorMessage);
+        Dialog.Show<InfoDialog>("Der skete en fejl", parameters);
+    }
+}
+
+<h2>@Title</h2>
+<EditForm Model="@User" OnInvalidSubmit="OnInValidSubmit" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <MudTextField Label="@User.Name" @bind-Value="User.Name"
+                  For="@(() => User.Name)"
+                  InputType="InputType.Text"
+                  TextUpdateSuppression="false"
+                  Immediate="true"
+                  Disabled="true" />    
+        <MudText>Udlæg/Betaling for @User.Name</MudText>
+        <MudTextField InputType="InputType.Text" Label="Beskrivelse" @bind-Value="User.Description" For="@(() => User.Description)"></MudTextField>
+        <MudNumericField @bind-Value="User.Amount" Label="Outlined" Variant="Variant.Outlined" Step=".2M" />
+        <MudSelect T="UserValue" Label="Personer der skal betale/betales til" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="User.CreditDebitUsers">
+            @foreach (var user in Usernames.Where(x => x.Name != User.Name).ToList())
+            {
+                <MudSelectItem T="UserValue" Value="@user">@user.Name</MudSelectItem>
+            }
+        </MudSelect>
+
+    <div class="mt-5 d-flex align-center justify-space-between">
+        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">OK</MudButton>
+        <MudButton Variant="Variant.Outlined" Color="Color.Secondary" OnClick="() => OnCancel.InvokeAsync()">Afbryd</MudButton>
+    </div>
+</EditForm>

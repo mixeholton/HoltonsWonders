@@ -13,8 +13,12 @@
         "packagesPath": "C:\\Users\\mixeh\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\mixeh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://pkgs.dev.azure.com/edb-brugs/_packaging/Komit.Packages/nuget/v3/index.json": {}
         },
@@ -29,8 +34,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Model.csproj": {
-                "projectPath": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Model.csproj"
+              "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Values.csproj": {
+                "projectPath": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Values.csproj"
               }
             }
           }
@@ -39,6 +44,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -57,13 +67,13 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.1, )",
+              "version": "[8.0.5, )",
               "autoReferenced": true
             },
             "Microsoft.NET.Sdk.WebAssembly.Pack": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.1, )",
+              "version": "[8.0.5, )",
               "autoReferenced": true
             },
             "MudBlazor": {
@@ -85,7 +95,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[8.0.1, 8.0.1]"
+              "version": "[8.0.5, 8.0.5]"
             }
           ],
           "frameworkReferences": {
@@ -93,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -102,17 +112,21 @@
         }
       }
     },
-    "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Model.csproj": {
+    "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Values.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Model.csproj",
-        "projectName": "MixeWonders.Model",
-        "projectPath": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Model.csproj",
+        "projectUniqueName": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Values.csproj",
+        "projectName": "MixeWonders.Values",
+        "projectPath": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\MixeWonders.Values.csproj",
         "packagesPath": "C:\\Users\\mixeh\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\mixeh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -120,6 +134,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://pkgs.dev.azure.com/edb-brugs/_packaging/Komit.Packages/nuget/v3/index.json": {}
         },
@@ -133,25 +148,38 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Azure.Identity": {
+              "target": "Package",
+              "version": "[1.11.3, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.4, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[8.0.4, )"
+              "version": "[8.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.4, )"
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.5, )"
             },
             "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",
@@ -174,7 +202,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

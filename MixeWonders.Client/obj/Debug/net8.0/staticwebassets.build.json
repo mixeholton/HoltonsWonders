@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VAXMOZOyFVpaW+oBaDGimm+K7E+31h32YnmO9jt9u00=",
+  "Hash": "LFFcSgXrT6AuAUUtifb44XHDSx0Ty9wdfTaTBwU1cjc=",
   "Source": "MixeWonders.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -147,7 +147,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.1\\runtimes\\browser-wasm\\native\\dotnet.js"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.5\\runtimes\\browser-wasm\\native\\dotnet.js"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js.map",
@@ -166,15 +166,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.1\\runtimes\\browser-wasm\\native\\dotnet.js.map"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.5\\runtimes\\browser-wasm\\native\\dotnet.js.map"
     },
     {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.8.0.1.i6cgizalyu.js",
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.8.0.5.avmz63jjni.js",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
       "BasePath": "/",
-      "RelativePath": "_framework/dotnet.native.8.0.1.i6cgizalyu.js",
+      "RelativePath": "_framework/dotnet.native.8.0.5.avmz63jjni.js",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -185,7 +185,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.1\\runtimes\\browser-wasm\\native\\dotnet.native.js"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.5\\runtimes\\browser-wasm\\native\\dotnet.native.js"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.wasm",
@@ -204,15 +204,15 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.1\\runtimes\\browser-wasm\\native\\dotnet.native.wasm"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.5\\runtimes\\browser-wasm\\native\\dotnet.native.wasm"
     },
     {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.8.0.1.nczcz2t3v2.js",
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.8.0.5.yjj1elkpuj.js",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
       "BasePath": "/",
-      "RelativePath": "_framework/dotnet.runtime.8.0.1.nczcz2t3v2.js",
+      "RelativePath": "_framework/dotnet.runtime.8.0.5.yjj1elkpuj.js",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -223,7 +223,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.1\\runtimes\\browser-wasm\\native\\dotnet.runtime.js"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.5\\runtimes\\browser-wasm\\native\\dotnet.runtime.js"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.js.map",
@@ -242,7 +242,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.1\\runtimes\\browser-wasm\\native\\dotnet.runtime.js.map"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.5\\runtimes\\browser-wasm\\native\\dotnet.runtime.js.map"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_CJK.dat",
@@ -261,7 +261,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.1\\runtimes\\browser-wasm\\native\\icudt_CJK.dat"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.5\\runtimes\\browser-wasm\\native\\icudt_CJK.dat"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_EFIGS.dat",
@@ -280,7 +280,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.1\\runtimes\\browser-wasm\\native\\icudt_EFIGS.dat"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.5\\runtimes\\browser-wasm\\native\\icudt_EFIGS.dat"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_no_CJK.dat",
@@ -299,7 +299,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.1\\runtimes\\browser-wasm\\native\\icudt_no_CJK.dat"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.5\\runtimes\\browser-wasm\\native\\icudt_no_CJK.dat"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Authorization.wasm",
@@ -395,6 +395,63 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\webcil\\Microsoft.AspNetCore.Components.WebAssembly.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Cryptography.Internal.wasm",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Cryptography.Internal.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\webcil\\Microsoft.AspNetCore.Cryptography.Internal.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Cryptography.KeyDerivation.wasm",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Cryptography.KeyDerivation.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\webcil\\Microsoft.AspNetCore.Cryptography.KeyDerivation.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Identity.EntityFrameworkCore.wasm",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Identity.EntityFrameworkCore.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\webcil\\Microsoft.AspNetCore.Identity.EntityFrameworkCore.wasm"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Metadata.wasm",
@@ -775,6 +832,44 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\webcil\\Microsoft.Extensions.FileSystemGlobbing.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.Identity.Core.wasm",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Identity.Core.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\webcil\\Microsoft.Extensions.Identity.Core.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.Identity.Stores.wasm",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Identity.Stores.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\webcil\\Microsoft.Extensions.Identity.Stores.wasm"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.Abstractions.wasm",
@@ -1233,12 +1328,12 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\webcil\\MixeWonders.Client.wasm"
     },
     {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\MixeWonders.Model.pdb",
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\MixeWonders.Values.pdb",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
       "BasePath": "/",
-      "RelativePath": "_framework/MixeWonders.Model.pdb",
+      "RelativePath": "_framework/MixeWonders.Values.pdb",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1249,15 +1344,15 @@
       "AssetTraitValue": "symbol",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\bin\\Debug\\net8.0\\MixeWonders.Model.pdb"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Model\\bin\\Debug\\net8.0\\MixeWonders.Values.pdb"
     },
     {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\MixeWonders.Model.wasm",
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\MixeWonders.Values.wasm",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
       "BasePath": "/",
-      "RelativePath": "_framework/MixeWonders.Model.wasm",
+      "RelativePath": "_framework/MixeWonders.Values.wasm",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1268,7 +1363,7 @@
       "AssetTraitValue": "runtime",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\webcil\\MixeWonders.Model.wasm"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\webcil\\MixeWonders.Values.wasm"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\mscorlib.wasm",
@@ -1364,6 +1459,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\webcil\\System.Buffers.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.ClientModel.wasm",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/System.ClientModel.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\webcil\\System.ClientModel.wasm"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Collections.Concurrent.wasm",
@@ -4634,6 +4748,25 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.IO.Pipes.AccessControl.wasm"
     },
     {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\0f06mef733.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.js.map.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js.map",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js.map"
+    },
+    {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\0i63ud9ubt.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
@@ -4710,6 +4843,25 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Runtime.Caching.wasm"
     },
     {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\0m3w0p8u8z.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.Extensions.Identity.Stores.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.Identity.Stores.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.Identity.Stores.wasm"
+    },
+    {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\0rvj2zj7pz.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
@@ -4746,25 +4898,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Win32.Primitives.wasm"
-    },
-    {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\102di1mo5o.gz",
-      "SourceId": "MixeWonders.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.runtime.js.map.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.js.map",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.js.map"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\184sb316qt.gz",
@@ -5033,6 +5166,25 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.EntityFrameworkCore.SqlServer.wasm"
     },
     {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\2tl3596te6.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.js.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js"
+    },
+    {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\34qdpdm4f1.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
@@ -5261,23 +5413,23 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.AppContext.wasm"
     },
     {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\465rw1sw7o.gz",
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\3ut4gt8i15.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
       "BasePath": "/",
-      "RelativePath": "_framework/dotnet.js.gz",
+      "RelativePath": "_framework/System.ClientModel.wasm.gz",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.ClientModel.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.ClientModel.wasm"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\4gswk6hwn2.gz",
@@ -5392,6 +5544,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.WebAssembly.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\5kialez9k4.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt_EFIGS.dat.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_EFIGS.dat",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_EFIGS.dat"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\5rtqaj2npn.gz",
@@ -5525,6 +5696,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Threading.Overlapped.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\6tcrrruru2.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt_CJK.dat.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_CJK.dat",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_CJK.dat"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\6yk4zsh7g9.gz",
@@ -5907,6 +6097,25 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Threading.wasm"
     },
     {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\9kruosycjo.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/MixeWonders.Values.pdb.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\MixeWonders.Values.pdb",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\MixeWonders.Values.pdb"
+    },
+    {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\9lgzcp9l8z.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
@@ -5926,23 +6135,23 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.Abstractions.wasm"
     },
     {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\9pa1m0812w.gz",
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\9w0k4fm118.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
       "BasePath": "/",
-      "RelativePath": "_framework/MixeWonders.Model.pdb.gz",
+      "RelativePath": "_framework/Microsoft.Extensions.Identity.Core.wasm.gz",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\MixeWonders.Model.pdb",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.Identity.Core.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\MixeWonders.Model.pdb"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.Identity.Core.wasm"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\9zintf3lzw.gz",
@@ -6114,6 +6323,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Reflection.Emit.Lightweight.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\avmz63jjni.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.native.8.0.5.avmz63jjni.js.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.8.0.5.avmz63jjni.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.8.0.5.avmz63jjni.js"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\b67a8fww8v.gz",
@@ -6762,25 +6990,6 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Security.wasm"
     },
     {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\hl7mmtge4b.gz",
-      "SourceId": "MixeWonders.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/MixeWonders.Model.wasm.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\MixeWonders.Model.wasm",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\MixeWonders.Model.wasm"
-    },
-    {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\hpwuaaga8p.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
@@ -6838,23 +7047,23 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Net.Ping.wasm"
     },
     {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\i6cgizalyu.gz",
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\i5rkfvr5y5.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
       "BasePath": "/",
-      "RelativePath": "_framework/dotnet.native.8.0.1.i6cgizalyu.js.gz",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Cryptography.Internal.wasm.gz",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.8.0.1.i6cgizalyu.js",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Cryptography.Internal.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.8.0.1.i6cgizalyu.js"
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Cryptography.Internal.wasm"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\i81vado7yi.gz",
@@ -6969,6 +7178,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Diagnostics.TextWriterTraceListener.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\k5guikcylg.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.native.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.wasm"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\kbbluw3x9f.gz",
@@ -7142,6 +7370,25 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Private.Xml.wasm"
     },
     {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\l5q87kqjky.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt_no_CJK.dat.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_no_CJK.dat",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_no_CJK.dat"
+    },
+    {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\ldb69grzdu.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
@@ -7197,25 +7444,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.Extensions.Caching.Abstractions.wasm"
-    },
-    {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\llyma2c2kb.gz",
-      "SourceId": "MixeWonders.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt_EFIGS.dat.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_EFIGS.dat",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_EFIGS.dat"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\lsxfipswt7.gz",
@@ -7351,25 +7579,6 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.VisualBasic.wasm"
     },
     {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\mm1u7jkcl3.gz",
-      "SourceId": "MixeWonders.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.js.map.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js.map",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.js.map"
-    },
-    {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\mr3cxdlmlu.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
@@ -7444,25 +7653,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Xml.Linq.wasm"
-    },
-    {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\nczcz2t3v2.gz",
-      "SourceId": "MixeWonders.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.runtime.8.0.1.nczcz2t3v2.js.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.8.0.1.nczcz2t3v2.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.8.0.1.nczcz2t3v2.js"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\ne3p58ad5w.gz",
@@ -7596,6 +7786,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Text.Encoding.Extensions.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\nwut1kixsw.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.runtime.js.map.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.js.map",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.js.map"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\nxsbin9git.gz",
@@ -7921,25 +8130,6 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Windows.wasm"
     },
     {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\r9ip22gujk.gz",
-      "SourceId": "MixeWonders.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.native.wasm.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.wasm",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.native.wasm"
-    },
-    {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\raxsn6zujk.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
@@ -8242,25 +8432,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Resources.ResourceManager.wasm"
-    },
-    {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\uej8ul2hdq.gz",
-      "SourceId": "MixeWonders.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt_no_CJK.dat.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_no_CJK.dat",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_no_CJK.dat"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\ueww98o2u6.gz",
@@ -8624,6 +8795,25 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Globalization.Extensions.wasm"
     },
     {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\wjw2tiqg2e.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/MixeWonders.Values.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\MixeWonders.Values.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\MixeWonders.Values.wasm"
+    },
+    {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\wrigqy6php.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
@@ -8814,6 +9004,25 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Reflection.wasm"
     },
     {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\y2805wsxrv.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Identity.EntityFrameworkCore.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Identity.EntityFrameworkCore.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Identity.EntityFrameworkCore.wasm"
+    },
+    {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\y2ac43i044.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
@@ -8852,25 +9061,6 @@
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Net.HttpListener.wasm"
     },
     {
-      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\y3lsuixbys.gz",
-      "SourceId": "MixeWonders.Client",
-      "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt_CJK.dat.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_CJK.dat",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_CJK.dat"
-    },
-    {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\ycuhegxbss.gz",
       "SourceId": "MixeWonders.Client",
       "SourceType": "Computed",
@@ -8907,6 +9097,44 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Xml.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\yjj1elkpuj.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.runtime.8.0.5.yjj1elkpuj.js.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.8.0.5.yjj1elkpuj.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\dotnet.runtime.8.0.5.yjj1elkpuj.js"
+    },
+    {
+      "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\ylh9mc0i0x.gz",
+      "SourceId": "MixeWonders.Client",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Microsoft.AspNetCore.Cryptography.KeyDerivation.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Cryptography.KeyDerivation.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Cryptography.KeyDerivation.wasm"
     },
     {
       "Identity": "C:\\Users\\mixeh\\source\\repos\\MixeWonders\\MixeWonders.Client\\obj\\Debug\\net8.0\\compressed\\yp4uenjiet.gz",

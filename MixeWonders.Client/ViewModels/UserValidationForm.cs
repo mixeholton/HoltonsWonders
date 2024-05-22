@@ -1,4 +1,4 @@
-﻿using MixeWonders.Model.Values;
+﻿using MixeWonders.Values.Values;
 using System.ComponentModel.DataAnnotations;
 
 namespace Komit.CompanionApp.Component.Model

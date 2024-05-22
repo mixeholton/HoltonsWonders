@@ -1,7 +1,7 @@
 ﻿@using Komit.CompanionApp.Component.Model
 @using MixeWonders.Client.Components
-@using MixeWonders.Model.Enums
-@using MixeWonders.Model.Values
+@using MixeWonders.Values.Enums
+@using MixeWonders.Values.Values
 @using MudBlazor
 
 @code {
@@ -51,7 +51,7 @@
         <MudText>Udlæg/Betaling for @User.Name</MudText>
         <MudTextField InputType="InputType.Text" Label="Beskrivelse" @bind-Value="User.Description" For="@(() => User.Description)"></MudTextField>
         <MudNumericField @bind-Value="User.Amount" Label="Outlined" Variant="Variant.Outlined" Step=".2M" />
-        <MudSelect T="UserValue?" Label="Personer der skal betale/betales til" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="User.CreditDebitUsers">
+        <MudSelect T="UserValue" Label="Personer der skal betale/betales til" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="User.CreditDebitUsers">
             @foreach (var user in Usernames.Where(x => x.Name != User.Name).ToList())
             {
                 <MudSelectItem T="UserValue" Value="@user">@user.Name</MudSelectItem>

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
-namespace Komit.MixeWonders.Model.Entities;
+namespace MixeWonders.Values.Entities;
 
 public partial class UserEntity
 {
@@ -11,5 +9,6 @@ public partial class UserEntity
     public int AffiliationId { get; set; }
     public AffiliationEntity Affiliation { get; set; }
     public DateTime? ChangedDate { get; set; }
-    public Collection<CreditDebitEntity> creditDebits { get; set; }
+    public ICollection<CreditDebitEntity> CreditDebits { get; set; }
 }
+

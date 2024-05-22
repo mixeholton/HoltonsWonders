@@ -1,5 +1,5 @@
 ﻿using MixeWonders.Client.Components;
-using MixeWonders.Model.Enums;
+using MixeWonders.Values.Enums;
 using MudBlazor;
 
 namespace MixeWonders.Client.Helpers

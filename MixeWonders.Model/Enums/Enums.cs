@@ -1,4 +1,4 @@
-﻿namespace MixeWonders.Model.Enums
+﻿namespace MixeWonders.Values.Enums
 {
 
     public enum UserFormMode
