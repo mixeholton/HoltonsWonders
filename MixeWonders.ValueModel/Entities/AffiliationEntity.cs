@@ -1,9 +1,13 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace MixeWonders.Values.Entities;
 
 public partial class AffiliationEntity
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     public int UserId { get; set; }
     public  UserEntity User { get; set; }
@@ -12,6 +16,9 @@ public partial class AffiliationEntity
 }
 public partial class AffiliationGroup
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
     public int AffiliationId { get; set; }
     public AffiliationEntity Affiliation { get; set; }
 
@@ -21,6 +28,9 @@ public partial class AffiliationGroup
 
 public partial class AffiliationRole
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
     public int AffiliationId { get; set; }
     public AffiliationEntity Affiliation { get; set; }
 

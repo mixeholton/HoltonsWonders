@@ -134,11 +134,12 @@
         var ExistingUser = Users.FirstOrDefault(x => x.Name == userFormData.Name);
         var user = new UserValue(
                         userFormData.userValue.Id,
+                        userFormData.userValue.AffiliationId,
                         userFormData.Name,
                         GetNewListOfCreditDebit(userFormData.IsCredit, ExistingUser?.Account.Credits ?? new(), ExistingUser?.Account.Debits ?? new(), CreditDebit));
 
 
-        List<UserValue> result = userFormData.CreditDebitUsers.Select(x => new UserValue(x.Id, x.Name, GetNewListOfCreditDebit(!userFormData.IsCredit, x.Account.Credits, x.Account.Debits, CreditDebit))).ToList();
+        List<UserValue> result = userFormData.CreditDebitUsers.Select(x => new UserValue(x.Id, x.AffiliationId, x.Name, GetNewListOfCreditDebit(!userFormData.IsCredit, x.Account.Credits, x.Account.Debits, CreditDebit))).ToList();
 
         result.Add(user);
 
