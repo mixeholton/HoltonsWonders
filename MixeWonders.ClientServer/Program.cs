@@ -30,7 +30,7 @@ services.AddHttpClient();
 services.AddTransient<ScopeService>();
 services.AddScoped<UserServiceCommands>();
 services.AddScoped<UserServiceQueries>();
-services.AddTransient<BrugsUserService>();
+services.AddTransient<UserService>();
 
 var app = builder.Build();
 

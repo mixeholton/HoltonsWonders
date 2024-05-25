@@ -68,7 +68,7 @@
 </MudGrid>
 
 @code {
-    [Inject] BrugsUserService UserService { get; set; }
+    [Inject] UserService UserService { get; set; }
     [Inject] private ISnackbar? SnackbarService { get; set; }
     [Inject] private IDialogService? Dialog { get; set; }
     private string newPersonName = "";

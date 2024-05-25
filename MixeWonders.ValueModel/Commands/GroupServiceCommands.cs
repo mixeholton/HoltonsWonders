@@ -8,49 +8,39 @@ using MixeWonders.Values.Values;
 
 namespace MixeWonders.Values.Commands
 {
-    public class UserServiceCommands
+    public class GroupServiceCommands
     {
         protected BrugsDbContext BrugsDbContext { get; }
         protected ScopeService ScopeService { get; }
 
-        public UserServiceCommands(BrugsDbContext brugsDbContext, ScopeService scopeService)
+        public GroupServiceCommands(BrugsDbContext brugsDbContext, ScopeService scopeService)
         {
             BrugsDbContext = brugsDbContext;
             ScopeService = scopeService;
         }
 
-        public async Task CreateUserAsync(List<UserValue> user)
+        public async Task CreateGroupAsync(GroupValue group, List<RoleValue> roles)
         {
-            var userIds = user.Select(x => x.Id).ToList();
-            var UserStates = await BrugsDbContext.Users.Where(x => userIds.Contains(x.Id)).ToListAsync();
-            var UserStateIds = UserStates.Select(x => x.Id).ToList();
-            var NewUsers = user.Where(x => !UserStateIds.Contains(x.Id ?? 0));
-
-            //await UpdateUserAsync(UserStates);
-
-
-            var NewUserStates = NewUsers.Select(x => new UserEntity()
+            var newGroup = new GroupEntity()
             {
-                AffiliationId = x.AffiliationId,
-                Name = x.Name,
-                ChangedDate = DateTime.Now,
-                CreditDebits = x.Account.Credits.Select(x => new CreditDebitEntity()
+                Name = group.Name,
+                Roles = roles.Select(x => new RoleEntity()
                 {
-                    Amount = x.Amount,
+                    Id = x.Id ?? 0,
                     Description = x.Description,
-                    isCredit = x.Balance                    
-                }).Concat(x.Account.Debits.Select(x => new CreditDebitEntity()
-                {
-                    Amount = x.Amount,
-                    Description = x.Description,
-                    isCredit = x.Balance
-                })).ToList(),
-            }).ToList();
+                    Name = x.Name,
+                    Permissions = x.Permissions.Select(x => new PermissionEntity()
+                    {
+                        Permission = x.Permission
+                    }).ToList()
+                }).ToList()
+            };
+
 
             await ScopeService.PerformTransaction(async x =>
             {
 
-                await x.Users.AddRangeAsync(NewUserStates);
+                await x.Groups.AddRangeAsync();
                 await x.SaveChangesAsync();
             });
         }

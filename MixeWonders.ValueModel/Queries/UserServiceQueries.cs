@@ -26,7 +26,7 @@ namespace MixeWonders.Values.Queries
                     u => creditDebits.Where(x => x.UserId == u.UserId)
                         .Select(x => new CreditDebitValue(x.Id, x.Description, x.Amount, x.isCredit)).ToList());
 
-            return users.Select(x => new UserValue(x.Id, x.Name, new AccountCreditDebit(AccountDictByUserId[x.Id].Where(x => x.Balance == Enums.BalanceCurrencyType.Credit).ToList(), AccountDictByUserId[x.Id].Where(x => x.Balance == Enums.BalanceCurrencyType.Debit).ToList())));
+            return users.Select(x => new UserValue(x.Id, x.AffiliationId, x.Name, new AccountCreditDebit(AccountDictByUserId[x.Id].Where(x => x.Balance == Enums.BalanceCurrencyType.Credit).ToList(), AccountDictByUserId[x.Id].Where(x => x.Balance == Enums.BalanceCurrencyType.Debit).ToList())));
         }
 
     }

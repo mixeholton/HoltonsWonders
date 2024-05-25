@@ -1,0 +1,68 @@
+﻿@page "/Permissions"
+@using MudBlazor
+
+<h3>Admin</h3>
+
+<h3>Bill Splitter</h3>
+
+<!-- Display list of people and their contributions -->
+<h4>People and their Contributions</h4>
+<MudGrid>
+    <MudItem xs="12">
+        <MudPaper Class="d-flex align-top justify-FlexStart my-4">
+            <MudToolBar>
+                <MudButton Variant="Variant.Text" @onclick="() => UserClickHandler(UserFormMode.New)" Color="@Color.Primary">Ny Bruger</MudButton>
+                <MudButton Variant="Variant.Text" @onclick="() => UserClickHandler(UserFormMode.Update)" disabled="@(SelectedUser != null)" Color="@Color.Primary">Ret Bruger</MudButton>
+                <MudButton Variant="Variant.Text" @onclick="() => UserClickHandler(UserFormMode.Delete)" disabled="@(SelectedUser == null)" Color="@Color.Primary">Slet Bruger</MudButton>
+            </MudToolBar>
+        </MudPaper>
+    </MudItem>
+    <MudPaper Width="300px" Elevation="0">
+        <MudTreeView T="TreeItemData" Items="treeItems" Hover="true" Dense="true" ExpandOnClick="true" Color="Color.Info" @bind-SelectedValue="selectedTreeValue">
+            <ItemTemplate>
+                @if (context.TreeItemChildren != null && context.Name == TreeItemsHelper.ROOT_USER_NAME)
+                {
+                    <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name" Expanded="@context.IsExpanded"
+                                     OnClick="() => SelectClick(context)" />
+                }
+                else
+                {
+                    @if (context.TreeItemChildren != null && context.TreeItemChildren.Count > 0)
+                    {
+                        <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name"
+                                         OnClick="() => SelectClick(context)" />
+                    }
+                    else
+                    {
+                        <MudTreeViewItem TextTypo="@context.Typography" Value="@context" Text="@context.DisplayName"
+                                         OnClick="() => SelectClick(context)" />
+                    }
+                }
+            </ItemTemplate>
+        </MudTreeView>
+    </MudPaper>
+        @if (UserForm == UserFormMode.New)
+        {
+            <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
+                <UserForm Title="Ny betaling for ny bruger" User="new UserValidationForm()" Usernames="Users" OnFormSubmit="(x) => CreateUser(x)" OnCancel="() => ResetForm()" ></UserForm>
+            </MudPaper>
+        }
+        @if (SelectedUser != null && selectedTreeValue.TreeNodeType == TreeNodeType.User && UserForm == UserFormMode.Update)
+        {
+            <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
+            <UserForm Title="Ret bruger" User="new UserValidationForm(SelectedUser)" Usernames="Users" OnFormSubmit="(x) => UpdateUser(x)" OnCancel="() => ResetForm()"></UserForm>
+        </MudPaper>
+        }
+    @if (SelectedUser != null && selectedTreeValue.TreeNodeType == TreeNodeType.Bill && UserForm == UserFormMode.Update)
+    {
+        <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
+            <UserForm Title="Ret bruger" User="new UserValidationForm(UserForBill, SelectedBill, UserListForBill)" Usernames="Users" OnFormSubmit="(x) => UpdateUser(x)" OnCancel="() => ResetForm()"></UserForm>
+        </MudPaper>
+    }
+</MudGrid>
+
+@code {
+    private decimal totalAmount { get; set; }
+    private int numPeople { get; set; }
+    private decimal EachShouldPay => numPeople > 0 ? totalAmount / numPeople : 0;
+}
