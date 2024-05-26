@@ -37,6 +37,15 @@ namespace Komit.CompanionApp.Component.Model
             this.CreditDebitId = null;
             this.CreditDebitUsers = new HashSet<UserValue>();
         } 
+        public UserValidationForm(UserHeaderValue value)
+        {
+            this.Name = value.Name;
+            this.Amount = 0;
+            this.IsCredit = false;
+            this.Description = "Opret Bruger";
+            this.CreditDebitId = null;
+            this.CreditDebitUsers = new HashSet<UserValue>();
+        } 
         public UserValidationForm()
         {
             this.userValue = null;

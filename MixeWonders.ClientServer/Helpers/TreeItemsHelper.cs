@@ -11,7 +11,7 @@ namespace MixeWonders.Client.Helpers
         public static string ROOT_SYSTEM_NAME = "Systemer";
         public static string ROOT_USER_NAME = "Brugere";
 
-        public static HashSet<TreeItemData> GenerateUserTreeData(List<UserValue> Users)
+        public static HashSet<TreeItemData> GenerateUserCreditTreeData(List<UserValue> Users)
         {
             if (Users != null)
             {
@@ -55,6 +55,35 @@ namespace MixeWonders.Client.Helpers
                                     Icon = Icons.Material.Filled.Money
                                 }).ToHashSet()).ToHashSet(),                                
                             }).ToHashSet()
+                    }
+                };
+            }
+            else
+            {
+                return new HashSet<TreeItemData>();
+            }
+        }public static HashSet<TreeItemData> GenerateSimpleUserTreeData(List<UserHeaderValue> Users)
+        {
+            if (Users != null)
+            {
+                return new HashSet<TreeItemData>
+                {
+                    new TreeItemData
+                    {
+                        Id = 0,
+                        Name = ROOT_USER_NAME,
+                        DisplayName = ROOT_USER_NAME,
+                        Typography = Typo.h6,
+                        IsExpanded = true,
+                        TreeNodeType = TreeNodeType.Top,
+                        TreeItemChildren = 
+                        Users.Select(u => new TreeItemData()
+                        {                            
+                            ParentName = ROOT_USER_NAME,
+                            DisplayName = u.Name,
+                            Typography = Typo.h6,
+                            TreeNodeType = TreeNodeType.User
+                        }).ToHashSet()
                     }
                 };
             }

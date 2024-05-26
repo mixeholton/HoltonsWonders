@@ -15,7 +15,7 @@ namespace MixeWonders.Values.Queries
             BrugsDbContext = brugsDbContext;
         }
 
-        public async Task<IEnumerable<UserValue>> GetAllUsers()
+        public async Task<List<UserValue>> GetAllUsers()
         {
             var users = await BrugsDbContext.Users.ToListAsync() ?? null;
             var creditDebits = await BrugsDbContext.CreditDebits.ToListAsync() ?? null;
@@ -26,7 +26,15 @@ namespace MixeWonders.Values.Queries
                     u => creditDebits.Where(x => x.UserId == u.UserId)
                         .Select(x => new CreditDebitValue(x.Id, x.Description, x.Amount, x.isCredit)).ToList());
 
-            return users.Select(x => new UserValue(x.Id, x.AffiliationId, x.Name, new AccountCreditDebit(AccountDictByUserId[x.Id].Where(x => x.Balance == Enums.BalanceCurrencyType.Credit).ToList(), AccountDictByUserId[x.Id].Where(x => x.Balance == Enums.BalanceCurrencyType.Debit).ToList())));
+            return users.Select(x => new UserValue(x.Id, x.AffiliationId, x.Name, new AccountCreditDebit(AccountDictByUserId[x.Id].Where(x => x.Balance == Enums.BalanceCurrencyType.Credit).ToList(), AccountDictByUserId[x.Id].Where(x => x.Balance == Enums.BalanceCurrencyType.Debit).ToList()))).ToList();
+        }
+        public async Task<List<UserHeaderValue>> GetAllSimpelUsers()
+        {
+            var users = await BrugsDbContext.Users.ToListAsync() ?? null;
+            if(users == null)
+                return new List<UserHeaderValue>();            
+
+            return users.Select(x => new UserHeaderValue(x.Name)).ToList();
         }
 
     }

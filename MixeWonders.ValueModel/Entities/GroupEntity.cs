@@ -10,6 +10,5 @@ public partial class GroupEntity
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     public string Name { get; set; }
-    public ICollection<RoleEntity> Roles { get; set; }
-    public ICollection<AffiliationGroup> AffiliationGroups { get; set; } = new List<AffiliationGroup>();
+    public ICollection<RoleEntity> Roles { get; set; }    
 }

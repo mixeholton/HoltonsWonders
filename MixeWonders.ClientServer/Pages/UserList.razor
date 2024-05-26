@@ -1,0 +1,95 @@
+﻿@page "/Users"
+@using Komit.CompanionApp.Component.Model
+@using MixeWonders.Client.Helpers
+@using MixeWonders.Client.ViewModels
+@using MixeWonders.ClientServer.Components
+@using MixeWonders.ClientServer.ViewModels
+@using MixeWonders.Values.Enums
+@using MixeWonders.Values.Services
+@using MixeWonders.Values.Values
+@using MudBlazor
+
+
+@if (WireFrame == null)
+{
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+}
+else
+{
+
+    <MudGrid>
+        <MudItem xs="12">
+            <MudPaper Class="d-flex align-top justify-FlexStart my-4">
+                <MudToolBar>
+                    <MudButton Variant="Variant.Text" @onclick="() => WireFrame.ClickHandler(FormMode.New)" Color="@Color.Primary">Ny Bruger</MudButton>
+                    <MudButton Variant="Variant.Text" @onclick="() => WireFrame.ClickHandler(FormMode.Update)" disabled="@(WireFrame.SelectedItem != default)" Color="@Color.Primary">Ret Bruger</MudButton>
+                    <MudButton Variant="Variant.Text" @onclick="() => WireFrame.ClickHandler(FormMode.Delete)" disabled="@(WireFrame.SelectedItem == default)" Color="@Color.Primary">Slet Bruger</MudButton>
+                </MudToolBar>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="9">
+            <MudPaper Elevation="0">
+                <MudTreeView T="TreeItemData" Items="WireFrame.treeItems" Hover="true" Dense="true" ExpandOnClick="true" Color="Color.Info" @bind-SelectedValue="WireFrame.selectedTreeValue">
+                    <ItemTemplate>
+                        @if (context.TreeItemChildren != null && context.Name == TreeItemsHelper.ROOT_USER_NAME)
+                        {
+                            <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name" Expanded="@context.IsExpanded"
+                                             OnClick="() => WireFrame.SelectClick(context)" />
+                        }
+                        else
+                        {
+                            @if (context.TreeItemChildren != null && context.TreeItemChildren.Count > 0)
+                            {
+                                <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name"
+                                                 OnClick="() => WireFrame.SelectClick(context)" />
+                            }
+                            else
+                            {
+                                <MudTreeViewItem TextTypo="@context.Typography" Value="@context" Text="@context.DisplayName"
+                                                 OnClick="() => WireFrame.SelectClick(context)" />
+                            }
+                        }
+                    </ItemTemplate>
+                </MudTreeView>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="3">
+            @if (WireFrame.Form == FormMode.New)
+            {
+                <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
+                    <UserForm Title="Ny betaling for ny bruger" User="new UserValidationForm()" Usernames="null" OnFormSubmit="(x) => WireFrame.Create(x)" OnCancel="() => WireFrame.ResetForm()"></UserForm>
+                </MudPaper>
+            }
+            @if (WireFrame.SelectedItem != default && WireFrame.selectedTreeValue.TreeNodeType == TreeNodeType.User && WireFrame.Form == FormMode.Update)
+            {
+                <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
+                    <UserForm Title="Ret bruger" User="new UserValidationForm(WireFrame.SelectedItem)" Usernames="null" OnFormSubmit="(x) => WireFrame.Update(x)" OnCancel="() => WireFrame.ResetForm()"></UserForm>
+                </MudPaper>
+            }            
+        </MudItem>
+
+    </MudGrid>
+}
+
+@code
+{
+    [Inject] UserService userService { get; set; }
+    [Inject] private ISnackbar? SnackbarService { get; set; }
+    [Inject] private IDialogService? Dialog { get; set; }
+
+    public WireFrameFunctionHelper<UserHeaderValue, UserValidationForm, UserService>? WireFrame { get; set; } = null;
+
+    protected async override Task OnInitializedAsync()
+    {
+        var Users = await userService.Queries.GetAllSimpelUsers();
+        WireFrame = new WireFrameFunctionHelper<UserHeaderValue, UserValidationForm, UserService>(Users, default, userService, Dialog, SnackbarService, ChangeRender);
+        StateHasChanged();
+    }
+
+    public async Task ChangeRender()
+    {
+        StateHasChanged();
+    }
+
+
+}

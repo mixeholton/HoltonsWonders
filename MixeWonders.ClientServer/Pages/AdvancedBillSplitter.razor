@@ -9,196 +9,88 @@
 @using MixeWonders.Values.Values
 @using MudBlazor
 
-<h3>Bill Splitter</h3>
 
-<!-- Display list of people and their contributions -->
-<h4>People and their Contributions</h4>
-<MudGrid>
-    <MudItem xs="12">
-        <MudPaper Class="d-flex align-top justify-FlexStart my-4">
-            <MudToolBar>
-                <MudButton Variant="Variant.Text" @onclick="() => UserClickHandler(UserFormMode.New)" Color="@Color.Primary">Ny Bruger</MudButton>
-                <MudButton Variant="Variant.Text" @onclick="() => UserClickHandler(UserFormMode.Update)" disabled="@(SelectedUser != null)" Color="@Color.Primary">Ret Bruger</MudButton>
-                <MudButton Variant="Variant.Text" @onclick="() => UserClickHandler(UserFormMode.Delete)" disabled="@(SelectedUser == null)" Color="@Color.Primary">Slet Bruger</MudButton>
-            </MudToolBar>
-        </MudPaper>
-    </MudItem>
-    <MudPaper Width="300px" Elevation="0">
-        <MudTreeView T="TreeItemData" Items="treeItems" Hover="true" Dense="true" ExpandOnClick="true" Color="Color.Info" @bind-SelectedValue="selectedTreeValue">
-            <ItemTemplate>
-                @if (context.TreeItemChildren != null && context.Name == TreeItemsHelper.ROOT_USER_NAME)
-                {
-                    <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name" Expanded="@context.IsExpanded"
-                                     OnClick="() => SelectClick(context)" />
-                }
-                else
-                {
-                    @if (context.TreeItemChildren != null && context.TreeItemChildren.Count > 0)
+@if (WireFrame == null)
+{
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+}
+else
+{
+
+    <MudGrid>
+        <MudItem xs="12">
+            <MudPaper Class="d-flex align-top justify-FlexStart my-4">
+                <MudToolBar>
+                    <MudButton Variant="Variant.Text" @onclick="() => WireFrame.ClickHandler(FormMode.New)" Color="@Color.Primary">Ny Bruger</MudButton>
+                    <MudButton Variant="Variant.Text" @onclick="() => WireFrame.ClickHandler(FormMode.Update)" disabled="@(WireFrame.SelectedItem != default)" Color="@Color.Primary">Ret Bruger</MudButton>
+                    <MudButton Variant="Variant.Text" @onclick="() => WireFrame.ClickHandler(FormMode.Delete)" disabled="@(WireFrame.SelectedItem == default)" Color="@Color.Primary">Slet Bruger</MudButton>
+                </MudToolBar>
+            </MudPaper>
+        </MudItem>
+        <MudPaper Width="300px" Elevation="0">
+            <MudTreeView T="TreeItemData" Items="WireFrame.treeItems" Hover="true" Dense="true" ExpandOnClick="true" Color="Color.Info" @bind-SelectedValue="WireFrame.selectedTreeValue">
+                <ItemTemplate>
+                    @if (context.TreeItemChildren != null && context.Name == TreeItemsHelper.ROOT_USER_NAME)
                     {
-                        <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name"
-                                         OnClick="() => SelectClick(context)" />
+                        <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name" Expanded="@context.IsExpanded"
+                                         OnClick="() => WireFrame.SelectClick(context)" />
                     }
                     else
                     {
-                        <MudTreeViewItem TextTypo="@context.Typography" Value="@context" Text="@context.DisplayName"
-                                         OnClick="() => SelectClick(context)" />
+                        @if (context.TreeItemChildren != null && context.TreeItemChildren.Count > 0)
+                        {
+                            <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name"
+                                             OnClick="() => WireFrame.SelectClick(context)" />
+                        }
+                        else
+                        {
+                            <MudTreeViewItem TextTypo="@context.Typography" Value="@context" Text="@context.DisplayName"
+                                             OnClick="() => WireFrame.SelectClick(context)" />
+                        }
                     }
-                }
-            </ItemTemplate>
-        </MudTreeView>
-    </MudPaper>
-    @if (UserForm == UserFormMode.New)
+                </ItemTemplate>
+            </MudTreeView>
+        </MudPaper>
+        @if (WireFrame.Form == FormMode.New)
         {
             <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
-                <UserForm Title="Ny betaling for ny bruger" User="new UserValidationForm()" Usernames="Users" OnFormSubmit="(x) => CreateUser(x)" OnCancel="() => ResetForm()" ></UserForm>
+                <UserForm Title="Ny betaling for ny bruger" User="new UserValidationForm()" Usernames="WireFrame.Database" OnFormSubmit="(x) => WireFrame.Create(x)" OnCancel="() => WireFrame.ResetForm()"></UserForm>
             </MudPaper>
         }
-        @if (SelectedUser != null && selectedTreeValue.TreeNodeType == TreeNodeType.User && UserForm == UserFormMode.Update)
+        @if (WireFrame.SelectedItem != default && WireFrame.selectedTreeValue.TreeNodeType == TreeNodeType.User && WireFrame.Form == FormMode.Update)
         {
             <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
-            <UserForm Title="Ret bruger" User="new UserValidationForm(SelectedUser)" Usernames="Users" OnFormSubmit="(x) => UpdateUser(x)" OnCancel="() => ResetForm()"></UserForm>
-        </MudPaper>
+                <UserForm Title="Ret bruger" User="new UserValidationForm(WireFrame.SelectedItem)" Usernames="WireFrame.Database" OnFormSubmit="(x) => WireFrame.Update(x)" OnCancel="() => WireFrame.ResetForm()"></UserForm>
+            </MudPaper>
         }
-    @if (SelectedUser != null && selectedTreeValue.TreeNodeType == TreeNodeType.Bill && UserForm == UserFormMode.Update)
-    {
-        <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
-            <UserForm Title="Ret bruger" User="new UserValidationForm(UserForBill, SelectedBill, UserListForBill)" Usernames="Users" OnFormSubmit="(x) => UpdateUser(x)" OnCancel="() => ResetForm()"></UserForm>
-        </MudPaper>
-    }
-</MudGrid>
+        @if (WireFrame.SelectedItem != default && WireFrame.selectedTreeValue.TreeNodeType == TreeNodeType.Bill && WireFrame.Form == FormMode.Update)
+        {
+            <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">
+                <UserForm Title="Ret bruger" User="new UserValidationForm(WireFrame.UserForBill, WireFrame.SelectedBill, WireFrame.UserListForBill)" Usernames="WireFrame.Database" OnFormSubmit="(x) => WireFrame.Update(x)" OnCancel="() => WireFrame.ResetForm()"></UserForm>
+            </MudPaper>
+        }
+    </MudGrid>
+}
 
-@code {
-    [Inject] UserService UserService { get; set; }
+@code
+{
+    [Inject] UserService userService { get; set; }
     [Inject] private ISnackbar? SnackbarService { get; set; }
     [Inject] private IDialogService? Dialog { get; set; }
-    private string newPersonName = "";
-    private TreeItemData? selectedTreeValue { get; set; }
-    private HashSet<TreeItemData> treeItems { get; set; } = new HashSet<TreeItemData>();
-    private int AddedPaymentCount = 1;
-    private List<UserValue> Users { get; set; } = new List<UserValue>();
-    private List<UserValue>? UserListForBill => SelectedBill?.Balance == BalanceCurrencyType.Credit ? 
-                                Users.Where(x => x.Account.Credits.Contains(SelectedBill)).ToList() : 
-                                Users.Where(x => SelectedBill != null && x.Account.Debits.Contains(SelectedBill)).ToList() ?? null; 
-    private UserValue? SelectedUser { get; set; }
-    private CreditDebitValue? SelectedBill { get; set; }
-    private UserValue? UserForBill => Users?.SingleOrDefault(x => x.Name == (selectedTreeValue?.ParentName ?? "")) ?? null;
-    public UserFormMode UserForm { get; set; } = UserFormMode.None;
 
-    private async Task UserClickHandler(UserFormMode userEntitlementMode)
+    public WireFrameFunctionHelper<UserValue, UserValidationForm, UserService>? WireFrame { get; set; } = null;
+
+    protected async override Task OnInitializedAsync()
     {
-        UserForm = userEntitlementMode;
-
-        if (UserForm == UserFormMode.Delete && SelectedUser != null)
-            await DeleteSafetyModuleBox();
+        var Users = await userService.Queries.GetAllUsers();
+        WireFrame = new WireFrameFunctionHelper<UserValue, UserValidationForm, UserService>(Users, default, userService, Dialog, SnackbarService, ChangeRender);
         StateHasChanged();
     }
 
-    async Task CreateUser(UserValidationForm userFormData)
+    public async Task ChangeRender()
     {
-        var UserList = GetUsers(userFormData);
-        // await UserService.Commands.CreateBrugsUserAsync(NewBrugsUser(userFormData, true));
-        UserForm = UserFormMode.None;
-        ShowInfo(Severity.Success, $"Bruger {userFormData.Name} blev oprettet!");
-        await UpdateTreeItems();
-    }
-    async Task UpdateUser(UserValidationForm userFormData)
-    {        
-        var UserList = GetUsers(userFormData);
-        // await UserService.Commands.UpdateBrugsUserAsync(NewBrugsUser(userFormData, false));
-        ShowInfo(Severity.Success, $"Bruger {userFormData.Name} blev opdateret!");
-
-        UserForm = UserFormMode.None;
-        await UpdateTreeItems();
-    }
-    private async Task DeleteSafetyModuleBox()
-    {
-        var dialogSettings = DialogHelper.DefaultDialogSettings($"Vil du slette brugeren {SelectedUser.Name}?");
-        var dialog = Dialog.Show<InfoDialog>("Sletning af bruger", dialogSettings.Parameters, dialogSettings.Options);
-        var result = await dialog.Result;
-        if (!result.Canceled)
-        {
-            await DeleteUser(SelectedUser);
-            SelectedUser = null;
-        }
-    }
-    async Task DeleteUser(UserValue userFormData)
-    {
-        // await UserService.Commands.DeleteBrugsUserAsync(userFormData.User.UserName);
-        UserForm = UserFormMode.None;
-        ShowInfo(Severity.Success, $"Bruger {userFormData.Name} blev slettet!");
-        await UpdateTreeItems();
-    }
-    private List<UserValue> GetUsers(UserValidationForm userFormData) 
-    {
-        var CreditDebit = new CreditDebitValue(userFormData.CreditDebitId, userFormData.Description, userFormData.Amount, userFormData.IsCredit ? BalanceCurrencyType.Credit : BalanceCurrencyType.Debit);
-        var ExistingUser = Users.FirstOrDefault(x => x.Name == userFormData.Name);
-        var user = new UserValue(
-                        userFormData.userValue.Id,
-                        userFormData.userValue.AffiliationId,
-                        userFormData.Name,
-                        GetNewListOfCreditDebit(userFormData.IsCredit, ExistingUser?.Account.Credits ?? new(), ExistingUser?.Account.Debits ?? new(), CreditDebit));
-
-
-        List<UserValue> result = userFormData.CreditDebitUsers.Select(x => new UserValue(x.Id, x.AffiliationId, x.Name, GetNewListOfCreditDebit(!userFormData.IsCredit, x.Account.Credits, x.Account.Debits, CreditDebit))).ToList();
-
-        result.Add(user);
-
-        return result; 
-    }
-    private AccountCreditDebit GetNewListOfCreditDebit(bool isCredit, List<CreditDebitValue> credits, List<CreditDebitValue> debits, CreditDebitValue newCreditDebit)
-    {        
-
-        if (isCredit)
-        {
-            credits.Add(newCreditDebit);
-        }
-        else
-        {
-            debits.Add(newCreditDebit);
-        }
-        return new AccountCreditDebit(credits, debits);
-    }
-
-    private void ResetForm()
-    {
-        UserForm = UserFormMode.None;
-    }
-    private void ShowInfo(Severity severity, string text)
-    {
-        SnackbarService.Add($"{text}", severity, (options) =>
-        {
-            options.DuplicatesBehavior = SnackbarDuplicatesBehavior.Prevent;
-        });
+        StateHasChanged();
     }
 
 
-    protected override async Task OnInitializedAsync()
-    {
-        await UpdateTreeItems();
-    }
-
-    public async Task UpdateTreeItems()
-    {
-        var users = await UserService.Queries.GetAllUsers();
-    }
-
-    // private decimal TotalBill => Users.SelectMany(x => x.Payed).Select(x => x.Amount).Sum();
-    // private decimal AmountPerPerson => TotalBill / Users.Count;
-    // private string GetPersonBalance(decimal amount) => (amount - AmountPerPerson).ToString("C2");
-
-    private async Task SelectClick(TreeItemData treeItem)
-    {
-        if (treeItem.TreeNodeType == TreeNodeType.User)
-        {
-            SelectedUser = Users.SingleOrDefault(x => x.Name == treeItem.Name);
-            SelectedBill = null;
-        }
-        if (treeItem.TreeNodeType == TreeNodeType.Bill)
-        {
-            var selectedUser = Users.SingleOrDefault(x => x.Name == treeItem.ParentName);
-            SelectedUser = null;
-            SelectedBill = selectedUser?.Account.Credits.FirstOrDefault(x => x.Id == treeItem.Id) ?? selectedUser.Account.Debits.FirstOrDefault(x => x.Id == treeItem.Id) ?? null;
-        }
-        UserForm = treeItem.TreeNodeType == TreeNodeType.User ? UserFormMode.Update : UserFormMode.None;
-    }
 }

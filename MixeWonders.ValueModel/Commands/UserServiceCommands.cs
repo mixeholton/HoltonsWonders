@@ -19,38 +19,37 @@ namespace MixeWonders.Values.Commands
             ScopeService = scopeService;
         }
 
-        public async Task CreateUserAsync(List<UserValue> user)
+        public async Task CreateUserAsync(UserHeaderValue user)
         {
-            var userIds = user.Select(x => x.Id).ToList();
-            var UserStates = await BrugsDbContext.Users.Where(x => userIds.Contains(x.Id)).ToListAsync();
-            var UserStateIds = UserStates.Select(x => x.Id).ToList();
-            var NewUsers = user.Where(x => !UserStateIds.Contains(x.Id ?? 0));
-
+            
             //await UpdateUserAsync(UserStates);
 
 
-            var NewUserStates = NewUsers.Select(x => new UserEntity()
-            {
-                AffiliationId = x.AffiliationId,
-                Name = x.Name,
-                ChangedDate = DateTime.Now,
-                CreditDebits = x.Account.Credits.Select(x => new CreditDebitEntity()
-                {
-                    Amount = x.Amount,
-                    Description = x.Description,
-                    isCredit = x.Balance                    
-                }).Concat(x.Account.Debits.Select(x => new CreditDebitEntity()
-                {
-                    Amount = x.Amount,
-                    Description = x.Description,
-                    isCredit = x.Balance
-                })).ToList(),
-            }).ToList();
+            var NewUser = new UserEntity()
+            {                
+                Name = user.Name,
+                ChangedDate = DateTime.Now              
+            };
 
             await ScopeService.PerformTransaction(async x =>
             {
 
-                await x.Users.AddRangeAsync(NewUserStates);
+                await x.Users.AddAsync(NewUser);
+                await x.SaveChangesAsync();
+            });
+        }
+        public async Task UpdateUserAsync(UserHeaderValue user)
+        {                                   
+            var UpdateUser = new UserEntity()
+            {                
+                Name = user.Name,
+                ChangedDate = DateTime.Now
+            };
+
+            await ScopeService.PerformTransaction(async x =>
+            {
+
+                x.Users.Update(UpdateUser);
                 await x.SaveChangesAsync();
             });
         }

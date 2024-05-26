@@ -4,6 +4,7 @@ using MixeWonders.Values.Dtos;
 using MixeWonders.Values.Entities;
 using MixeWonders.Values.Services;
 using MixeWonders.Values.Values;
+using System.Data;
 
 
 namespace MixeWonders.Values.Commands
@@ -40,28 +41,33 @@ namespace MixeWonders.Values.Commands
             await ScopeService.PerformTransaction(async x =>
             {
 
-                await x.Groups.AddRangeAsync();
+                await x.Groups.AddRangeAsync(newGroup);
                 await x.SaveChangesAsync();
             });
         }
 
-        private async Task UpdateUserAsync(List<UserEntity> users)
+        private async Task UpdateGroupAsync(GroupValue group, List<RoleValue> roles)
         {
-            var UpdateUserStates = users.Select(x => new UserEntity()
+            var updateGroup = new GroupEntity()
             {
-                AffiliationId = x.AffiliationId,
-                Name = x.Name,
-                ChangedDate = DateTime.Now,
-                CreditDebits = x.CreditDebits
-
-            }).ToList();
-
+                Name = group.Name,
+                Roles = roles.Select(x => new RoleEntity()
+                {
+                    Id = x.Id ?? 0,
+                    Description = x.Description,
+                    Name = x.Name,
+                    Permissions = x.Permissions.Select(x => new PermissionEntity()
+                    {
+                        Permission = x.Permission
+                    }).ToList()
+                }).ToList()
+            };
 
 
             await ScopeService.PerformTransaction(async x =>
             {
 
-                await x.Users.AddRangeAsync(UpdateUserStates);
+                x.Groups.Update(updateGroup);
                 await x.SaveChangesAsync();
             });
         }

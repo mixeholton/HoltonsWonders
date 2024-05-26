@@ -1,7 +1,7 @@
 ﻿namespace MixeWonders.Values.Enums
 {
 
-    public enum UserFormMode
+    public enum FormMode
     {
         None = 0,
         New = 1,
