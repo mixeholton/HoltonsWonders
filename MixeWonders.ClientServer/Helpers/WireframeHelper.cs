@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Components;
 using MixeWonders.Client.ViewModels;
 using MixeWonders.ClientServer.Components;
-using MixeWonders.ClientServer.ViewModels;
 using MixeWonders.Values.Enums;
 using MixeWonders.Values.Services;
 using MixeWonders.Values.Values;
