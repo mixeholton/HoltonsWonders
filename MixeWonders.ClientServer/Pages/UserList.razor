@@ -79,11 +79,12 @@ else
 
     public WireFrameFunctionHelper<UserHeaderValue, UserValidationForm, UserService>? WireFrame { get; set; } = null;
 
-    protected async override Task OnInitializedAsync()
+    protected async override Task OnInitializedAsync()
     {
         var Users = await userService.Queries.GetAllSimpelUsers();
         WireFrame = new WireFrameFunctionHelper<UserHeaderValue, UserValidationForm, UserService>(Users, default, userService, Dialog, SnackbarService, ChangeRender);
-        StateHasChanged();
+        StateHasChanged();
+
     }
 
     public async Task ChangeRender()

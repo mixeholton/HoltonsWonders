@@ -20,6 +20,16 @@
         Credit = 1,
         Debit = 2,
     }
+    public enum WeekDay
+    {
+        Monday = 0,
+        Tuesday = 1,
+        Wednesday = 2,
+        Thursday = 3,
+        Friday = 4,
+        Saturday = 5,
+        Sunday = 6,
+    }
     public enum PermissionType
     {
         Bill = 0,
