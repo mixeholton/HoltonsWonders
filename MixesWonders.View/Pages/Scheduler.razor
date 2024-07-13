@@ -5,8 +5,6 @@
 @using MixeWonders.Values.Enums
 @using MudBlazor
 
-
-
 <MudDropContainer T="DropItem" Items="_items" CanDropClass="mud-border-info" NoDropClass="mud-border-error" ItemsSelector="@((item,dropzone) => item.Identifier == dropzone)" ItemDropped="ItemUpdated" Class="w-100 border-2 border-solid mud-border-lines-default">
     <ChildContent>
         <div class="d-flex w-100 justify-content-around">
@@ -56,3 +54,40 @@
         </div>
     </ItemRenderer>
 </MudDropContainer>
+
+@code{
+    public List<DropItem> _items { get; set; }
+    public List<DropItem> _FolderItems { get; set; }
+    public TimeSpan EndTime { get; set; }
+    public TimeSpan StartTime { get; set; }
+    public TimeSpan Interval { get; set; }
+    public int NumOfCols { get; set; } = 0;
+
+    protected async override Task OnInitializedAsync()
+    {
+        EndTime = new TimeSpan(24, 0, 0);
+        StartTime = new TimeSpan(8, 0, 0);
+        Interval = new TimeSpan(0, 5, 0);
+
+        _items = TimeblockSchedulerHelper.GetDropItems(TimeSpan.FromMinutes(5));
+        _FolderItems = TimeblockSchedulerHelper.GetDropFolderItems();
+        StateHasChanged();
+
+    }
+
+    private void ItemUpdated(MudItemDropInfo<DropItem> dropItem)
+    {
+        if (dropItem.Item.Identifier == "default" && dropItem.DropzoneIdentifier != "default")
+        {
+
+            WeekDay weekday;
+            Enum.TryParse(dropItem.DropzoneIdentifier.Split(' ')[1], out weekday);
+            _items.Add(new DropItem() { Color = dropItem.Item.Color, Identifier = dropItem.DropzoneIdentifier, Icon = dropItem.Item.Icon, Day = weekday });
+        }
+        else
+        {
+            dropItem.Item.Identifier = dropItem.DropzoneIdentifier;
+        }
+        StateHasChanged();
+    }
+}

@@ -3,7 +3,7 @@ using MudBlazor;
 
 namespace MixeWonders.Client.ViewModels
 {
-    public class TreeItemData
+    public class CustomTreeItemData
     {
         public int Id { get; set; }
         public TreeNodeType TreeNodeType { get; set; }
@@ -16,8 +16,7 @@ namespace MixeWonders.Client.ViewModels
         public string? Icon { get; set; }
         public bool IsExpanded { get; set; } = true;
         public Typo Typography { get; set; }
-        public List<TreeItemData> TreeItemChildren { get; set; } = new List<TreeItemData>();
-        public TreeItemData(int id, TreeNodeType type, string displayName, string? parentName, string? name, string?icon, bool Expanded, Typo typography, List<TreeItemData> children) 
+        public CustomTreeItemData(int id, TreeNodeType type, string displayName, string? parentName, string? name, string?icon, bool Expanded, Typo typography) 
         { 
             Id = id;
             TreeNodeType = type;
@@ -26,8 +25,17 @@ namespace MixeWonders.Client.ViewModels
             Name = name;
             Icon = icon;
             Typography = typography;
-            TreeItemChildren = children;
         }
 
+
+    }
+    public class TreeItemData : TreeItemData<CustomTreeItemData>
+    {        
+        public TreeItemData(CustomTreeItemData itemData) : base(itemData) 
+        { 
+            Text = itemData.DisplayName;
+            Value = itemData;
+            Icon = itemData.Icon;
+        }
     }
 }

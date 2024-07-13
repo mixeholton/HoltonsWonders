@@ -5,110 +5,56 @@ namespace MixeWonders.Client.Helpers
     using MixeWonders.Values.Enums;
     using MixeWonders.Values.Values;
     using MudBlazor;
+    using System.Linq;
 
     public static class TreeItemsHelper
     {
         public static string ROOT_SYSTEM_NAME = "Systemer";
         public static string ROOT_USER_NAME = "Brugere";
 
-        public static HashSet<TreeItemData> GenerateUserCreditTreeData(List<UserValue> Users)
+        public static List<TreeItemData<CustomTreeItemData>> GenerateUserCreditTreeData(List<UserValue> Users)
         {
             if (Users != null)
             {
-                return new HashSet<TreeItemData>
+                return new List<TreeItemData<CustomTreeItemData>>()
                 {
-                    new TreeItemData(0, TreeNodeType.Top, ROOT_USER_NAME, ROOT_USER_NAME, null, null, null, true, Typo.h6, Users
-                            .Where(x => x != null)
-                            .Select(u => new TreeItemData
-                            {
-                                Id = u.Id ?? 0,
-                                ParentName = ROOT_USER_NAME,
-                                Name = u.Name,
-                                DisplayName = u.Name,
-                                TreeNodeType = TreeNodeType.User,
-                                Icon = Icons.Material.Filled.Person,
-                                TreeItemChildren = u.Account.Credits.Select(b => new TreeItemData()
-                                {
-                                    Id = b.Id ?? 0,
-                                    ParentName = u.Name,
-                                    DisplayName = $"{b.Description} : {b.Amount}",
-                                    Name = b.Description + " : " + b.Amount,
-                                    TreeNodeType = TreeNodeType.Bill,
-                                    Typography = Typo.subtitle2,
-                                    Icon = Icons.Material.Filled.Money
-                                }))
+                    new TreeItemData(new CustomTreeItemData(0, TreeNodeType.Top, ROOT_USER_NAME, null, null, null, true, Typo.h6))
                     {
-                        Id = 0,
-                        Name = ROOT_USER_NAME,
-                        DisplayName = ROOT_USER_NAME,
-                        Typography = Typo.h6,
-                        IsExpanded = true,
-                        TreeNodeType = TreeNodeType.Top,
-                        TreeItemChildren = Users
+                        Children = [ ..Users
                             .Where(x => x != null)
-                            .Select(u => new TreeItemData
+                            .Select(u => new TreeItemData(new CustomTreeItemData(u.Id ?? 0, TreeNodeType.User, u.Name, ROOT_USER_NAME, u.Name, Icons.Material.Filled.Person, false, Typo.body1))
                             {
-                                Id = u.Id ?? 0,
-                                ParentName = ROOT_USER_NAME,
-                                Name = u.Name,
-                                DisplayName = u.Name,
-                                TreeNodeType = TreeNodeType.User,
-                                Icon = Icons.Material.Filled.Person,
-                                TreeItemChildren = u.Account.Credits.Select(b => new TreeItemData()
-                                {
-                                    Id = b.Id ?? 0,
-                                    ParentName = u.Name,
-                                    DisplayName = $"{b.Description} : {b.Amount}",
-                                    Name = b.Description + " : " + b.Amount,
-                                    TreeNodeType = TreeNodeType.Bill,
-                                    Typography = Typo.subtitle2,
-                                    Icon = Icons.Material.Filled.Money
-                                }).ToList().Concat(u.Account.Debits.Select(b => new TreeItemData()
-                                {
-                                    Id = b.Id ?? 0,
-                                    ParentName = u.Name,
-                                    DisplayName = $"{b.Description} : {b.Amount}",
-                                    Name = b.Description + " : " + b.Amount,
-                                    TreeNodeType = TreeNodeType.Bill,
-                                    Typography = Typo.subtitle2,
-                                    Icon = Icons.Material.Filled.Money
-                                }).ToHashSet()).ToHashSet(),                                
-                            }).ToHashSet()
+                                Children = [
+                                    ..u.Account.Credits.Select(c => new TreeItemData(new CustomTreeItemData(c.Id ?? 0, TreeNodeType.Bill, $"{c.Description} : {c.Amount}", ROOT_USER_NAME, c.Description, Icons.Material.Filled.Money, false, Typo.body1))),
+                                    ..u.Account.Debits.Select(d => new TreeItemData(new CustomTreeItemData(d.Id ?? 0, TreeNodeType.Bill, $"{d.Description} : {d.Amount}", ROOT_USER_NAME, d.Description, Icons.Material.Filled.Money, false, Typo.body1)))
+                                    ]
+                            }).ToList()
+                            ]
                     }
-                };
+            };
             }
+
             else
             {
-                return new HashSet<TreeItemData>();
+                return new List<TreeItemData<CustomTreeItemData>>();
             }
-        }public static HashSet<TreeItemData> GenerateSimpleUserTreeData(List<UserHeaderValue> Users)
+        }
+        public static List<TreeItemData<CustomTreeItemData>> GenerateSimpleUserTreeData(List<UserHeaderValue> Users)
         {
             if (Users != null)
             {
-                return new HashSet<TreeItemData>
+                return new List<TreeItemData<CustomTreeItemData>>()
                 {
-                    new TreeItemData
-                    {
-                        Id = 0,
-                        Name = ROOT_USER_NAME,
-                        DisplayName = ROOT_USER_NAME,
-                        Typography = Typo.h6,
-                        IsExpanded = true,
-                        TreeNodeType = TreeNodeType.Top,
-                        TreeItemChildren = 
-                        Users.Select(u => new TreeItemData()
-                        {                            
-                            ParentName = ROOT_USER_NAME,
-                            DisplayName = u.Name,
-                            Typography = Typo.h6,
-                            TreeNodeType = TreeNodeType.User
-                        }).ToHashSet()
-                    }
-                };
+                    new TreeItemData(new CustomTreeItemData(0, TreeNodeType.Top, ROOT_USER_NAME, null, ROOT_USER_NAME, null, true, Typo.h6))
+                    { 
+                        Children = [
+                            ..Users.Select(u => new TreeItemData(new CustomTreeItemData(0, TreeNodeType.User, u.Name, ROOT_USER_NAME, u.Name, Icons.Material.Filled.Person, false, Typo.h6))).ToList()
+                        ]
+                    }                 };
             }
             else
             {
-                return new HashSet<TreeItemData>();
+                return new List<TreeItemData<CustomTreeItemData>>();
             }
         }
 

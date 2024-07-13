@@ -20,9 +20,8 @@ namespace MixeWonders.Client.Helpers
         private TForm? GenericForm { get; set; } = default;
         private TService GenericService { get; set; }
         private Func<Task> UpdateSite {  get; set; }
-        public TreeItemData? selectedTreeValue { get; set; }
-        public HashSet<TreeItemData> treeItems { get; set; } = new HashSet<TreeItemData>();
-        public IReadOnlyCollection<TreeItemData> treeItemDatas => treeItems;
+        public CustomTreeItemData? selectedTreeValue { get; set; }
+        public IReadOnlyCollection<TreeItemData<CustomTreeItemData>> treeItems { get; set; } = new List<TreeItemData<CustomTreeItemData>>();
         public CreditDebitValue? SelectedBill { get; set; } = null;
         public UserValue? UserForBill => Database?.Cast<UserValue?>()?.SingleOrDefault(x => x.Name == (selectedTreeValue?.ParentName ?? "")) ?? null;
         public List<UserValue>? UserListForBill => SelectedBill?.Balance == BalanceCurrencyType.Credit ?
@@ -42,7 +41,7 @@ namespace MixeWonders.Client.Helpers
 
         }
 
-        public HashSet<TreeItemData> GetTreeItems(List<T> TypeOfTreeItems) => TypeOfTreeItems switch
+        public List<TreeItemData<CustomTreeItemData>> GetTreeItems(List<T> TypeOfTreeItems) => TypeOfTreeItems switch
         {
             List<UserValue> userValues => TreeItemsHelper.GenerateUserCreditTreeData(userValues),
             List<UserHeaderValue> userValues => TreeItemsHelper.GenerateSimpleUserTreeData(userValues),
@@ -137,7 +136,7 @@ namespace MixeWonders.Client.Helpers
                 options.DuplicatesBehavior = SnackbarDuplicatesBehavior.Prevent;
             });
         }
-        public async Task SelectClick(TreeItemData treeItem)
+        public async Task SelectClick(CustomTreeItemData treeItem)
         {
             if (SelectedItem is UserValue user)
             {

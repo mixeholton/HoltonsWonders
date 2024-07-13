@@ -28,24 +28,24 @@ else
         </MudItem>
         <MudItem xs="9">
             <MudPaper Elevation="0">
-                <MudTreeView T="TreeItemData" Items="WireFrame.treeItems" Hover="true" Dense="true" ExpandOnClick="true" Color="Color.Info" @bind-SelectedValue="WireFrame.selectedTreeValue">
+                <MudTreeView T="CustomTreeItemData" Items="WireFrame.treeItems" Hover="true" Dense="true" ExpandOnClick="true" Color="Color.Info" @bind-SelectedValue="WireFrame.selectedTreeValue">
                     <ItemTemplate>
-                        @if (context.TreeItemChildren != null && context.Name == TreeItemsHelper.ROOT_USER_NAME)
+                        @if (context.Children != null && context.Value.DisplayName == TreeItemsHelper.ROOT_USER_NAME)
                         {
-                            <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name" Expanded="@context.IsExpanded"
-                                             OnClick="() => WireFrame.SelectClick(context)" />
+                            <MudTreeViewItem T="CustomTreeItemData" TextTypo="@context.Value.Typography" Items="@context.Children" Value="@context.Value" Text="@context.Value.Name" Expanded="@context.Value.IsExpanded"
+                                             OnClick="() => OnTreeViewItemClick(context.Value)" />
                         }
                         else
                         {
-                            @if (context.TreeItemChildren != null && context.TreeItemChildren.Count > 0)
+                            @if (context.Children != null && context.HasChildren)
                             {
-                                <MudTreeViewItem TextTypo="@context.Typography" Items="@context.TreeItemChildren" Value="@context" Text="@context.Name"
-                                                 OnClick="() => WireFrame.SelectClick(context)" />
+                                <MudTreeViewItem T="CustomTreeItemData" TextTypo="@context.Value.Typography" Items="@context.Children" Value="@context.Value" Text="@context.Value.Name"
+                                                 OnClick="() => OnTreeViewItemClick(context.Value)" />
                             }
                             else
                             {
-                                <MudTreeViewItem TextTypo="@context.Typography" Value="@context" Text="@context.DisplayName"
-                                                 OnClick="() => WireFrame.SelectClick(context)" />
+                                <MudTreeViewItem T="CustomTreeItemData" TextTypo="@context.Value.Typography" Value="@context.Value" Text="@context.Value.DisplayName"
+                                                 OnClick="() => OnTreeViewItemClick(context.Value)" />
                             }
                         }
                     </ItemTemplate>
@@ -85,6 +85,11 @@ else
         StateHasChanged();
 
     }
+    private async Task OnTreeViewItemClick(CustomTreeItemData item)
+    {
+        await WireFrame.SelectClick(item);
+    }
+
 
     public async Task ChangeRender()
     {
