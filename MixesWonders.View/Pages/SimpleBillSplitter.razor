@@ -3,8 +3,8 @@
 
 <h3>Bill Splitter</h3>
 
-<MudNumericField Class="mt-1" HideSpinButtons="false" @bind-Value="totalAmount" Label="Total Amount:" Variant="Variant.Outlined" Step=".1M" />
-<MudNumericField Class="mt-1" HideSpinButtons="false" @bind-Value="numPeople" Label="Number of People:" Variant="Variant.Outlined" />
+<MudNumericField Class="mt-1" HideSpinButtons="false" @bind-Value="totalAmount" Label="Total Amount:" Variant="Variant.Outlined" Min="0" Step=".1M" />
+<MudNumericField Class="mt-1" HideSpinButtons="false" @bind-Value="numPeople" Min="0" Label="Number of People:" Variant="Variant.Outlined" />
 <div class="mt-2">
     <p>Each person should pay: @EachShouldPay.ToString()</p>
 </div>

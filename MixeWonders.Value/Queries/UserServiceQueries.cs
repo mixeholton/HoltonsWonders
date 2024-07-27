@@ -19,7 +19,7 @@ namespace MixeWonders.Values.Queries
         {
             var users = await BrugsDbContext.Users.ToListAsync() ?? null;
             var creditDebits = await BrugsDbContext.CreditDebits.ToListAsync() ?? null;
-            if(users == null || creditDebits == null)
+            if(users == null || users.Count == 0 || creditDebits == null || creditDebits.Count == 0)
                 return new List<UserValue>();
             var AccountDictByUserId = creditDebits.ToDictionary(x =>
                     x.UserId,

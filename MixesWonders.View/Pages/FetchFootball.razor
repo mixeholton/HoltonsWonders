@@ -5,10 +5,10 @@
 
 <PageTitle>Fetch Leagues</PageTitle>
 
-<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-4">
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
     <MudText Typo="Typo.h3" GutterBottom="true">Events for Round @SelectedRoundNum (@SelectedSeason)</MudText>
     <MudGrid Class="mt-6 px-4">
-        <MudSelect T="int" SelectedValuesChanged="() => UpdateLeague()" @bind-Value="SelectedRoundNum" Label="Vælg runde" HelperText="Round" Placeholder="Vælg runde" AdornmentIcon="@Icons.Material.Filled.Flag" AdornmentColor="Color.Primary">
+        <MudSelect T="int" SelectedValuesChanged="() => UpdateLeague()" @bind-Value="SelectedRoundNum" Disabled="false" ReadOnly="false" Label="Vælg runde" HelperText="Round" Placeholder="Vælg runde" AdornmentIcon="@Icons.Material.Filled.Flag" AdornmentColor="Color.Primary">
             @foreach (var round in RoundList)
             {
                 <MudSelectItem Value="@(round)">Runde @round</MudSelectItem>
@@ -16,7 +16,7 @@
             }
         </MudSelect>
         <div class="mr-1"></div>
-        <MudSelect T="string" SelectedValuesChanged="() => UpdateLeague()" @bind-Value="SelectedSeason" Label="Vælg Sæson" HelperText="Season" Placeholder="Vælg Sæson" AdornmentIcon="@Icons.Material.Filled.Grass" AdornmentColor="Color.Primary">
+        <MudSelect T="string" SelectedValuesChanged="() => UpdateLeague()" @bind-Value="SelectedSeason" Disabled="false" ReadOnly="false" Label="Vælg Sæson" HelperText="Season" Placeholder="Vælg Sæson" AdornmentIcon="@Icons.Material.Filled.Grass" AdornmentColor="Color.Primary">
             @foreach (var season in SeasonList)
             {
                 <MudSelectItem Value="@(season)">Sæson @season</MudSelectItem>
@@ -44,29 +44,28 @@
                 {
                     <MudListItem T="PL_EventAPI">
                         <div class="d-flex flex-grow-1 gap-4">
-                            <MudPaper Class="flex-grow-1 py-8 mud-theme-primary" Width="64px" Elevation="0">
-                                <div class="d-flex justify-content-between">
-                                    <MudText Typo="Typo.h6">
-                                        @eventItem.strHomeTeam
-                                    </MudText>
-                                    <MudText Typo="Typo.h6">
-                                        @eventItem.intHomeScore
-                                    </MudText>
-                                </div>
+                            <MudPaper Class="flex-grow-1 py-8 mud-theme-primary d-flex justify-space-between" Width="32px" Elevation="0">
+                                <MudText Typo="Typo.body1">
+                                    @eventItem.strHomeTeam
+                                </MudText>
                             </MudPaper>
-                            <MudPaper Class="flex-grow-0 align-content-center py-8 mud-theme-primary" Width="64px" Elevation="0">
+                            <MudPaper Class="d-flex justify-space-between" MinWidth="64px" Elevation="0">
+                                <MudNumericField T="int" Class="mt-1" Min="0" HideSpinButtons="false" Value="GetIntFromString(eventItem.intHomeScore)" />
+                            </MudPaper>
+
+                            <MudPaper Class="flex-grow-0 align-content-center py-8 mud-theme-primary d-flex justify-center" Width="32px" Elevation="0">
                                 <MudText Typo="Typo.body1" Class="m-2"> VS </MudText>
                             </MudPaper>
-                            <MudPaper Class="flex-grow-1 py-8  mud-theme-primary" Width="64px" Elevation="0">
-                                <div class="d-flex justify-content-between">
-                                    <MudText Typo="Typo.h6">
-                                        @eventItem.intAwayScore
-                                    </MudText>
-                                    <MudText Typo="Typo.h6">
-                                        @eventItem.strAwayTeam
-                                    </MudText>
-                                </div>
+
+                            <MudPaper Class="d-flex justify-space-between" MinWidth="64px" Elevation="0">
+                                <MudNumericField T="int" Class="mt-1" Min="0" HideSpinButtons="false" Value="GetIntFromString(eventItem.intAwayScore)" />
                             </MudPaper>
+                            <MudPaper Class="flex-grow-1 py-8 mud-theme-primary d-flex justify-space-between" Width="32px" Elevation="0">
+                                <MudText Typo="Typo.body1">
+                                    @eventItem.strAwayTeam
+                                </MudText>
+                            </MudPaper>
+
                         </div>
                     </MudListItem>
                 }
@@ -77,14 +76,17 @@
 
 @code {
     [Inject] private HttpClient httpClient { get; set; }
-    public int SelectedRoundNum { get; set; } = 1;
+    public int SelectedRoundNum { get; set; }
     public int RoundNumLimit { get; set; } = 38;
     private List<int> RoundList => Enumerable.Range(1, RoundNumLimit).ToList();
     private List<string> SeasonList => new List<string>() { "2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020", "2020-2021", "2021-2022", "2022-2023", "2023-2024", "2024-2025" };
-    private string SelectedSeason { get; set; } = "2023-2024";
+    private string SelectedSeason { get; set; }
     private PL_EventAPIResponse eventResponse;
     private string RequestUri { get; set; }
+    private bool HasPassedDeadline { get; set; }
 
+
+    private int GetIntFromString(string? text) => int.Parse(text ?? "0");
     protected override async Task OnInitializedAsync()
     {
         await UpdateLeague();
