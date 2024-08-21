@@ -14,9 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddDbContext<BrugsDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnect"), b => b.MigrationsAssembly("MixeWonders.ClientServer")));
 
+builder.Services.AddDbContext<BrugsDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnect"),
+    b => b.MigrationsAssembly("MixeWonders.Value")));
+
+// Register other services
 var services = builder.Services;
 services.AddMudServices(config =>
 {
@@ -26,21 +29,28 @@ services.AddMudServices(config =>
     config.SnackbarConfiguration.ShowCloseIcon = true;
     config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
 });
-// Register HttpClient
+
 services.AddHttpClient();
+services.AddTransient<IProvideDbContext>(x => x.GetRequiredService<BrugsDbContext>());
 services.AddTransient<ScopeService>();
 services.AddScoped<UserServiceCommands>();
 services.AddScoped<UserServiceQueries>();
 services.AddTransient<UserService>();
-services.AddTransient<IProvideDbContext>(x => x.GetRequiredService<BrugsDbContext>());
 
 var app = builder.Build();
+
+// Logging the database connection
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<BrugsDbContext>();
+    var databaseName = context.Database.GetDbConnection().Database;
+    Console.WriteLine($"Connected to database: {databaseName}");
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

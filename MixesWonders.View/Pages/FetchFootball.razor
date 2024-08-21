@@ -79,7 +79,10 @@
     public int SelectedRoundNum { get; set; }
     public int RoundNumLimit { get; set; } = 38;
     private List<int> RoundList => Enumerable.Range(1, RoundNumLimit).ToList();
-    private List<string> SeasonList => new List<string>() { "2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020", "2020-2021", "2021-2022", "2022-2023", "2023-2024", "2024-2025" };
+    private List<string> SeasonList => new List<string>() 
+    { 
+        "2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020", "2020-2021", "2021-2022", "2022-2023", "2023-2024", "2024-2025" 
+    };
     private string SelectedSeason { get; set; }
     private PL_EventAPIResponse eventResponse;
     private string RequestUri { get; set; }

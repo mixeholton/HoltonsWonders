@@ -30,8 +30,8 @@ namespace MixeWonders.Values.Queries
         }
         public async Task<List<UserHeaderValue>> GetAllSimpelUsers()
         {
-            var users = await BrugsDbContext.Users.ToListAsync() ?? null;
-            if(users == null)
+            var users = await BrugsDbContext.Users.ToListAsync();
+            if(users.Count == 0)
                 return new List<UserHeaderValue>();            
 
             return users.Select(x => new UserHeaderValue(x.Name)).ToList();

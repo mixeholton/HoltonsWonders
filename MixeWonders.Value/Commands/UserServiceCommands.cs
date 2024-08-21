@@ -33,7 +33,6 @@ namespace MixeWonders.Values.Commands
 
             await ScopeService.PerformTransaction(async x =>
             {
-
                 await x.Users.AddAsync(NewUser);
                 await x.SaveChangesAsync();
             });
