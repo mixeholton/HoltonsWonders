@@ -9,7 +9,8 @@ public partial class UserEntity
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
-    public string Name { get; set; }
+    public string Mail { get; set; }
+    public string Password { get; set; }
     public int? AffiliationId { get; set; }
     public AffiliationEntity? Affiliation { get; set; }
     public DateTime ChangedDate { get; set; }

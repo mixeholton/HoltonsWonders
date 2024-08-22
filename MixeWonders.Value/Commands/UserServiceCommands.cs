@@ -2,6 +2,7 @@
 using MixeWonders.Values.Context;
 using MixeWonders.Values.Dtos;
 using MixeWonders.Values.Entities;
+using MixeWonders.Values.Queries;
 using MixeWonders.Values.Services;
 using MixeWonders.Values.Values;
 
@@ -12,23 +13,22 @@ namespace MixeWonders.Values.Commands
     {
         protected BrugsDbContext BrugsDbContext { get; }
         protected ScopeService ScopeService { get; }
+        public UserServiceQueries UserServiceQueries { get; }
 
-        public UserServiceCommands(BrugsDbContext brugsDbContext, ScopeService scopeService)
+        public UserServiceCommands(BrugsDbContext brugsDbContext, ScopeService scopeService, UserServiceQueries userServiceQueries)
         {
             BrugsDbContext = brugsDbContext;
             ScopeService = scopeService;
+            UserServiceQueries = userServiceQueries;
         }
 
-        public async Task CreateUserAsync(UserHeaderValue user)
+        public async Task<CurrentUserValue?> CreateUserAsync(UserHeaderValue user, string? password = null)
         {
-            
-            //await UpdateUserAsync(UserStates);
-
-
             var NewUser = new UserEntity()
-            {                
-                Name = user.Name,
-                ChangedDate = DateTime.Now              
+            {
+                Mail = user.Mail,
+                Password = password != null ? password : $"{user.Mail[0].ToString().ToUpper()}{user.Mail[1].ToString().ToLower()}{DateTime.Now.Day}{DateTime.Now.Month}{DateTime.Now.Year}",
+                ChangedDate = DateTime.Now
             };
 
             await ScopeService.PerformTransaction(async x =>
@@ -36,12 +36,13 @@ namespace MixeWonders.Values.Commands
                 await x.Users.AddAsync(NewUser);
                 await x.SaveChangesAsync();
             });
+            return await UserServiceQueries.GetCurrentUser(NewUser.Mail, NewUser.Password) ?? null;
         }
         public async Task UpdateUserAsync(UserHeaderValue user)
         {                                   
             var UpdateUser = new UserEntity()
             {                
-                Name = user.Name,
+                Mail = user.Mail,
                 ChangedDate = DateTime.Now
             };
 
@@ -58,7 +59,7 @@ namespace MixeWonders.Values.Commands
             var UpdateUserStates = users.Select(x => new UserEntity()
             {
                 AffiliationId = x.AffiliationId,
-                Name = x.Name,
+                Mail = x.Mail,
                 ChangedDate = DateTime.Now,
                 CreditDebits = x.CreditDebits
 

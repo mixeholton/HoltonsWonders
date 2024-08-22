@@ -7,6 +7,7 @@ using MixeWonders.Values.Queries;
 using MixeWonders.Values.Services;
 using MudBlazor;
 using MudBlazor.Services;
+using System.Net.NetworkInformation;
 using static MixeWonders.Values.Services.ScopeService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +32,7 @@ services.AddMudServices(config =>
 });
 
 services.AddHttpClient();
+builder.Services.AddSingleton<CurrentUserService>();
 services.AddTransient<IProvideDbContext>(x => x.GetRequiredService<BrugsDbContext>());
 services.AddTransient<ScopeService>();
 services.AddScoped<UserServiceCommands>();

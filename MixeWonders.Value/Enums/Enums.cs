@@ -8,6 +8,13 @@
         Update = 2,
         Delete = 3
     }
+    public enum AuthenticationStatus
+    {
+        Loading,
+        Content,
+        Error,
+        Unauthorized
+    }
     public enum TreeNodeType
     {
         Top = 0,

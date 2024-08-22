@@ -76,12 +76,12 @@ else
     [Inject] private ISnackbar? SnackbarService { get; set; }
     [Inject] private IDialogService? Dialog { get; set; }
 
-    public WireFrameFunctionHelper<UserValue, UserValidationForm, UserService>? WireFrame { get; set; } = null;
+    public WireFrameFunctionHelper<UserInfoValue, UserValidationForm, UserService>? WireFrame { get; set; } = null;
 
     protected async override Task OnInitializedAsync()
     {
         var Users = await userService.Queries.GetAllUsers();
-        WireFrame = new WireFrameFunctionHelper<UserValue, UserValidationForm, UserService>(Users, default, userService, Dialog, SnackbarService, ChangeRender);
+        WireFrame = new WireFrameFunctionHelper<UserInfoValue, UserValidationForm, UserService>(Users, default, userService, Dialog, SnackbarService, ChangeRender);
         StateHasChanged();
     }
     private async Task OnTreeViewItemClick(CustomTreeItemData item)

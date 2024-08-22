@@ -12,7 +12,7 @@ namespace MixeWonders.Client.Helpers
         public static string ROOT_SYSTEM_NAME = "Systemer";
         public static string ROOT_USER_NAME = "Brugere";
 
-        public static List<TreeItemData<CustomTreeItemData>> GenerateUserCreditTreeData(List<UserValue> Users)
+        public static List<TreeItemData<CustomTreeItemData>> GenerateUserCreditTreeData(List<UserInfoValue> Users)
         {
             if (Users != null)
             {
@@ -48,7 +48,7 @@ namespace MixeWonders.Client.Helpers
                     new TreeItemData(new CustomTreeItemData(0, TreeNodeType.Top, ROOT_USER_NAME, null, ROOT_USER_NAME, null, true, Typo.h6))
                     { 
                         Children = [
-                            ..Users.Select(u => new TreeItemData(new CustomTreeItemData(0, TreeNodeType.User, u.Name, ROOT_USER_NAME, u.Name, Icons.Material.Filled.Person, false, Typo.h6))).ToList()
+                            ..Users.Select(u => new TreeItemData(new CustomTreeItemData(0, TreeNodeType.User, u.Mail, ROOT_USER_NAME, u.Mail, Icons.Material.Filled.Person, false, Typo.h6))).ToList()
                         ]
                     }                 };
             }

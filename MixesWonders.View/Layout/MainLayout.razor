@@ -1,27 +1,38 @@
-﻿@inherits LayoutComponentBase
+﻿@using MixeWonders.Values.Services
+@using MixeWonders.Values.Values
+@inherits LayoutComponentBase
+@inject CurrentUserService CurrentUser;
 
 <MudThemeProvider />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-<MudLayout>
-    <MudAppBar>
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        Mixe Wonders
-    </MudAppBar>
-    <MudDrawer @bind-Open="@_drawerOpen">
-        <NavMenu/>
-    </MudDrawer>
-    <MudMainContent >
-        <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge">
-            @Body
-        </MudContainer>
-    </MudMainContent>
-</MudLayout>
-@code {    
-    bool _drawerOpen = true;            
     
+@if (CurrentUser.CurrentUser == null)
+{
+        <Login></Login>
+}
+else
+{
+    <MudLayout>
+        <MudAppBar>
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+            Mixe Wonders
+        </MudAppBar>
+        <MudDrawer @bind-Open="@_drawerOpen">
+            <NavMenu />
+        </MudDrawer>
+        <MudMainContent>
+            <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge">
+                @Body
+            </MudContainer>
+        </MudMainContent>
+    </MudLayout>
+}   
+@code {    
+    bool _drawerOpen = true;
+
     public void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;

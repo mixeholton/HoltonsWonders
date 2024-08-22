@@ -8,12 +8,12 @@
     [Inject] IDialogService Dialog { get; set; }
     [Parameter] public string Title { get; set; }
     [Parameter] public FormMode userFormMode { get; set; }
-    [Parameter] public List<UserValue>? Usernames { get; set; }
+    [Parameter] public List<UserInfoValue>? Usernames { get; set; }
     [Parameter] public UserValidationForm User { get; set; }
     [Parameter] public EventCallback<UserValidationForm> OnFormSubmit { get; set; }
     [Parameter] public EventCallback OnCancel { get; set; }
     private bool isEdit = false;
-    private UserValue? value { get; set; } = null;
+    private UserInfoValue? value { get; set; } = null;
 
     protected override async Task OnInitializedAsync()
     {
@@ -52,10 +52,10 @@
         <MudText>Udlæg/Betaling for @User.Name</MudText>
         <MudTextField InputType="InputType.Text" Label="Beskrivelse" @bind-Value="User.Description" For="@(() => User.Description)"></MudTextField>
         <MudNumericField @bind-Value="User.Amount" Label="Betaling" Variant="Variant.Outlined" Step=".2M" />
-        <MudSelect T="UserValue" Label="Personer der skal betale/betales til" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="User.CreditDebitUsers">
-            @foreach (var user in Usernames?.Where(x => x.Name != User.Name).ToList() ?? new List<UserValue>())
+        <MudSelect T="UserInfoValue" Label="Personer der skal betale/betales til" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="User.CreditDebitUsers">
+            @foreach (var user in Usernames?.Where(x => x.Name != User.Name).ToList() ?? new List<UserInfoValue>())
             {
-                <MudSelectItem T="UserValue" Value="@user">@user.Name</MudSelectItem>
+                <MudSelectItem T="UserInfoValue" Value="@user">@user.Name</MudSelectItem>
             }
         </MudSelect>
     }

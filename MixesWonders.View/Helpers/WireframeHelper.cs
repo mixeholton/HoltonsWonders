@@ -23,10 +23,10 @@ namespace MixeWonders.Client.Helpers
         public CustomTreeItemData? selectedTreeValue { get; set; }
         public IReadOnlyCollection<TreeItemData<CustomTreeItemData>> treeItems { get; set; } = new List<TreeItemData<CustomTreeItemData>>();
         public CreditDebitValue? SelectedBill { get; set; } = null;
-        public UserValue? UserForBill => Database?.Cast<UserValue?>()?.SingleOrDefault(x => x.Name == (selectedTreeValue?.ParentName ?? "")) ?? null;
-        public List<UserValue>? UserListForBill => SelectedBill?.Balance == BalanceCurrencyType.Credit ?
-                                Database?.Cast<UserValue>().Where(x => x.Account.Credits.Contains(SelectedBill)).ToList() :
-                                Database?.Cast<UserValue>().Where(x => SelectedBill != null && x.Account.Debits.Contains(SelectedBill)).ToList() ?? null;
+        public UserInfoValue? UserForBill => Database?.Cast<UserInfoValue?>()?.SingleOrDefault(x => x.Name == (selectedTreeValue?.ParentName ?? "")) ?? null;
+        public List<UserInfoValue>? UserListForBill => SelectedBill?.Balance == BalanceCurrencyType.Credit ?
+                                Database?.Cast<UserInfoValue>().Where(x => x.Account.Credits.Contains(SelectedBill)).ToList() :
+                                Database?.Cast<UserInfoValue>().Where(x => SelectedBill != null && x.Account.Debits.Contains(SelectedBill)).ToList() ?? null;
 
         public WireFrameFunctionHelper(List<T>? values, TForm? form, TService service, IDialogService dialog, ISnackbar snackbar, Func<Task> updateSite)
         {
@@ -43,7 +43,7 @@ namespace MixeWonders.Client.Helpers
 
         public List<TreeItemData<CustomTreeItemData>> GetTreeItems(List<T> TypeOfTreeItems) => TypeOfTreeItems switch
         {
-            List<UserValue> userValues => TreeItemsHelper.GenerateUserCreditTreeData(userValues),
+            List<UserInfoValue> userValues => TreeItemsHelper.GenerateUserCreditTreeData(userValues),
             List<UserHeaderValue> userValues => TreeItemsHelper.GenerateSimpleUserTreeData(userValues),
             _ => throw new ArgumentException("Unsupported type of tree items."),
         };
@@ -98,7 +98,7 @@ namespace MixeWonders.Client.Helpers
         private async Task DeleteSafetyModuleBox()
         {
             var dialogSettings = DialogHelper.DefaultDialogSettings("");
-            if (SelectedItem is UserValue user)
+            if (SelectedItem is UserInfoValue user)
             {
                 dialogSettings = DialogHelper.DefaultDialogSettings($"Vil du slette {user.Name}?");
             }
@@ -115,7 +115,7 @@ namespace MixeWonders.Client.Helpers
         private async Task DeleteUser()
         {
             Form = FormMode.None;
-            if (SelectedItem is UserValue user)
+            if (SelectedItem is UserInfoValue user)
             {
                 //(GenericService as UserService).Commands(userFormData.User.UserName);
                 ShowInfo(Severity.Success, $"Bruger {user.Name} blev slettet!");
@@ -138,17 +138,17 @@ namespace MixeWonders.Client.Helpers
         }
         public async Task SelectClick(CustomTreeItemData treeItem)
         {
-            if (SelectedItem is UserValue user)
+            if (SelectedItem is UserInfoValue user)
             {
 
                 if (treeItem.TreeNodeType == TreeNodeType.User)
                 {
-                    user = Database.Cast<UserValue>().SingleOrDefault(x => x.Name == treeItem.Name);
+                    user = Database.Cast<UserInfoValue>().SingleOrDefault(x => x.Name == treeItem.Name);
                     SelectedBill = null;
                 }
                 if (treeItem.TreeNodeType == TreeNodeType.Bill)
                 {
-                    var selectedUser = Database.Cast<UserValue>().SingleOrDefault(x => x.Name == treeItem.ParentName);
+                    var selectedUser = Database.Cast<UserInfoValue>().SingleOrDefault(x => x.Name == treeItem.ParentName);
                     user = null;
                     SelectedBill = selectedUser?.Account.Credits.FirstOrDefault(x => x.Id == treeItem.Id) ?? selectedUser.Account.Debits.FirstOrDefault(x => x.Id == treeItem.Id) ?? null;
                 }
@@ -156,7 +156,7 @@ namespace MixeWonders.Client.Helpers
             }
         }
 
-        private List<UserValue> GetUsersCredits(UserValidationForm userFormData, List<UserValue> userValues)
+        private List<UserInfoValue> GetUsersCredits(UserValidationForm userFormData, List<UserInfoValue> userValues)
         {
             var creditDebit = new CreditDebitValue(
                 userFormData.CreditDebitId,
@@ -165,7 +165,7 @@ namespace MixeWonders.Client.Helpers
                 userFormData.IsCredit ? BalanceCurrencyType.Credit : BalanceCurrencyType.Debit);
 
             var existingUser = userValues.FirstOrDefault(x => x.Name == userFormData.Name);
-            var user = new UserValue(
+            var user = new UserInfoValue(
                 userFormData.userValue.Id,
                 userFormData.userValue.AffiliationId,
                 userFormData.Name,
@@ -177,7 +177,7 @@ namespace MixeWonders.Client.Helpers
             );
 
             var result = userFormData.CreditDebitUsers
-                .Select(x => new UserValue(
+                .Select(x => new UserInfoValue(
                     x.Id,
                     x.AffiliationId,
                     x.Name,

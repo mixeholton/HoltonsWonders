@@ -1,0 +1,131 @@
+﻿@using MixeWonders.Client.ViewModels
+@using MixeWonders.Values.Services
+@using MixeWonders.Values.Values
+@using System.Text.RegularExpressions
+
+
+
+<MudGrid Justify="Justify.Center" Spacing="4" Class="d-flex h-100 p-3 m-5 mud-theme-primary">
+    @if (NoUserFound)
+    {
+        <MudAlert Class="d-flex justify-content-center" Severity="Severity.Error" NoIcon="true" Variant="Variant.Text">INGEN BRUGER FUNDET</MudAlert>
+    }
+    <MudItem xs="10" sm="10">
+        <MudPaper Class="pa-4" Square="true" Outlined="true" Elevation="2">
+            <MudText Align="Align.Center" Color="Color.Secondary">Login</MudText>
+            <MudForm Class="ma-1" @ref="form">
+                <MudTextField T="string" Label="Mail" InputType="InputType.Email" @bind-Value="currentUserView.Mail" Required="true"></MudTextField>
+                <MudTextField T="string" Label="Password" InputType="InputType.Password" @bind-Value="currentUserView.Password" Required="true"></MudTextField>
+                @if (ShouldRegister)
+                {
+                    <MudTextField T="string"
+                                  Label="Password" HelperText="Repeat the password" InputType="InputType.Password"
+                                  Validation="@(new Func<string, string>(PasswordMatch))" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="ButtonTestclick" AdornmentAriaLabel="Show Password" />
+                    <div class="d-flex align-center justify-space-between">
+                        <MudButton Variant="Variant.Outlined" Color="Color.Info" OnClick="@(()=> IsRegister())" Class="m-1">Tilbage</MudButton>
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=> RegisterUser())" Class="m-1">Register</MudButton>
+                    </div>
+                } else
+                {
+                <div class="d-flex align-center justify-space-between ma-2">
+                        <MudButton Variant="Variant.Outlined" Color="Color.Info" OnClick="@(()=> IsRegister())" Class="ma-1">Registere ny Bruger</MudButton>
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=> LoginUser())" Class="ma-1">Login In</MudButton>
+                </div>
+                }
+
+            </MudForm>
+        </MudPaper>
+    </MudItem>    
+</MudGrid>
+        
+
+@code {
+    [Inject] public NavigationManager Navigation { get; set; }
+    [Inject]public UserService userService { get; set; }
+    [Inject]public CurrentUserService currentUserService { get; set; }
+
+
+    public CurrentUserViewModel currentUserView { get; set; } = new CurrentUserViewModel();
+    public MudForm form { get; set; }
+    private bool NoUserFound { get; set; }
+    private bool ShouldRegister { get; set; }
+
+    bool isShow;
+    InputType PasswordInput = InputType.Password;
+    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+    void ButtonTestclick()
+    {
+        @if (isShow)
+        {
+            isShow = false;
+            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+            PasswordInput = InputType.Password;
+        }
+        else
+        {
+            isShow = true;
+            PasswordInputIcon = Icons.Material.Filled.Visibility;
+            PasswordInput = InputType.Text;
+        }
+    }
+    public async Task LoginUser()
+    {
+        await form.Validate();
+
+        if (!form.IsValid)
+            return;
+
+        currentUserService.CurrentUser = await userService.Queries.GetCurrentUser(currentUserView.Mail, currentUserView.Password);
+        if (currentUserService.CurrentUser == null)
+        {
+            NoUserFound = true;
+            return;
+        }        
+        Navigation.NavigateTo("/");
+        StateHasChanged();
+    }
+    public void IsRegister()
+    { 
+        ShouldRegister = !ShouldRegister;
+    }
+    public async Task RegisterUser()
+    {
+        await form.Validate();
+
+        if (!form.IsValid)
+            return;
+
+        var user = new UserHeaderValue(currentUserView.Mail);
+        currentUserService.CurrentUser = await userService.Commands.CreateUserAsync(user, currentUserView.Password);
+        if (currentUserService.CurrentUser == null)
+        {
+            NoUserFound = true;
+        }
+    }
+    private IEnumerable<string> PasswordStrength(string pw)
+    {
+        if (!ShouldRegister)
+            yield break;
+        if (string.IsNullOrWhiteSpace(pw))
+        {
+            yield return "Password is required!";
+            yield break;
+        }
+        if (pw.Length < 8)
+            yield return "Password must be at least of length 8";
+        if (!Regex.IsMatch(pw, @"[A-Z]"))
+            yield return "Password must contain at least one capital letter";
+        if (!Regex.IsMatch(pw, @"[a-z]"))
+            yield return "Password must contain at least one lowercase letter";
+        if (!Regex.IsMatch(pw, @"[0-9]"))
+            yield return "Password must contain at least one digit";
+    }
+
+    private string PasswordMatch(string arg)
+    {
+        if (currentUserView.Password != arg)
+            return "Passwords don't match";
+        return null;
+    }
+    
+}

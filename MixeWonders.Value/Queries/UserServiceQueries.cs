@@ -15,18 +15,26 @@ namespace MixeWonders.Values.Queries
             BrugsDbContext = brugsDbContext;
         }
 
-        public async Task<List<UserValue>> GetAllUsers()
+        public async Task<List<UserInfoValue>> GetAllUsers()
         {
             var users = await BrugsDbContext.Users.ToListAsync() ?? null;
             var creditDebits = await BrugsDbContext.CreditDebits.ToListAsync() ?? null;
             if(users == null || users.Count == 0 || creditDebits == null || creditDebits.Count == 0)
-                return new List<UserValue>();
+                return new List<UserInfoValue>();
             var AccountDictByUserId = creditDebits.ToDictionary(x =>
                     x.UserId,
                     u => creditDebits.Where(x => x.UserId == u.UserId)
                         .Select(x => new CreditDebitValue(x.Id, x.Description, x.Amount, x.isCredit)).ToList());
 
-            return users.Select(x => new UserValue(x.Id, x.AffiliationId, x.Name, new AccountCreditDebit(AccountDictByUserId[x.Id].Where(x => x.Balance == Enums.BalanceCurrencyType.Credit).ToList(), AccountDictByUserId[x.Id].Where(x => x.Balance == Enums.BalanceCurrencyType.Debit).ToList()))).ToList();
+            return users.Select(x => new UserInfoValue(x.Id, x.AffiliationId, x.Mail, new AccountCreditDebit(AccountDictByUserId[x.Id].Where(x => x.Balance == Enums.BalanceCurrencyType.Credit).ToList(), AccountDictByUserId[x.Id].Where(x => x.Balance == Enums.BalanceCurrencyType.Debit).ToList()))).ToList();
+        }
+        public async Task<CurrentUserValue?> GetCurrentUser(string mail, string password)
+        {
+            var user = await BrugsDbContext.Users.SingleOrDefaultAsync(x => x.Mail == mail && x.Password == password);
+
+            if (user == null)
+                return null;
+            return new CurrentUserValue(new UserValue(user.Id, user.Mail, user.Password));
         }
         public async Task<List<UserHeaderValue>> GetAllSimpelUsers()
         {
@@ -34,7 +42,7 @@ namespace MixeWonders.Values.Queries
             if(users.Count == 0)
                 return new List<UserHeaderValue>();            
 
-            return users.Select(x => new UserHeaderValue(x.Name)).ToList();
+            return users.Select(x => new UserHeaderValue(x.Mail)).ToList();
         }
 
     }

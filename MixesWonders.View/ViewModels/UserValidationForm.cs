@@ -8,7 +8,7 @@ namespace Komit.CompanionApp.Component.Model
 
     public class UserValidationForm
     {
-        public UserValue? userValue { get; set; }        
+        public UserInfoValue? userValue { get; set; }        
         public decimal BillAmountSum => userValue?.Account.Debits.Sum(x => x.Amount) - userValue.Account.Credits.Sum(x => x.Amount) ?? 0;
 
         public int? CreditDebitId {  get; set; }
@@ -27,42 +27,42 @@ namespace Komit.CompanionApp.Component.Model
         public bool IsCredit { get; set; } = false;
 
         [Required(ErrorMessage = "Brugere skal udfyldes")]
-        public IEnumerable<UserValue> CreditDebitUsers { get; set; } = new HashSet<UserValue>();
-        public UserValidationForm(UserValue value)
+        public IEnumerable<UserInfoValue> CreditDebitUsers { get; set; } = new HashSet<UserInfoValue>();
+        public UserValidationForm(UserInfoValue value)
         {
             this.Name = value.Name;
             this.Amount = 0;
             this.IsCredit = false;
             this.Description = "";
             this.CreditDebitId = null;
-            this.CreditDebitUsers = new HashSet<UserValue>();
+            this.CreditDebitUsers = new HashSet<UserInfoValue>();
         } 
         public UserValidationForm(UserHeaderValue value)
         {
-            this.Name = value.Name;
+            this.Name = value.Mail;
             this.Amount = 0;
             this.IsCredit = false;
             this.Description = "Opret Bruger";
             this.CreditDebitId = null;
-            this.CreditDebitUsers = new HashSet<UserValue>();
+            this.CreditDebitUsers = new HashSet<UserInfoValue>();
         } 
         public UserValidationForm()
         {
             this.userValue = null;
             this.CreditDebitId = null;
-            this.CreditDebitUsers = new HashSet<UserValue>();
+            this.CreditDebitUsers = new HashSet<UserInfoValue>();
             this.Name = string.Empty;
             this.Amount = 0;
             this.Description = string.Empty;
             this.IsCredit = false;
         }        
-        public UserValidationForm(UserValue? value, CreditDebitValue? bill, List<UserValue>? userValues)
+        public UserValidationForm(UserInfoValue? value, CreditDebitValue? bill, List<UserInfoValue>? userValues)
         {
             this.Name = value?.Name ?? string.Empty;
             this.Amount = bill?.Amount ?? 0;
             this.IsCredit = (bill?.Balance ?? MixeWonders.Values.Enums.BalanceCurrencyType.None) == MixeWonders.Values.Enums.BalanceCurrencyType.Credit ? true : false;
             this.CreditDebitId = bill?.Id ?? 0;
-            this.CreditDebitUsers = userValues ?? new List<UserValue>();
+            this.CreditDebitUsers = userValues ?? new List<UserInfoValue>();
             this.Description = bill?.Description ?? string.Empty;
         }
 
