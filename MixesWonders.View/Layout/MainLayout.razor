@@ -11,7 +11,7 @@
 <MudSnackbarProvider />
 
 
-@if (CurrentUser.CurrentUser?.IsValid(GetPermissionFromUrl(navigationManager.Uri.Split("/").Last().Split("net").Last())) ?? false)
+@if (CurrentUser.CurrentUser?.IsValid(GetPermissionFromUrl(navigationManager.Uri.Split("/").Last().Split("_blazor").Last())) ?? false)
 {
     <MudLayout>
         <MudAppBar>
