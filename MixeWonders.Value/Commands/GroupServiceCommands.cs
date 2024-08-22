@@ -32,7 +32,7 @@ namespace MixeWonders.Values.Commands
                     Name = x.Name,
                     Permissions = x.Permissions.Select(x => new PermissionEntity()
                     {
-                        Permission = x.Permission
+                        Permission = x
                     }).ToList()
                 }).ToList()
             };
@@ -58,7 +58,7 @@ namespace MixeWonders.Values.Commands
                     Name = x.Name,
                     Permissions = x.Permissions.Select(x => new PermissionEntity()
                     {
-                        Permission = x.Permission
+                        Permission = x
                     }).ToList()
                 }).ToList()
             };

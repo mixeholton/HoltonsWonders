@@ -2,5 +2,5 @@
 
 namespace MixeWonders.Values.Values
 {
-    public record RoleValue(int? Id, string Name, string Description, List<PermissionValue> Permissions);
+    public record RoleValue(int? Id, string Name, string Description, List<PermissionType> Permissions);
 }

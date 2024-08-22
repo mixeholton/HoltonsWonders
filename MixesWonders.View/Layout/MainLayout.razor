@@ -1,7 +1,9 @@
-﻿@using MixeWonders.Values.Services
+﻿@using MixeWonders.Values.Enums
+@using MixeWonders.Values.Services
 @using MixeWonders.Values.Values
 @inherits LayoutComponentBase
 @inject CurrentUserService CurrentUser;
+@inject NavigationManager navigationManager;
 
 <MudThemeProvider />
 <MudPopoverProvider />
@@ -9,11 +11,7 @@
 <MudSnackbarProvider />
 
     
-@if (CurrentUser.CurrentUser == null)
-{
-        <Login></Login>
-}
-else
+@if (CurrentUser.CurrentUser?.IsValid(GetPermissionFromUrl(navigationManager.Uri.Split("/").Last())) ?? false)
 {
     <MudLayout>
         <MudAppBar>
@@ -29,10 +27,32 @@ else
             </MudContainer>
         </MudMainContent>
     </MudLayout>
+}
+else
+{
+    
+    <Login></Login>
 }   
-@code {    
+@code {
     bool _drawerOpen = true;
 
+    public PermissionType GetPermissionFromUrl(string url)
+    => url switch
+        {
+            "" => PermissionType.Home,
+            "Bill" => PermissionType.Bill,
+            "Football" => PermissionType.Football,
+            "BoardGames" => PermissionType.BoardGames,
+            "Counter" => PermissionType.Counter,
+            "Admin" => PermissionType.Admin,
+            "SuperAdmin" => PermissionType.SuperAdmin,
+            "BillAdvanced" => PermissionType.BillAdvanded,
+            "Permissions" => PermissionType.Permissions,
+            "Users" => PermissionType.Users,
+            "Scheduler" => PermissionType.Scheduler,
+            _ => PermissionType.None
+        };    
+    
     public void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;

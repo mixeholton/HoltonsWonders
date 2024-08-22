@@ -26,9 +26,9 @@ namespace MixeWonders.Values.Queries
                         r.Id, 
                         r.Name, 
                         r.Description, 
-                        r.Permissions.Select(p => new PermissionValue(
+                        r.Permissions.Select(p => 
                             p.Permission
-                            )).ToList())
+                            ).ToList())
                     ).ToList()));
         }
 

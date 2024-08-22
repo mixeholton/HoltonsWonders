@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using MixeWonders.Values.Context;
+using MixeWonders.Values.Enums;
 using MixeWonders.Values.Values;
 
 
@@ -31,10 +32,15 @@ namespace MixeWonders.Values.Queries
         public async Task<CurrentUserValue?> GetCurrentUser(string mail, string password)
         {
             var user = await BrugsDbContext.Users.SingleOrDefaultAsync(x => x.Mail == mail && x.Password == password);
+            if (user == null) return null;
+                        
 
             if (user == null)
                 return null;
-            return new CurrentUserValue(new UserValue(user.Id, user.Mail, user.Password));
+            return new CurrentUserValue(new UserValue(user.Id, user.Mail, user.Password), new List<RoleValue>()
+            {
+                new RoleValue(1, "Test", "Tester", Enum.GetValues(typeof(PermissionType)).Cast<PermissionType>().Where(x => x != PermissionType.Admin).ToList())
+            });
         }
         public async Task<List<UserHeaderValue>> GetAllSimpelUsers()
         {

@@ -1,13 +1,18 @@
-﻿<MudNavMenu>
-    <MudNavLink Href="/" Match="NavLinkMatch.All">Home</MudNavLink>
-    <MudNavLink Href="/counter" Match="NavLinkMatch.Prefix">Counter</MudNavLink>
+﻿@using MixeWonders.Values.Enums
+<MudNavMenu>
+    <MudNavLink Href="@GetHref(PermissionType.Home)" Match="NavLinkMatch.All">Home</MudNavLink>
+    <MudNavLink Href="@GetHref(PermissionType.Counter)" Match="NavLinkMatch.Prefix">Counter</MudNavLink>
     <MudNavGroup Title="BillSplitter" Expanded="true">
-        <MudNavLink Href="/SimpleBillSplitter" Match="NavLinkMatch.Prefix">Simple BillSplitter</MudNavLink>
-        <MudNavLink Href="/AdvancedBillSplitter" Match="NavLinkMatch.Prefix">Advanced BillSplitter</MudNavLink>
+        <MudNavLink Href="@GetHref(PermissionType.Bill)" Match="NavLinkMatch.Prefix">Simple BillSplitter</MudNavLink>
+        <MudNavLink Href="@GetHref(PermissionType.BillAdvanded)" Match="NavLinkMatch.Prefix">Advanced BillSplitter</MudNavLink>
     </MudNavGroup>
-    <MudNavLink Href="/fetchleagues" Match="NavLinkMatch.Prefix">Premier League</MudNavLink>
-    <MudNavLink Href="/Admin" Match="NavLinkMatch.Prefix">Admin</MudNavLink>
-    <MudNavLink Href="/Permissions" Match="NavLinkMatch.Prefix">Permission</MudNavLink>
-    <MudNavLink Href="/Users" Match="NavLinkMatch.Prefix">Brugere</MudNavLink>
-    <MudNavLink Href="/Scheduler" Match="NavLinkMatch.Prefix">Skemaplanlægning</MudNavLink>
+    <MudNavLink Href="@GetHref(PermissionType.Football)" Match="NavLinkMatch.Prefix">Premier League</MudNavLink>
+    <MudNavLink Href="@GetHref(PermissionType.Admin)" Match="NavLinkMatch.Prefix">Admin</MudNavLink>
+    <MudNavLink Href="@GetHref(PermissionType.Permissions)" Match="NavLinkMatch.Prefix">Permission</MudNavLink>
+    <MudNavLink Href="@GetHref(PermissionType.Users)" Match="NavLinkMatch.Prefix">Brugere</MudNavLink>
+    <MudNavLink Href="@GetHref(PermissionType.Scheduler)" Match="NavLinkMatch.Prefix">Skemaplanlægning</MudNavLink>
 </MudNavMenu>
+
+@code{
+    public string GetHref(PermissionType permissionType) => permissionType != PermissionType.Home ? $"/{permissionType}" : "/"; 
+}

@@ -18,7 +18,7 @@ namespace MixeWonders.Values.Queries
         public async Task<IEnumerable<RoleValue>> GetAllRoles()
         {
             var roles = await BrugsDbContext.Roles.ToListAsync();
-            return roles.Select(x => new RoleValue(x.Id, x.Name, x.Description, x.Permissions.Select(p => new PermissionValue(p.Permission)).ToList()));
+            return roles.Select(x => new RoleValue(x.Id, x.Name, x.Description, x.Permissions.Select(p => p.Permission).ToList()));
         }
 
     }
