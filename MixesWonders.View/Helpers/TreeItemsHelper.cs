@@ -22,7 +22,7 @@ namespace MixeWonders.Client.Helpers
                     {
                         Children = [ ..Users
                             .Where(x => x != null)
-                            .Select(u => new TreeItemData(new CustomTreeItemData(u.Id ?? 0, TreeNodeType.User, u.Name, ROOT_USER_NAME, u.Name, Icons.Material.Filled.Person, false, Typo.body1))
+                            .Select(u => new TreeItemData(new CustomTreeItemData(u.Id ?? 0, TreeNodeType.User, u.Mail, ROOT_USER_NAME, u.Mail, Icons.Material.Filled.Person, false, Typo.body1))
                             {
                                 Children = [
                                     ..u.Account.Credits.Select(c => new TreeItemData(new CustomTreeItemData(c.Id ?? 0, TreeNodeType.Bill, $"{c.Description} : {c.Amount}", ROOT_USER_NAME, c.Description, Icons.Material.Filled.Money, false, Typo.body1))),

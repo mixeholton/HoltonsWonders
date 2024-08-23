@@ -40,17 +40,17 @@
     public enum PermissionType
     {
         None = -1,
-        Bill = 0,
-        Football = 1,
-        BoardGames = 2,
-        Counter = 3,
-        Admin = 4,
-        SuperAdmin = 5,
-        Home = 6,
-        BillAdvanded = 7,
+        Home = 0,
+        Counter = 1,
+        Bill = 2,
+        SplitAdvanced = 3,
+        Football = 4,
+        BoardGames = 5,
+        Scheduler = 6,
+        Users = 7,
         Permissions = 8,
-        Users = 9,
-        Scheduler = 10,
+        Admin = 9,
+        Super = 10,
     }
     public enum DefaultFocusButton
     {

@@ -53,9 +53,9 @@
         <MudTextField InputType="InputType.Text" Label="Beskrivelse" @bind-Value="User.Description" For="@(() => User.Description)"></MudTextField>
         <MudNumericField @bind-Value="User.Amount" Label="Betaling" Variant="Variant.Outlined" Step=".2M" />
         <MudSelect T="UserInfoValue" Label="Personer der skal betale/betales til" MultiSelection="true" @bind-Value="value" @bind-SelectedValues="User.CreditDebitUsers">
-            @foreach (var user in Usernames?.Where(x => x.Name != User.Name).ToList() ?? new List<UserInfoValue>())
+            @foreach (var user in Usernames?.Where(x => x.Mail != User.Name).ToList() ?? new List<UserInfoValue>())
             {
-                <MudSelectItem T="UserInfoValue" Value="@user">@user.Name</MudSelectItem>
+                <MudSelectItem T="UserInfoValue" Value="@user">@user.Mail</MudSelectItem>
             }
         </MudSelect>
     }

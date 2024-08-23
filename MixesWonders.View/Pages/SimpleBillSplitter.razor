@@ -1,12 +1,13 @@
 ﻿@page "/Bill"
 @using MudBlazor
+<div class="h-100 w-100">
+    <h3>Bill Splitter</h3>
 
-<h3>Bill Splitter</h3>
-
-<MudNumericField Class="mt-1" HideSpinButtons="false" @bind-Value="totalAmount" Label="Total Amount:" Variant="Variant.Outlined" Min="0" Step=".1M" />
-<MudNumericField Class="mt-1" HideSpinButtons="false" @bind-Value="numPeople" Min="0" Label="Number of People:" Variant="Variant.Outlined" />
-<div class="mt-2">
-    <p>Each person should pay: @EachShouldPay.ToString()</p>
+    <MudNumericField Class="mt-1" HideSpinButtons="false" @bind-Value="totalAmount" Label="Total Amount:" Variant="Variant.Outlined" Min="0" Step=".1M" />
+    <MudNumericField Class="mt-1" HideSpinButtons="false" @bind-Value="numPeople" Min="0" Label="Number of People:" Variant="Variant.Outlined" />
+    <div class="mt-2">
+        <p>Each person should pay: @EachShouldPay.ToString()</p>
+    </div>
 </div>
 
 @code {

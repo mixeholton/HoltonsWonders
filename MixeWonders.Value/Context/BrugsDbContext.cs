@@ -69,13 +69,36 @@ public class BrugsDbContext : DbContext, IProvideDbContext
         {
             x.Property(e => e.Amount).HasColumnType("decimal(18,2)");
         });
-        modelBuilder.Entity<UserEntity>()
-        .HasOne(u => u.Affiliation)
-        .WithOne(a => a.User)
-        .HasForeignKey<AffiliationEntity>(a => a.UserId);       
+        modelBuilder.Entity<RoleEntity>(entity =>
+        {
+            entity.HasKey(e => e.Id); // Identity column
+            entity.HasMany(c => c.Permissions); 
+        });
 
-        modelBuilder.Entity<GroupEntity>()
-        .HasMany(g => g.Roles);    
+        modelBuilder.Entity<PermissionEntity>(entity =>
+        {
+            entity.HasKey(e => e.Id); // Identity column
+        });
+
+        modelBuilder.Entity<UserEntity>(entity =>
+        {
+            entity.HasKey(e => e.Id); // Identity column
+        });
+
+        modelBuilder.Entity<AffiliationEntity>(entity =>
+        {
+            entity.HasKey(e => e.Id); // Identity column
+            entity.HasOne(a => a.User)
+                  .WithOne(u => u.Affiliation)
+                  .HasForeignKey<AffiliationEntity>(a => a.UserId);
+        });
+
+        modelBuilder.Entity<GroupEntity>(entity =>
+        {
+            entity.HasKey(e => e.Id); // Identity column
+            entity.HasMany(e => e.Roles);
+        });
+
 
     }
 }

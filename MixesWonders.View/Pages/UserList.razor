@@ -16,17 +16,17 @@
 else
 {
 
-    <MudGrid>
+    <MudGrid Class="h-100">
         <MudItem xs="12">
             <MudPaper Class="d-flex align-top justify-FlexStart my-4">
                 <MudToolBar>
                     <MudButton Variant="Variant.Text" @onclick="() => WireFrame.ClickHandler(FormMode.New)" Color="@Color.Primary">Ny Bruger</MudButton>
-                    <MudButton Variant="Variant.Text" @onclick="() => WireFrame.ClickHandler(FormMode.Update)" disabled="@(WireFrame.SelectedItem != default)" Color="@Color.Primary">Ret Bruger</MudButton>
-                    <MudButton Variant="Variant.Text" @onclick="() => WireFrame.ClickHandler(FormMode.Delete)" disabled="@(WireFrame.SelectedItem == default)" Color="@Color.Primary">Slet Bruger</MudButton>
+                    <MudButton Variant="Variant.Text" @onclick="() => WireFrame.ClickHandler(FormMode.Update)" Disabled="@(WireFrame.SelectedItem == null)" Color="@Color.Primary">Ret Bruger</MudButton>
+                    <MudButton Variant="Variant.Text" @onclick="() => WireFrame.ClickHandler(FormMode.Delete)" Disabled="@(WireFrame.SelectedItem == null)" Color="@Color.Error">Slet Bruger</MudButton>
                 </MudToolBar>
             </MudPaper>
         </MudItem>
-        <MudItem xs="9">
+        <MudItem Class="h-100" xs="9">
             <MudPaper Elevation="0">
                 <MudTreeView T="CustomTreeItemData" Items="WireFrame.treeItems" Hover="true" Dense="true" ExpandOnClick="true" Color="Color.Info" @bind-SelectedValue="WireFrame.selectedTreeValue">
                     <ItemTemplate>
@@ -52,7 +52,7 @@ else
                 </MudTreeView>
             </MudPaper>
         </MudItem>
-        <MudItem xs="3">
+        <MudItem Class="h-100" xs="3">
             @if (WireFrame.Form == FormMode.New)
             {
                 <MudPaper MaxHeight="750px" Class="align-top ml-4" Elevation="0">

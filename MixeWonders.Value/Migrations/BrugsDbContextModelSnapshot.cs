@@ -38,7 +38,7 @@ namespace MixeWonders.Value.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Affiliations");
+                    b.ToTable("Affiliations", (string)null);
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.CreditDebitEntity", b =>
@@ -66,7 +66,7 @@ namespace MixeWonders.Value.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CreditDebits");
+                    b.ToTable("CreditDebits", (string)null);
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.GroupEntity", b =>
@@ -88,7 +88,7 @@ namespace MixeWonders.Value.Migrations
 
                     b.HasIndex("AffiliationEntityId");
 
-                    b.ToTable("Groups");
+                    b.ToTable("Groups", (string)null);
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.PermissionEntity", b =>
@@ -109,7 +109,7 @@ namespace MixeWonders.Value.Migrations
 
                     b.HasIndex("RoleEntityId");
 
-                    b.ToTable("Permissions");
+                    b.ToTable("Permissions", (string)null);
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.RoleEntity", b =>
@@ -140,7 +140,7 @@ namespace MixeWonders.Value.Migrations
 
                     b.HasIndex("GroupEntityId");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.UserEntity", b =>
@@ -157,6 +157,9 @@ namespace MixeWonders.Value.Migrations
                     b.Property<DateTime>("ChangedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("GroupEntityId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Mail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -167,7 +170,9 @@ namespace MixeWonders.Value.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("GroupEntityId");
+
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.AffiliationEntity", b =>
@@ -217,6 +222,13 @@ namespace MixeWonders.Value.Migrations
                         .HasForeignKey("GroupEntityId");
                 });
 
+            modelBuilder.Entity("MixeWonders.Values.Entities.UserEntity", b =>
+                {
+                    b.HasOne("MixeWonders.Values.Entities.GroupEntity", null)
+                        .WithMany("Users")
+                        .HasForeignKey("GroupEntityId");
+                });
+
             modelBuilder.Entity("MixeWonders.Values.Entities.AffiliationEntity", b =>
                 {
                     b.Navigation("AffiliationGroups");
@@ -227,6 +239,8 @@ namespace MixeWonders.Value.Migrations
             modelBuilder.Entity("MixeWonders.Values.Entities.GroupEntity", b =>
                 {
                     b.Navigation("Roles");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.RoleEntity", b =>

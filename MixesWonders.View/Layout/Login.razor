@@ -4,14 +4,15 @@
 @using System.Text.RegularExpressions
 
 
+<PageTitle>Login</PageTitle>
 
-<MudGrid Justify="Justify.Center" Spacing="4" Class="d-flex h-100 p-3 m-5 mud-theme-primary">
+<MudGrid Justify="Justify.Center" Class="h-100">
     @if (NoUserFound)
     {
         <MudAlert Class="d-flex justify-content-center" Severity="Severity.Error" NoIcon="true" Variant="Variant.Text">INGEN BRUGER FUNDET</MudAlert>
     }
     <MudItem xs="10" sm="10">
-        <MudPaper Class="pa-4" Square="true" Outlined="true" Elevation="2">
+        <MudPaper Class="pa-4 h-100" Square="true" Outlined="true" Elevation="2">
             <MudText Align="Align.Center" Color="Color.Secondary">Login</MudText>
             <MudForm Class="ma-1" @ref="form">
                 <MudTextField T="string" Label="Mail" InputType="InputType.Email" @bind-Value="currentUserView.Mail" Required="true"></MudTextField>
@@ -81,7 +82,7 @@
             NoUserFound = true;
             return;
         }        
-        Navigation.NavigateTo("/Bill");
+        Navigation.NavigateTo("/Users");
         StateHasChanged();
     }
     public void IsRegister()

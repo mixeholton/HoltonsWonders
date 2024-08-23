@@ -1,18 +1,23 @@
 ﻿@using MixeWonders.Values.Enums
+@using MixeWonders.Values.Services
 <MudNavMenu>
-    <MudNavLink Href="@GetHref(PermissionType.Home)" Match="NavLinkMatch.All">Home</MudNavLink>
+    @foreach(var Navs in CurrentUser.CurrentUser.Permissions)
+    {
+    <MudNavLink Href="@GetHref(Navs)" Match="NavLinkMatch.All">@Navs.ToString()</MudNavLink>
+        
+    }
+    @* <MudNavLink Href="@GetHref(PermissionType.Home)" Match="NavLinkMatch.All">Home</MudNavLink>
     <MudNavLink Href="@GetHref(PermissionType.Counter)" Match="NavLinkMatch.Prefix">Counter</MudNavLink>
-    <MudNavGroup Title="BillSplitter" Expanded="true">
-        <MudNavLink Href="@GetHref(PermissionType.Bill)" Match="NavLinkMatch.Prefix">Simple BillSplitter</MudNavLink>
-        <MudNavLink Href="@GetHref(PermissionType.BillAdvanded)" Match="NavLinkMatch.Prefix">Advanced BillSplitter</MudNavLink>
-    </MudNavGroup>
+    <MudNavLink Href="@GetHref(PermissionType.Bill)" Match="NavLinkMatch.Prefix">Simple BillSplitter</MudNavLink>
+    <MudNavLink Href="@GetHref(PermissionType.SplitAdvanced)" Match="NavLinkMatch.Prefix">Advanced BillSplitter</MudNavLink>
     <MudNavLink Href="@GetHref(PermissionType.Football)" Match="NavLinkMatch.Prefix">Premier League</MudNavLink>
     <MudNavLink Href="@GetHref(PermissionType.Admin)" Match="NavLinkMatch.Prefix">Admin</MudNavLink>
     <MudNavLink Href="@GetHref(PermissionType.Permissions)" Match="NavLinkMatch.Prefix">Permission</MudNavLink>
     <MudNavLink Href="@GetHref(PermissionType.Users)" Match="NavLinkMatch.Prefix">Brugere</MudNavLink>
-    <MudNavLink Href="@GetHref(PermissionType.Scheduler)" Match="NavLinkMatch.Prefix">Skemaplanlægning</MudNavLink>
+    <MudNavLink Href="@GetHref(PermissionType.Scheduler)" Match="NavLinkMatch.Prefix">Skemaplanlægning</MudNavLink> *@
 </MudNavMenu>
 
 @code{
-    public string GetHref(PermissionType permissionType) => permissionType != PermissionType.Home ? $"/{permissionType}" : "/"; 
+    [Inject] public CurrentUserService CurrentUser { get; set; }
+    public string GetHref(PermissionType permissionType) => $"/{permissionType}"; 
 }

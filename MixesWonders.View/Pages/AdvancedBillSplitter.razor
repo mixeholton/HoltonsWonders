@@ -1,4 +1,4 @@
-﻿@page "/BillAdvanded"
+﻿@page "/SplitAdvanced"
 @using Komit.CompanionApp.Component.Model
 @using MixeWonders.Client.Helpers
 @using MixeWonders.Client.ViewModels
@@ -76,8 +76,7 @@ else
     [Inject] private ISnackbar? SnackbarService { get; set; }
     [Inject] private IDialogService? Dialog { get; set; }
 
-    public WireFrameFunctionHelper<UserInfoValue, UserValidationForm, UserService>? WireFrame { get; set; } = null;
-
+    public WireFrameFunctionHelper<UserInfoValue, UserValidationForm, UserService>? WireFrame { get; set; }
     protected async override Task OnInitializedAsync()
     {
         var Users = await userService.Queries.GetAllUsers();

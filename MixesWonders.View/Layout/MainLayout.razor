@@ -1,58 +1,119 @@
 ﻿@using MixeWonders.Values.Enums
 @using MixeWonders.Values.Services
 @using MixeWonders.Values.Values
+@using MixeWonders.View.Pages
 @inherits LayoutComponentBase
 @inject CurrentUserService CurrentUser;
 @inject NavigationManager navigationManager;
 
-<MudThemeProvider />
+<style>
+    .full-height {
+        height: calc(100vh - 64px); /* Adjusting for the height of the app bar */
+    }
+
+    .d-flex {
+        display: flex;
+    }
+
+    .justify-center {
+        justify-content: center;
+    }
+
+    .align-center {
+        align-items: center;
+    }
+</style>
+<MudThemeProvider Theme="Theme" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
-
-
-@if (CurrentUser.CurrentUser?.IsValid(GetPermissionFromUrl(navigationManager.Uri.Split("/").Last().Split("_blazor").Last())) ?? false)
+@if (CurrentUser.CurrentUser != null && (!CurrentUser.CurrentUser?.IsValid(GetPermissionFromUrl(navigationManager.Uri)) ?? false))
 {
     <MudLayout>
-        <MudAppBar>
+        <MudAppBar Elevation="1">
             <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-            Mixe Wonders
+            <MudText Typo="Typo.h5" Class="ml-3">Mixe Wonders</MudText>
+            <MudSpacer />
+            <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
         </MudAppBar>
-        <MudDrawer @bind-Open="@_drawerOpen">
-            <NavMenu />
+        <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+            <NavMenu></NavMenu>
         </MudDrawer>
-        <MudMainContent>
-            <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge">
-                @Body
-            </MudContainer>
+        <MudMainContent Class="full-height">
+            <MudPaper Elevation="2" Width="100%" Height="100%" MinHeight="100%" MinWidth="100%">
+                <MudContainer Class="d-flex flex-column justify-center align-center h-100 w-100 mud-theme-primary">
+                    <NotFound></NotFound>
+                </MudContainer>
+            </MudPaper>
+        </MudMainContent>
+    </MudLayout>
+}
+else if (CurrentUser.CurrentUser?.IsValid(GetPermissionFromUrl(navigationManager.Uri)) ?? false)
+{
+
+    <MudLayout>
+        <MudAppBar Elevation="1">
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+            <MudText Typo="Typo.h5" Class="ml-3">Mixe Wonders</MudText>
+            <MudSpacer />
+            <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        </MudAppBar>
+        <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
+            <NavMenu></NavMenu>
+        </MudDrawer>
+        <MudMainContent Class="full-height">
+            <MudPaper Elevation="2" Width="100%" Height="100%" MinHeight="100%" MinWidth="100%">
+                <MudContainer Class="d-flex flex-column justify-center align-center h-100 w-100 mud-theme-primary">
+                    @Body
+                </MudContainer>
+            </MudPaper>
         </MudMainContent>
     </MudLayout>
 }
 else
 {
-    
-    <Login></Login>
-}   
+    <MudLayout>
+        <MudAppBar Elevation="1">
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+            <MudText Typo="Typo.h5" Class="ml-3">Mixe Wonders</MudText>
+            <MudSpacer />
+            <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        </MudAppBar>
+        <MudMainContent Class="full-height">
+            <MudPaper Elevation="2" Width="100%" Height="100%" MinHeight="100%" MinWidth="100%">
+                <MudContainer Class="d-flex flex-column justify-center align-center h-100 w-100 mud-theme-primary">
+                    <Login></Login>
+                </MudContainer>
+            </MudPaper>
+        </MudMainContent>
+    </MudLayout>
+}
+
 @code {
     bool _drawerOpen = true;
-
-    public PermissionType GetPermissionFromUrl(string url)
-    => url switch
+    private readonly MudTheme Theme = new()
         {
-            "" => PermissionType.Home,
-            "Bill" => PermissionType.Bill,
-            "Football" => PermissionType.Football,
-            "BoardGames" => PermissionType.BoardGames,
-            "Counter" => PermissionType.Counter,
-            "Admin" => PermissionType.Admin,
-            "SuperAdmin" => PermissionType.SuperAdmin,
-            "BillAdvanced" => PermissionType.BillAdvanded,
-            "Permissions" => PermissionType.Permissions,
-            "Users" => PermissionType.Users,
-            "Scheduler" => PermissionType.Scheduler,
-            _ => PermissionType.None
-        };    
-    
+            PaletteLight = new PaletteLight
+            {
+                Primary = "#0c84e4",
+                Secondary = "#2196f3",
+                Info = "#64a7e2",
+                Success = "#2ECC40",
+                Warning = "#ff9800",
+                Error = "#f44336",
+                AppbarBackground = "#212121",
+                TextPrimary = "#000000",
+                TextSecondary = "#0c84e4",
+                // more color properties
+            }
+        };
+    public PermissionType GetPermissionFromUrl(string url)
+    {
+        var test = Enum.GetValues(typeof(PermissionType)).Cast<PermissionType>().Where(x => url.Contains(x.ToString())).ToList();
+        var result = Enum.GetValues(typeof(PermissionType)).Cast<PermissionType?>().SingleOrDefault(x => url.Contains(x.ToString())) ?? PermissionType.None;
+        return result;
+    }
+
     public void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;

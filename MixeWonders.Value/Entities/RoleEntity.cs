@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MixeWonders.Values.Entities;
 
-public partial class RoleEntity
+public class RoleEntity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -13,7 +13,7 @@ public partial class RoleEntity
     public string Description { get; set; }
     public ICollection<PermissionEntity> Permissions { get; set; } = new List<PermissionEntity>();
 }
-public partial class PermissionEntity
+public class PermissionEntity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

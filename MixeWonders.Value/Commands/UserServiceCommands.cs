@@ -30,12 +30,27 @@ namespace MixeWonders.Values.Commands
                 Password = password != null ? password : $"{user.Mail[0].ToString().ToUpper()}{user.Mail[1].ToString().ToLower()}{DateTime.Now.Day}{DateTime.Now.Month}{DateTime.Now.Year}",
                 ChangedDate = DateTime.Now
             };
+            var roles = await BrugsDbContext.Roles.ToListAsync();
+            var groups = await BrugsDbContext.Groups.ToListAsync();
+            var NewAffiliation = new AffiliationEntity()
+            {
+                User = NewUser,
+                AffiliationRoles = roles,
+                AffiliationGroups = groups
+            };
 
             await ScopeService.PerformTransaction(async x =>
             {
                 await x.Users.AddAsync(NewUser);
                 await x.SaveChangesAsync();
             });
+
+            await ScopeService.PerformTransaction(async x =>
+            {
+                await x.Affiliations.AddAsync(NewAffiliation);
+                await x.SaveChangesAsync();
+            });
+
             return await UserServiceQueries.GetCurrentUser(NewUser.Mail, NewUser.Password) ?? null;
         }
         public async Task UpdateUserAsync(UserHeaderValue user)

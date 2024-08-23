@@ -30,7 +30,7 @@ namespace Komit.CompanionApp.Component.Model
         public IEnumerable<UserInfoValue> CreditDebitUsers { get; set; } = new HashSet<UserInfoValue>();
         public UserValidationForm(UserInfoValue value)
         {
-            this.Name = value.Name;
+            this.Name = value.Mail;
             this.Amount = 0;
             this.IsCredit = false;
             this.Description = "";
@@ -58,7 +58,7 @@ namespace Komit.CompanionApp.Component.Model
         }        
         public UserValidationForm(UserInfoValue? value, CreditDebitValue? bill, List<UserInfoValue>? userValues)
         {
-            this.Name = value?.Name ?? string.Empty;
+            this.Name = value?.Mail ?? string.Empty;
             this.Amount = bill?.Amount ?? 0;
             this.IsCredit = (bill?.Balance ?? MixeWonders.Values.Enums.BalanceCurrencyType.None) == MixeWonders.Values.Enums.BalanceCurrencyType.Credit ? true : false;
             this.CreditDebitId = bill?.Id ?? 0;

@@ -10,20 +10,20 @@ using static MudBlazor.CategoryTypes;
 
 namespace MixeWonders.Client.Helpers
 {
-    public class WireFrameFunctionHelper<T, TForm, TService>
+    public class WireFrameFunctionHelper<T, TForm, TService> where T : class, IWireFrameValues
     {
         public FormMode Form { get; set; } = FormMode.None;
-        public T? SelectedItem { get; set; } = default;
-        public List<T>? Database { get; set; } = default;
+        public T? SelectedItem { get; set; } = default(T);
+        public List<T>? Database { get; set; } = default(List<T>);
         private IDialogService Dialog { get; set; }
         private ISnackbar SnackbarService { get; set; }
         private TForm? GenericForm { get; set; } = default;
         private TService GenericService { get; set; }
-        private Func<Task> UpdateSite {  get; set; }
-        public CustomTreeItemData? selectedTreeValue { get; set; }
+        private Func<Task> UpdateSite { get; set; }
+        public CustomTreeItemData? selectedTreeValue { get; set; } = null;
         public IReadOnlyCollection<TreeItemData<CustomTreeItemData>> treeItems { get; set; } = new List<TreeItemData<CustomTreeItemData>>();
         public CreditDebitValue? SelectedBill { get; set; } = null;
-        public UserInfoValue? UserForBill => Database?.Cast<UserInfoValue?>()?.SingleOrDefault(x => x.Name == (selectedTreeValue?.ParentName ?? "")) ?? null;
+        public UserInfoValue? UserForBill => Database?.Cast<UserInfoValue?>()?.SingleOrDefault(x => x.Mail == (selectedTreeValue?.ParentName ?? "")) ?? null;
         public List<UserInfoValue>? UserListForBill => SelectedBill?.Balance == BalanceCurrencyType.Credit ?
                                 Database?.Cast<UserInfoValue>().Where(x => x.Account.Credits.Contains(SelectedBill)).ToList() :
                                 Database?.Cast<UserInfoValue>().Where(x => SelectedBill != null && x.Account.Debits.Contains(SelectedBill)).ToList() ?? null;
@@ -35,7 +35,7 @@ namespace MixeWonders.Client.Helpers
             Dialog = dialog;
             SnackbarService = snackbar;
             GenericForm = form;
-            GenericService = service;            
+            GenericService = service;
             treeItems = GetTreeItems(values);
             UpdateSite = updateSite;
 
@@ -100,7 +100,7 @@ namespace MixeWonders.Client.Helpers
             var dialogSettings = DialogHelper.DefaultDialogSettings("");
             if (SelectedItem is UserInfoValue user)
             {
-                dialogSettings = DialogHelper.DefaultDialogSettings($"Vil du slette {user.Name}?");
+                dialogSettings = DialogHelper.DefaultDialogSettings($"Vil du slette {user.Mail}?");
             }
             var dialog = Dialog.Show<InfoDialog>("Sletning af bruger", dialogSettings.Parameters, dialogSettings.Options);
             var result = await dialog.Result;
@@ -118,7 +118,7 @@ namespace MixeWonders.Client.Helpers
             if (SelectedItem is UserInfoValue user)
             {
                 //(GenericService as UserService).Commands(userFormData.User.UserName);
-                ShowInfo(Severity.Success, $"Bruger {user.Name} blev slettet!");
+                ShowInfo(Severity.Success, $"Bruger {user.Mail} blev slettet!");
             }
             else
             {
@@ -138,22 +138,22 @@ namespace MixeWonders.Client.Helpers
         }
         public async Task SelectClick(CustomTreeItemData treeItem)
         {
-            if (SelectedItem is UserInfoValue user)
-            {
+            selectedTreeValue = treeItem;
 
-                if (treeItem.TreeNodeType == TreeNodeType.User)
-                {
-                    user = Database.Cast<UserInfoValue>().SingleOrDefault(x => x.Name == treeItem.Name);
-                    SelectedBill = null;
-                }
-                if (treeItem.TreeNodeType == TreeNodeType.Bill)
-                {
-                    var selectedUser = Database.Cast<UserInfoValue>().SingleOrDefault(x => x.Name == treeItem.ParentName);
-                    user = null;
-                    SelectedBill = selectedUser?.Account.Credits.FirstOrDefault(x => x.Id == treeItem.Id) ?? selectedUser.Account.Debits.FirstOrDefault(x => x.Id == treeItem.Id) ?? null;
-                }
-                Form = treeItem.TreeNodeType == TreeNodeType.User ? FormMode.Update : FormMode.None;
+            if (treeItem.TreeNodeType == TreeNodeType.User)
+            {
+                var user = Database.Cast<UserHeaderValue>().SingleOrDefault(x => x.Mail == treeItem.Name);
+
+                // Since T is constrained to IBaseType, you can safely cast
+                SelectedItem = (T)(IWireFrameValues)user;
+                SelectedBill = null;
             }
+            else if (treeItem.TreeNodeType == TreeNodeType.Bill)
+            {
+                SelectedItem = default;
+            }
+
+            Form = treeItem.TreeNodeType == TreeNodeType.User ? FormMode.Update : FormMode.None;
         }
 
         private List<UserInfoValue> GetUsersCredits(UserValidationForm userFormData, List<UserInfoValue> userValues)
@@ -164,7 +164,7 @@ namespace MixeWonders.Client.Helpers
                 userFormData.Amount,
                 userFormData.IsCredit ? BalanceCurrencyType.Credit : BalanceCurrencyType.Debit);
 
-            var existingUser = userValues.FirstOrDefault(x => x.Name == userFormData.Name);
+            var existingUser = userValues.FirstOrDefault(x => x.Mail == userFormData.Name);
             var user = new UserInfoValue(
                 userFormData.userValue.Id,
                 userFormData.userValue.AffiliationId,
@@ -180,7 +180,7 @@ namespace MixeWonders.Client.Helpers
                 .Select(x => new UserInfoValue(
                     x.Id,
                     x.AffiliationId,
-                    x.Name,
+                    x.Mail,
                     GetNewListOfCreditDebit(
                         !userFormData.IsCredit,
                         x.Account.Credits,

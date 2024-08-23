@@ -20,28 +20,20 @@ namespace MixeWonders.Values.Commands
             ScopeService = scopeService;
         }
 
-        public async Task CreateGroupAsync(GroupValue group, List<RoleValue> roles)
+        public async Task CreateGroupAsync(GroupValue group)
         {
+            var ids = group.Roles.Select(i => i.Id).ToList();
+            var rolesEntities = await BrugsDbContext.Roles.Include(x => x.Permissions).Where(x =>  ids.Contains(x.Id)).ToListAsync();
             var newGroup = new GroupEntity()
             {
                 Name = group.Name,
-                Roles = roles.Select(x => new RoleEntity()
-                {
-                    Id = x.Id ?? 0,
-                    Description = x.Description,
-                    Name = x.Name,
-                    Permissions = x.Permissions.Select(x => new PermissionEntity()
-                    {
-                        Permission = x
-                    }).ToList()
-                }).ToList()
+                //Roles = rolesEntities        
             };
-
 
             await ScopeService.PerformTransaction(async x =>
             {
 
-                await x.Groups.AddRangeAsync(newGroup);
+                await x.Groups.AddAsync(newGroup);
                 await x.SaveChangesAsync();
             });
         }

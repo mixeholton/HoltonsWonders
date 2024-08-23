@@ -1,6 +1,8 @@
 html {
   font-size: 14px;
+
 }
+
 
 @media (min-width: 768px) {
   html {
@@ -17,6 +19,17 @@ html {
   min-height: 100%;
 }
 
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}
 body {
   margin-bottom: 60px;
+  height: 100% !important;
+  width: 100% !important;
+  min-height: 100% !important;
+  min-width: 100% !important;
 }

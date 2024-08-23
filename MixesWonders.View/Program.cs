@@ -37,10 +37,28 @@ services.AddTransient<IProvideDbContext>(x => x.GetRequiredService<BrugsDbContex
 services.AddTransient<ScopeService>();
 services.AddScoped<UserServiceCommands>();
 services.AddScoped<UserServiceQueries>();
-services.AddTransient<UserService>();
+services.AddScoped<UserService>();
+services.AddScoped<GroupServiceCommands>();
+services.AddScoped<GroupServiceQueries>();
+services.AddScoped<GroupService>();
+services.AddScoped<RoleServiceCommands>();
+services.AddScoped<RoleServiceQueries>();
+services.AddScoped<RoleService>();
+services.AddScoped<PermissionServiceCommands>();
+services.AddScoped<PermissionServiceQueries>();
+services.AddScoped<PermissionService>();
+
+
+services.AddTransient<DatabaseSeeder>();
 
 var app = builder.Build();
 
+// Run database seeding
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<DatabaseSeeder>();
+    await seeder.SeedAsync();
+}
 // Logging the database connection
 using (var scope = app.Services.CreateScope())
 {

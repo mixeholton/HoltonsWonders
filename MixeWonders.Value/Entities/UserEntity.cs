@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MixeWonders.Values.Entities;
 
-public partial class UserEntity
+public class UserEntity
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

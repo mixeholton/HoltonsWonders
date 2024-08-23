@@ -6,7 +6,7 @@
 
 <PageTitle>Fetch Leagues</PageTitle>
 
-<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4">
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-4 h-100">
     <MudText Typo="Typo.h3" GutterBottom="true">Events for Round @SelectedRoundNum (@SelectedSeason)</MudText>
     <MudGrid Class="mt-6 px-4">
         <MudSelect T="int" SelectedValuesChanged="() => UpdateLeague()" @bind-Value="SelectedRoundNum" Disabled="false" ReadOnly="false" Label="Vælg runde" HelperText="Round" Placeholder="Vælg runde" AdornmentIcon="@Icons.Material.Filled.Flag" AdornmentColor="Color.Primary">
