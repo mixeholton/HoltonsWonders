@@ -11,12 +11,12 @@
     <Content Remove="Properties\launchSettings.json" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="css\bootstrap\bootstrap.min.css" />
-    <None Remove="css\bootstrap\bootstrap.min.css.map" />
-    <None Remove="css\site.css" />
-    <None Remove="favicon.png" />
-  </ItemGroup>
+  <!--<ItemGroup>
+    <Content Remove="css\bootstrap\bootstrap.min.css" />
+    <Content Remove="css\bootstrap\bootstrap.min.css.map" />
+    <Content Remove="css\site.css" />
+    <Content Remove="favicon.png" />
+  </ItemGroup>-->
 
   <ItemGroup>
     <_WebToolingArtifacts Remove="Properties\launchSettings.json" />
