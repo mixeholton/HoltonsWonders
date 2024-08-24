@@ -101,7 +101,10 @@
         if (currentUserService.CurrentUser == null)
         {
             NoUserFound = true;
+            return;
         }
+        Navigation.NavigateTo("/Home");
+        StateHasChanged();
     }
     private IEnumerable<string> PasswordStrength(string pw)
     {
