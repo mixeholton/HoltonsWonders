@@ -21,38 +21,70 @@ namespace MixeWonders.Values.Commands
             ScopeService = scopeService;
             UserServiceQueries = userServiceQueries;
         }
-
-        public async Task<CurrentUserValue?> CreateUserAsync(UserHeaderValue user, string? password = null)
+        private async Task CreatAffiliation(UserEntity user)
         {
-            var NewUser = new UserEntity()
-            {
-                Mail = user.Mail,
-                Password = password != null ? password : $"{user.Mail[0].ToString().ToUpper()}{user.Mail[1].ToString().ToLower()}{DateTime.Now.Day}{DateTime.Now.Month}{DateTime.Now.Year}",
-                ChangedDate = DateTime.Now
-            };
             var roles = await BrugsDbContext.Roles.ToListAsync();
             var groups = await BrugsDbContext.Groups.ToListAsync();
+            roles.ForEach(x => x.Id = 0);
+            groups.ForEach(x => x.Id = 0);
+            user.Id = 0;
             var NewAffiliation = new AffiliationEntity()
-            {
-                User = NewUser,
-                AffiliationRoles = roles,
-                AffiliationGroups = groups
+            {                
+                User = user,
+                Roles = roles,
+                Groups = groups
             };
-
-            await ScopeService.PerformTransaction(async x =>
-            {
-                await x.Users.AddAsync(NewUser);
-                await x.SaveChangesAsync();
-            });
 
             await ScopeService.PerformTransaction(async x =>
             {
                 await x.Affiliations.AddAsync(NewAffiliation);
                 await x.SaveChangesAsync();
             });
-
-            return await UserServiceQueries.GetCurrentUser(NewUser.Mail, NewUser.Password) ?? null;
         }
+
+        public async Task<CurrentUserValue?> CreateUserAsync(UserHeaderValue user, string? password = null)
+        {
+            var roles = await BrugsDbContext.Roles.AsNoTracking().ToListAsync(); // These roles are now tracked by EF Core
+            var groups = await BrugsDbContext.Groups.AsNoTracking().ToListAsync(); // Same for groups
+            var newUser = new UserEntity()
+            {
+                Mail = user.Mail,
+                Password = password != null
+                    ? password
+                    : $"{user.Mail[0].ToString().ToUpper()}{user.Mail[1].ToString().ToLower()}{DateTime.Now.Day}{DateTime.Now.Month}{DateTime.Now.Year}",
+                ChangedDate = DateTime.Now,
+            };
+
+            var newAffiliation = new AffiliationEntity()
+            {
+                User = newUser
+            };
+            
+            // Save everything in one transaction
+            await ScopeService.PerformTransaction(async x =>
+            {
+                await x.Users.AddAsync(newUser); // Only newUser is actually a new entity
+                await x.Affiliations.AddAsync(newAffiliation);
+                await x.SaveChangesAsync();
+            });
+            newUser.Groups = groups;
+            newUser.Affiliation = newAffiliation;
+            newAffiliation.User = newUser;
+            newAffiliation.Roles = roles;
+            newAffiliation.Groups = groups;
+            await UpdateUserAsync(newUser, newAffiliation);
+
+            return await UserServiceQueries.GetCurrentUser(newUser.Mail, newUser.Password) ?? null;
+        }
+        public async Task UpdateUserAsync(UserEntity user, AffiliationEntity affiliation)
+        {                                               
+            await ScopeService.PerformTransaction(async x =>
+            {
+                x.Users.Update(user);
+                x.Affiliations.Update(affiliation);
+                await x.SaveChangesAsync();
+            });
+        } 
         public async Task UpdateUserAsync(UserHeaderValue user)
         {                                   
             var UpdateUser = new UserEntity()

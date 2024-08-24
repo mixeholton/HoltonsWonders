@@ -27,7 +27,7 @@ namespace MixeWonders.Values.Services
         }
         public async Task SeedAsync()
         {
-            //Permissions
+            ////Permissions
             //foreach (var permissionType in Enum.GetValues(typeof(PermissionType)).Cast<PermissionType>())
             //{
             //    await _permissionService.Commands.CreatePermissionAsync(new PermissionValue(permissionType));
@@ -46,14 +46,14 @@ namespace MixeWonders.Values.Services
             //var roles = await _roleService.Queries.GetAllRoles();
             ////Groups
             //await _groupService.Commands.CreateGroupAsync(
-            //    new GroupValue(null, "User", 
+            //    new GroupValue(null, "User",
             //        roles.Where(x => x.Name == "Basic" || x.Name == "Footballer").Select(r => new RoleValue(r.Id, r.Name, r.Description, r.Permissions)).ToList()));
             //await _groupService.Commands.CreateGroupAsync(
-            //    new GroupValue(null, "Advanced Footballer", 
+            //    new GroupValue(null, "Advanced Footballer",
             //        roles.Where(x => x.Name == "Basic" || x.Name == "Advanced User" || x.Name == "Footballer").Select(r => new RoleValue(r.Id, r.Name, r.Description, r.Permissions)).ToList()));
             //await _groupService.Commands.CreateGroupAsync(
             //    new GroupValue(null, "Super Admin",
-            //        roles.Where(x => x.Name == "Basic" || x.Name == "Super" || x.Name == "Admin").Select(r => new RoleValue(r.Id, r.Name, r.Description, r.Permissions)).ToList())); 
+            //        roles.Where(x => x.Name == "Basic" || x.Name == "Super" || x.Name == "Admin").Select(r => new RoleValue(r.Id, r.Name, r.Description, r.Permissions)).ToList()));
             //await _groupService.Commands.CreateGroupAsync(
             //    new GroupValue(null, "All",
             //        roles.Select(r => new RoleValue(r.Id, r.Name, r.Description, r.Permissions)).ToList()));

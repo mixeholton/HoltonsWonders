@@ -64,41 +64,35 @@ public class BrugsDbContext : DbContext, IProvideDbContext
     public DbSet<CreditDebitEntity> CreditDebits { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
+    {        
+
         modelBuilder.Entity<CreditDebitEntity>(x =>
         {
+            x.HasKey(x => x.Id);
             x.Property(e => e.Amount).HasColumnType("decimal(18,2)");
         });
-        modelBuilder.Entity<RoleEntity>(entity =>
+        // One-to-One Relationship between UserEntity and AffiliationEntity
+        modelBuilder.Entity<UserEntity>(x =>
         {
-            entity.HasKey(e => e.Id); // Identity column
-            entity.HasMany(c => c.Permissions); 
+            x.HasKey(x => x.Id);
+            x.HasOne(u => u.Affiliation).WithOne(a => a.User).HasForeignKey<UserEntity>(u => u.AffiliationId);
+            x.HasMany(u => u.Groups).WithMany(x => x.Users);
         });
 
-        modelBuilder.Entity<PermissionEntity>(entity =>
+        // Many-to-Many Relationship between GroupEntity and UserEntity
+        modelBuilder.Entity<GroupEntity>(x =>
         {
-            entity.HasKey(e => e.Id); // Identity column
+            x.HasKey(x => x.Id);
+            x.HasMany(g => g.Users).WithMany(u => u.Groups);
+            x.HasMany(g => g.Roles).WithMany(r => r.Groups);
         });
-
-        modelBuilder.Entity<UserEntity>(entity =>
-        {
-            entity.HasKey(e => e.Id); // Identity column
+        modelBuilder.Entity<AffiliationEntity>(x =>
+        {            
+            x.HasKey(x => x.Id);
+            x.HasOne(g => g.User).WithOne(u => u.Affiliation).HasForeignKey<AffiliationEntity>(u => u.UserId);
+            x.HasMany(a => a.Groups).WithMany(g => g.Affiliations);
+            x.HasMany(a => a.Roles).WithMany(g => g.Affiliations);
         });
-
-        modelBuilder.Entity<AffiliationEntity>(entity =>
-        {
-            entity.HasKey(e => e.Id); // Identity column
-            entity.HasOne(a => a.User)
-                  .WithOne(u => u.Affiliation)
-                  .HasForeignKey<AffiliationEntity>(a => a.UserId);
-        });
-
-        modelBuilder.Entity<GroupEntity>(entity =>
-        {
-            entity.HasKey(e => e.Id); // Identity column
-            entity.HasMany(e => e.Roles);
-        });
-
 
     }
 }

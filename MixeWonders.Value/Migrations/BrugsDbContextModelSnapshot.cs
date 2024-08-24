@@ -22,6 +22,66 @@ namespace MixeWonders.Value.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("AffiliationEntityGroupEntity", b =>
+                {
+                    b.Property<int>("AffiliationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GroupsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AffiliationsId", "GroupsId");
+
+                    b.HasIndex("GroupsId");
+
+                    b.ToTable("AffiliationEntityGroupEntity");
+                });
+
+            modelBuilder.Entity("AffiliationEntityRoleEntity", b =>
+                {
+                    b.Property<int>("AffiliationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RolesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AffiliationsId", "RolesId");
+
+                    b.HasIndex("RolesId");
+
+                    b.ToTable("AffiliationEntityRoleEntity");
+                });
+
+            modelBuilder.Entity("GroupEntityRoleEntity", b =>
+                {
+                    b.Property<int>("GroupsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RolesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GroupsId", "RolesId");
+
+                    b.HasIndex("RolesId");
+
+                    b.ToTable("GroupEntityRoleEntity");
+                });
+
+            modelBuilder.Entity("GroupEntityUserEntity", b =>
+                {
+                    b.Property<int>("GroupsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GroupsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("GroupEntityUserEntity");
+                });
+
             modelBuilder.Entity("MixeWonders.Values.Entities.AffiliationEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -30,15 +90,16 @@ namespace MixeWonders.Value.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
-                    b.ToTable("Affiliations", (string)null);
+                    b.ToTable("Affiliations");
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.CreditDebitEntity", b =>
@@ -66,7 +127,7 @@ namespace MixeWonders.Value.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CreditDebits", (string)null);
+                    b.ToTable("CreditDebits");
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.GroupEntity", b =>
@@ -77,18 +138,13 @@ namespace MixeWonders.Value.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AffiliationEntityId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AffiliationEntityId");
-
-                    b.ToTable("Groups", (string)null);
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.PermissionEntity", b =>
@@ -109,7 +165,7 @@ namespace MixeWonders.Value.Migrations
 
                     b.HasIndex("RoleEntityId");
 
-                    b.ToTable("Permissions", (string)null);
+                    b.ToTable("Permissions");
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.RoleEntity", b =>
@@ -120,15 +176,9 @@ namespace MixeWonders.Value.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AffiliationEntityId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("GroupEntityId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -136,11 +186,7 @@ namespace MixeWonders.Value.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AffiliationEntityId");
-
-                    b.HasIndex("GroupEntityId");
-
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.UserEntity", b =>
@@ -157,9 +203,6 @@ namespace MixeWonders.Value.Migrations
                     b.Property<DateTime>("ChangedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("GroupEntityId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Mail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -170,18 +213,74 @@ namespace MixeWonders.Value.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupEntityId");
+                    b.ToTable("Users");
+                });
 
-                    b.ToTable("Users", (string)null);
+            modelBuilder.Entity("AffiliationEntityGroupEntity", b =>
+                {
+                    b.HasOne("MixeWonders.Values.Entities.AffiliationEntity", null)
+                        .WithMany()
+                        .HasForeignKey("AffiliationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MixeWonders.Values.Entities.GroupEntity", null)
+                        .WithMany()
+                        .HasForeignKey("GroupsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AffiliationEntityRoleEntity", b =>
+                {
+                    b.HasOne("MixeWonders.Values.Entities.AffiliationEntity", null)
+                        .WithMany()
+                        .HasForeignKey("AffiliationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MixeWonders.Values.Entities.RoleEntity", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GroupEntityRoleEntity", b =>
+                {
+                    b.HasOne("MixeWonders.Values.Entities.GroupEntity", null)
+                        .WithMany()
+                        .HasForeignKey("GroupsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MixeWonders.Values.Entities.RoleEntity", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GroupEntityUserEntity", b =>
+                {
+                    b.HasOne("MixeWonders.Values.Entities.GroupEntity", null)
+                        .WithMany()
+                        .HasForeignKey("GroupsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MixeWonders.Values.Entities.UserEntity", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.AffiliationEntity", b =>
                 {
                     b.HasOne("MixeWonders.Values.Entities.UserEntity", "User")
                         .WithOne("Affiliation")
-                        .HasForeignKey("MixeWonders.Values.Entities.AffiliationEntity", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MixeWonders.Values.Entities.AffiliationEntity", "UserId");
 
                     b.Navigation("User");
                 });
@@ -197,50 +296,11 @@ namespace MixeWonders.Value.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MixeWonders.Values.Entities.GroupEntity", b =>
-                {
-                    b.HasOne("MixeWonders.Values.Entities.AffiliationEntity", null)
-                        .WithMany("AffiliationGroups")
-                        .HasForeignKey("AffiliationEntityId");
-                });
-
             modelBuilder.Entity("MixeWonders.Values.Entities.PermissionEntity", b =>
                 {
                     b.HasOne("MixeWonders.Values.Entities.RoleEntity", null)
                         .WithMany("Permissions")
                         .HasForeignKey("RoleEntityId");
-                });
-
-            modelBuilder.Entity("MixeWonders.Values.Entities.RoleEntity", b =>
-                {
-                    b.HasOne("MixeWonders.Values.Entities.AffiliationEntity", null)
-                        .WithMany("AffiliationRoles")
-                        .HasForeignKey("AffiliationEntityId");
-
-                    b.HasOne("MixeWonders.Values.Entities.GroupEntity", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("GroupEntityId");
-                });
-
-            modelBuilder.Entity("MixeWonders.Values.Entities.UserEntity", b =>
-                {
-                    b.HasOne("MixeWonders.Values.Entities.GroupEntity", null)
-                        .WithMany("Users")
-                        .HasForeignKey("GroupEntityId");
-                });
-
-            modelBuilder.Entity("MixeWonders.Values.Entities.AffiliationEntity", b =>
-                {
-                    b.Navigation("AffiliationGroups");
-
-                    b.Navigation("AffiliationRoles");
-                });
-
-            modelBuilder.Entity("MixeWonders.Values.Entities.GroupEntity", b =>
-                {
-                    b.Navigation("Roles");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("MixeWonders.Values.Entities.RoleEntity", b =>
