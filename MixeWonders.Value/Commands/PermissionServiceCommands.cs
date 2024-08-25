@@ -25,7 +25,7 @@ namespace MixeWonders.Values.Commands
             var newPermission = new PermissionEntity() { Permission = permission.Permission };
             await ScopeService.PerformTransaction(async x =>
             {
-                await BrugsDbContext.Permissions.AddAsync(newPermission);
+                await x.Permissions.AddAsync(newPermission);
                 await x.SaveChangesAsync();
             });
         }

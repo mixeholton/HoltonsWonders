@@ -74,24 +74,30 @@ public class BrugsDbContext : DbContext, IProvideDbContext
         // One-to-One Relationship between UserEntity and AffiliationEntity
         modelBuilder.Entity<UserEntity>(x =>
         {
-            x.HasKey(x => x.Id);
-            x.HasOne(u => u.Affiliation).WithOne(a => a.User).HasForeignKey<UserEntity>(u => u.AffiliationId);
-            x.HasMany(u => u.Groups).WithMany(x => x.Users);
+            x.HasKey(u => u.Id);
+            x.HasOne(u => u.Affiliation)
+             .WithOne(a => a.User)
+             .HasForeignKey<AffiliationEntity>(a => a.UserId);
         });
-
+        modelBuilder.Entity<RoleEntity>(x =>
+        {
+            x.HasKey(x => x.Id);
+            x.HasMany(p => p.Permissions);
+            
+        });
         // Many-to-Many Relationship between GroupEntity and UserEntity
         modelBuilder.Entity<GroupEntity>(x =>
         {
             x.HasKey(x => x.Id);
-            x.HasMany(g => g.Users).WithMany(u => u.Groups);
-            x.HasMany(g => g.Roles).WithMany(r => r.Groups);
+            x.HasMany(g => g.Users);
+            x.HasMany(g => g.Roles);
         });
         modelBuilder.Entity<AffiliationEntity>(x =>
-        {            
-            x.HasKey(x => x.Id);
-            x.HasOne(g => g.User).WithOne(u => u.Affiliation).HasForeignKey<AffiliationEntity>(u => u.UserId);
-            x.HasMany(a => a.Groups).WithMany(g => g.Affiliations);
-            x.HasMany(a => a.Roles).WithMany(g => g.Affiliations);
+        {
+            x.HasKey(e => e.Id);
+            x.HasOne(a => a.User)
+             .WithOne(u => u.Affiliation)
+             .HasForeignKey<AffiliationEntity>(a => a.UserId);
         });
 
     }

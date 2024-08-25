@@ -1,7 +1,7 @@
 ﻿@using MixeWonders.Values.Enums
 @using MixeWonders.Values.Services
 <MudNavMenu>
-    @foreach(var Navs in CurrentUser.CurrentUser.Permissions)
+    @foreach(var Navs in CurrentUser.CurrentUser.Permissions.Where(x => x != PermissionType.None))
     {
     <MudNavLink Href="@GetHref(Navs)" Match="NavLinkMatch.Prefix">@Navs.ToString()</MudNavLink>
         

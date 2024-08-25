@@ -43,9 +43,8 @@ namespace MixeWonders.Values.Commands
         }
 
         public async Task<CurrentUserValue?> CreateUserAsync(UserHeaderValue user, string? password = null)
-        {
-            var roles = await BrugsDbContext.Roles.AsNoTracking().ToListAsync(); // These roles are now tracked by EF Core
-            var groups = await BrugsDbContext.Groups.AsNoTracking().ToListAsync(); // Same for groups
+        {            
+            var groups = await BrugsDbContext.Groups.Include(x => x.Roles).Where(x => x.Name == "User").ToListAsync();            
             var newUser = new UserEntity()
             {
                 Mail = user.Mail,
@@ -67,10 +66,9 @@ namespace MixeWonders.Values.Commands
                 await x.Affiliations.AddAsync(newAffiliation);
                 await x.SaveChangesAsync();
             });
-            newUser.Groups = groups;
             newUser.Affiliation = newAffiliation;
             newAffiliation.User = newUser;
-            newAffiliation.Roles = roles;
+            newAffiliation.Roles = groups.SelectMany(x => x.Roles).ToList();
             newAffiliation.Groups = groups;
             await UpdateUserAsync(newUser, newAffiliation);
 

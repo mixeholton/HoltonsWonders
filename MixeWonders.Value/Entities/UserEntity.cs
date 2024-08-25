@@ -19,6 +19,5 @@ public class UserEntity
     // One-to-Many Relationship with CreditDebitEntity
     public ICollection<CreditDebitEntity>? CreditDebits { get; set; } = new List<CreditDebitEntity>();
     // Many-to-Many Relationship with GroupEntity
-    public ICollection<GroupEntity> Groups { get; set; } = new List<GroupEntity>();
 }
 

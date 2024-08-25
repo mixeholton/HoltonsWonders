@@ -49,7 +49,7 @@ namespace MixeWonders.Values.Services
                 new GroupValue(null, "User",
                     roles.Where(x => x.Name == "Basic" || x.Name == "Footballer").Select(r => new RoleValue(r.Id, r.Name, r.Description, r.Permissions)).ToList()));
             await _groupService.Commands.CreateGroupAsync(
-                new GroupValue(null, "Advanced Footballer",
+                new GroupValue(null, "Advanced User",
                     roles.Where(x => x.Name == "Basic" || x.Name == "Advanced User" || x.Name == "Footballer").Select(r => new RoleValue(r.Id, r.Name, r.Description, r.Permissions)).ToList()));
             await _groupService.Commands.CreateGroupAsync(
                 new GroupValue(null, "Super Admin",

@@ -1,8 +1,8 @@
-﻿@using MixeWonders.Client.ViewModels
+﻿@page "/Login"
+@using MixeWonders.Client.ViewModels
 @using MixeWonders.Values.Services
 @using MixeWonders.Values.Values
 @using System.Text.RegularExpressions
-
 
 <PageTitle>Login</PageTitle>
 
@@ -30,7 +30,7 @@
                 {
                 <div class="d-flex align-center justify-space-between ma-2">
                         <MudButton Variant="Variant.Outlined" Color="Color.Info" OnClick="@(()=> IsRegister())" Class="ma-1">Registere ny Bruger</MudButton>
-                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=> LoginUser())" Class="ma-1">Login In</MudButton>
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(()=> LoginUser())" Class="ma-1">Login</MudButton>
                 </div>
                 }
 
